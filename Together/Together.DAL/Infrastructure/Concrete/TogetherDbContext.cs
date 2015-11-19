@@ -11,7 +11,7 @@ namespace Together.DAL.Infrastructure.Concrete
     public class TogetherDbContext : DbContext
     {
         public TogetherDbContext()
-            :base()
+            :base("TogetherConnectionString")
         {
 
         }
