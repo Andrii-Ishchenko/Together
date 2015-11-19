@@ -14,5 +14,7 @@ namespace Together.Domain.Entities
 
         public string LastName { get; set; }
 
+        public List<Route> Routes;
+
     }
 }

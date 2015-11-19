@@ -18,10 +18,17 @@ namespace Together.Domain.Entities
 
         public int? Order { get; set; }
 
-        public int SuggestUserId { get; set; }
+        public int SuggestUserId { get; set; }     
 
         public int PointId { get; set; }
 
         public int RouteId { get; set; }
+
+
+        public virtual User SuggestUser { get; set; }
+
+        public virtual Point Point { get; set; }
+
+        public virtual Route Route { get; set; }
     }
 }

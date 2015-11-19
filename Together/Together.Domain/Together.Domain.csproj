@@ -45,6 +45,7 @@
     <Compile Include="Entities\Point.cs" />
     <Compile Include="Entities\Route.cs" />
     <Compile Include="Entities\RoutePoint.cs" />
+    <Compile Include="Entities\RouteUser.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
