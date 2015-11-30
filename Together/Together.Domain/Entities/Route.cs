@@ -18,14 +18,13 @@ namespace Together.Domain.Entities
 
         public bool IsLocked { get; set; }
 
-        public int InitiatorId { get; set; }
-
-        public int GroupId { get; set; }
-
+        public int? GroupId { get; set; }
 
         public virtual List<RoutePoint> RoutePoints { get; set; }
 
-        public virtual User Initiator { get; set; }
+		//public virtual List<Point> Points { get; set; }
+
+		public virtual List<RouteUser> RouteUsers { get; set; }
 
         public virtual Group Group { get; set; }
     }

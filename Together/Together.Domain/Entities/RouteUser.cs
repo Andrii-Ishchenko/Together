@@ -16,6 +16,10 @@ namespace Together.Domain.Entities
 
         public DateTime JoinDate { get; set; }
 
-        
+		public bool IsRouteOwner { get; set; }
+
+        public virtual Route Route { get; set; }
+
+		public virtual User User { get; set; }
     }
 }

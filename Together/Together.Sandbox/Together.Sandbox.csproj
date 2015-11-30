@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC0818DD-9042-4A14-A801-C0FB61186CA2}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{70100E21-B361-4574-A140-F28F7AC72DBF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Together.DAL</RootNamespace>
-    <AssemblyName>Together.DAL</AssemblyName>
+    <RootNamespace>Together.Sandbox</RootNamespace>
+    <AssemblyName>Together.Sandbox</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,32 +52,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
-    <Compile Include="Migrations\201511301104470_initial.cs" />
-    <Compile Include="Migrations\201511301104470_initial.Designer.cs">
-      <DependentUpon>201511301104470_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Abstract\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Together.DAL\Together.DAL.csproj">
+      <Project>{ac0818dd-9042-4a14-a801-c0fb61186ca2}</Project>
+      <Name>Together.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
       <Project>{daf59ae5-25a0-4716-84e1-cf31f123d9cf}</Project>
       <Name>Together.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511301104470_initial.resx">
-      <DependentUpon>201511301104470_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

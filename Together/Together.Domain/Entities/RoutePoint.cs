@@ -27,8 +27,10 @@ namespace Together.Domain.Entities
 
         public virtual User SuggestUser { get; set; }
 
-        public virtual Point Point { get; set; }
+		public virtual Route Route { get; set; }
 
-        public virtual Route Route { get; set; }
+		public virtual Point Point { get; set; }
+
+        
     }
 }

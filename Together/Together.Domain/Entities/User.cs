@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Together.Domain.Entities
 {
-    public class User
-    {
-        public int Id { get; set; }
+	public class User
+	{
+		public int Id { get; set; }
 
-        public string FirstName { get; set; }
+		public string FirstName { get; set; }
 
-        public string LastName { get; set; }
+		public string LastName { get; set; }
 
-        public List<Route> Routes;
+		public virtual List<RouteUser> UserRoutes {get;set;}
 
-    }
+		public virtual List<GroupUser> UserGroups { get; set; }
+
+	}
 }

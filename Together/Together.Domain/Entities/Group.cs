@@ -16,7 +16,7 @@ namespace Together.Domain.Entities
 
         public string SecretKey { get; set; }
 
-        public virtual List<User> Users { get; set; }
+        public virtual List<GroupUser> GroupUsers { get; set; }
 
         public virtual List<Route> Routes { get; set; }
     }
