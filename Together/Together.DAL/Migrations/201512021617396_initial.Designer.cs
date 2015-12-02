@@ -13,7 +13,7 @@ namespace Together.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201512021521099_initial"; }
+            get { return "201512021617396_initial"; }
         }
         
         string IMigrationMetadata.Source

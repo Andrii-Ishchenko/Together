@@ -44,37 +44,6 @@ namespace Together.DAL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.RouteUser",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        RouteId = c.Int(nullable: false),
-                        UserId = c.Int(nullable: false),
-                        JoinDate = c.DateTime(nullable: false),
-                        IsRouteOwner = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Route", t => t.RouteId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.RouteId)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.Route",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        StartDate = c.DateTime(nullable: false),
-                        RouteType = c.String(),
-                        IsPrivate = c.Boolean(nullable: false),
-                        IsLocked = c.Boolean(nullable: false),
-                        GroupId = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Group", t => t.GroupId)
-                .Index(t => t.GroupId);
-            
-            CreateTable(
                 "dbo.RoutePoint",
                 c => new
                     {
@@ -105,30 +74,61 @@ namespace Together.DAL.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Route",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        StartDate = c.DateTime(nullable: false),
+                        RouteType = c.String(),
+                        IsPrivate = c.Boolean(nullable: false),
+                        IsLocked = c.Boolean(nullable: false),
+                        GroupId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Group", t => t.GroupId)
+                .Index(t => t.GroupId);
+            
+            CreateTable(
+                "dbo.RouteUser",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        RouteId = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
+                        JoinDate = c.DateTime(nullable: false),
+                        IsRouteOwner = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Route", t => t.RouteId, cascadeDelete: true)
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.RouteId)
+                .Index(t => t.UserId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.GroupUser", "UserId", "dbo.User");
+            DropForeignKey("dbo.RoutePoint", "SuggestUserId", "dbo.User");
             DropForeignKey("dbo.RouteUser", "UserId", "dbo.User");
             DropForeignKey("dbo.RouteUser", "RouteId", "dbo.Route");
-            DropForeignKey("dbo.RoutePoint", "SuggestUserId", "dbo.User");
             DropForeignKey("dbo.RoutePoint", "RouteId", "dbo.Route");
-            DropForeignKey("dbo.RoutePoint", "PointId", "dbo.Point");
             DropForeignKey("dbo.Route", "GroupId", "dbo.Group");
-            DropForeignKey("dbo.GroupUser", "UserId", "dbo.User");
+            DropForeignKey("dbo.RoutePoint", "PointId", "dbo.Point");
             DropForeignKey("dbo.GroupUser", "GroupId", "dbo.Group");
+            DropIndex("dbo.RouteUser", new[] { "UserId" });
+            DropIndex("dbo.RouteUser", new[] { "RouteId" });
+            DropIndex("dbo.Route", new[] { "GroupId" });
             DropIndex("dbo.RoutePoint", new[] { "RouteId" });
             DropIndex("dbo.RoutePoint", new[] { "PointId" });
             DropIndex("dbo.RoutePoint", new[] { "SuggestUserId" });
-            DropIndex("dbo.Route", new[] { "GroupId" });
-            DropIndex("dbo.RouteUser", new[] { "UserId" });
-            DropIndex("dbo.RouteUser", new[] { "RouteId" });
             DropIndex("dbo.GroupUser", new[] { "UserId" });
             DropIndex("dbo.GroupUser", new[] { "GroupId" });
+            DropTable("dbo.RouteUser");
+            DropTable("dbo.Route");
             DropTable("dbo.Point");
             DropTable("dbo.RoutePoint");
-            DropTable("dbo.Route");
-            DropTable("dbo.RouteUser");
             DropTable("dbo.User");
             DropTable("dbo.GroupUser");
             DropTable("dbo.Group");

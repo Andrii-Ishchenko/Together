@@ -22,7 +22,8 @@ namespace Together.DAL.Repository.Concrete
 
 		public TEntity Add(TEntity entity)
 		{
-			throw new NotImplementedException();
+			return dbSet.Add(entity);
+	
 		}
 
 		public void Delete(TEntity entity)
@@ -43,6 +44,11 @@ namespace Together.DAL.Repository.Concrete
 		public TEntity GetById(int id)
 		{
 			return dbSet.Find(id);
+		}
+
+		public void SaveChanges()
+		{
+			context.SaveChanges();
 		}
 
 		public void Update(TEntity entity)

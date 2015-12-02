@@ -18,5 +18,7 @@ namespace Together.DAL.Repository.Abstract
 		void Update(TEntity Entity);
 
 		void Delete(TEntity Entity);
+
+		void SaveChanges();
 	}
 }

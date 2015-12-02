@@ -15,6 +15,8 @@ namespace Together.DAL.Migrations
 
         protected override void Seed(Together.DAL.Infrastructure.Concrete.TogetherDbContext context)
         {
+			context.Points.AddOrUpdate(new Domain.Entities.Point { Latitude = 123, Longitude = 456 });
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

@@ -18,5 +18,7 @@ namespace Together.Domain.Entities
 
 		public virtual List<GroupUser> UserGroups { get; set; }
 
+		public virtual List<RoutePoint> RoutePoints { get; set; }
+
 	}
 }
