@@ -3,31 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.DAL.Infrastructure.Concrete;
-using Together.DAL.Repository.Concrete;
-using Together.Domain.Entities;
+
+using Together.BL.Mapper;
 
 namespace Together.Sandbox
 {
 	class Program
 	{
+		static Program()
+		{			
+			AutoMapperConfig.Configure();
+		}
+
 		static void Main(string[] args)
 		{
-			BaseRepository<Point> rep = new BaseRepository<Point>(new TogetherDbContext());
+			Console.WriteLine("Main");
+			Console.ReadKey();
 
-			Point p = new Point() { Latitude = 0.123, Longitude = 0.456 };
+
 			
-			rep.Add(p);
-
-			rep.SaveChanges();
-
-			BaseRepository<User> urep = new BaseRepository<User>(new TogetherDbContext());
-
-			User u = new User() { FirstName = "A", LastName = "B" };
-
-			urep.Add(u);
-
-			urep.SaveChanges();
 
         }
 	}

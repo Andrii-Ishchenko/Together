@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70100E21-B361-4574-A140-F28F7AC72DBF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{37285DBD-2533-4BC5-9BCE-1397C8F2126F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Together.Sandbox</RootNamespace>
-    <AssemblyName>Together.Sandbox</AssemblyName>
+    <RootNamespace>Together.BL</RootNamespace>
+    <AssemblyName>Together.BL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,16 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,17 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="DTOEntities\GroupDto.cs" />
+    <Compile Include="DTOEntities\GroupUserDto.cs" />
+    <Compile Include="DTOEntities\PointDto.cs" />
+    <Compile Include="DTOEntities\RouteDto.cs" />
+    <Compile Include="DTOEntities\RoutePointDto.cs" />
+    <Compile Include="DTOEntities\RouteUserDto.cs" />
+    <Compile Include="DTOEntities\UserDto.cs" />
+    <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Abstract\IBaseService.cs" />
+    <Compile Include="Services\Abstract\IUserService.cs" />
+    <Compile Include="Services\Concrete\BaseService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Together.BL\Together.BL.csproj">
-      <Project>{37285dbd-2533-4bc5-9bce-1397c8f2126f}</Project>
-      <Name>Together.BL</Name>
+    <ProjectReference Include="..\Together.DAL\Together.DAL.csproj">
+      <Project>{ac0818dd-9042-4a14-a801-c0fb61186ca2}</Project>
+      <Name>Together.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
+      <Project>{daf59ae5-25a0-4716-84e1-cf31f123d9cf}</Project>
+      <Name>Together.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
