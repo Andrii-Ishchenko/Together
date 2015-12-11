@@ -7,7 +7,7 @@ using Together.BL.DTOEntities;
 
 namespace Together.BL.Services.Abstract
 {
-	public interface IUserService:IBaseService<UserDto>
+	public interface IUserService
 	{
 
 	}
