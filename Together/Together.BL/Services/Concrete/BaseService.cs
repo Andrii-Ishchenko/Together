@@ -7,7 +7,7 @@ using Together.BL.Services.Abstract;
 
 namespace Together.BL.Services.Concrete
 {
-	public class BaseService<TEntityDto> : IBaseService<TEntityDto>
+	public class BaseService<TEntityDto,TEntity> : IBaseService<TEntityDto>
 		where TEntityDto : class
 	{
 		public TEntityDto Add(TEntityDto entity)
