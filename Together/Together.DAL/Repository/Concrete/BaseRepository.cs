@@ -16,7 +16,7 @@ namespace Together.DAL.Repository.Concrete
 		public BaseRepository(TogetherDbContext context)
 		{
 			this.context = context;
-			this.dbSet = context.Set<TEntity>();
+			dbSet = context.Set<TEntity>();
 
 		}
 

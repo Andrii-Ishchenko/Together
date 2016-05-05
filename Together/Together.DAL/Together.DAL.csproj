@@ -49,7 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Abstract\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Abstract\IUnitOfWorkFactory.cs" />
     <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
+    <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
     <Compile Include="Migrations\201512021617396_initial.cs" />
     <Compile Include="Migrations\201512021617396_initial.Designer.cs">
       <DependentUpon>201512021617396_initial.cs</DependentUpon>
@@ -59,9 +63,7 @@
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
     <Compile Include="Repository\Concrete\BaseRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Abstract\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

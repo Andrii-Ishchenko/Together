@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Together.BL.DTOEntities;
+﻿using Together.DAL.Infrastructure.Abstract;
+using Together.Domain.Entities;
 
 namespace Together.BL.Services.Concrete
 {
-    public class UserService<TEntityDto> :BaseService<TEntityDto,UserDto>
-        where TEntityDto: class
+    public class UserService :BaseService<User>
     {
+        public UserService(IUnitOfWorkFactory factory)
+            :base(factory)
+        {
 
+        }
     }
 }

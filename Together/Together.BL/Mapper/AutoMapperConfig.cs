@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTOEntities;
 using Together.Domain.Entities;
+using AutoMapper;
 
-namespace Together.BL.Mapper
+namespace Together.BL
 {
 	public static class AutoMapperConfig
 	{
 		public static void Configure()
-		{
-			AutoMapper.Mapper.CreateMap<User, UserDto>();
-			AutoMapper.Mapper.CreateMap<UserDto, User>();
+		{         
+			Mapper.CreateMap<User, UserDto>();
+			Mapper.CreateMap<UserDto, User>();
 
 		}
 	}
