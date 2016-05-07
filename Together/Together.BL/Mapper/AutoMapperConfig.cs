@@ -16,6 +16,8 @@ namespace Together.BL
 			Mapper.CreateMap<User, UserDto>();
 			Mapper.CreateMap<UserDto, User>();
 
+            Mapper.CreateMap<Point, PointDto>();
+            Mapper.CreateMap<PointDto, Point>();
 		}
 	}
 }

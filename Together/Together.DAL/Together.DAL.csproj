@@ -52,8 +52,8 @@
     <Compile Include="Infrastructure\Abstract\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\Abstract\IUnitOfWorkFactory.cs" />
     <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
-    <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
-    <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWorkFactory.cs" />
     <Compile Include="Migrations\201512021617396_initial.cs" />
     <Compile Include="Migrations\201512021617396_initial.Designer.cs">
       <DependentUpon>201512021617396_initial.cs</DependentUpon>

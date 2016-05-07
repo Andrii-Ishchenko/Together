@@ -54,8 +54,10 @@
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstract\IBaseService.cs" />
+    <Compile Include="Services\Abstract\IPointService.cs" />
     <Compile Include="Services\Abstract\IUserService.cs" />
     <Compile Include="Services\Concrete\BaseService.cs" />
+    <Compile Include="Services\Concrete\PointService.cs" />
     <Compile Include="Services\Concrete\UserService.cs" />
   </ItemGroup>
   <ItemGroup />

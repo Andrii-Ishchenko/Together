@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 
 namespace Together.BL.Services.Abstract
 {
-	public interface IBaseService<TEntity>
-		where TEntity : class
-	{		
-		 TEntity GetById(int id);
+    public interface IBaseService<TEntity>
+        where TEntity : class
+    {
+        TEntityDto GetById<TEntityDto>(int id)
+            where TEntityDto : class;
 
-         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntityDto> GetAll<TEntityDto>()
+            where TEntityDto : class;
 
-         TEntity Add(TEntity entity);
+        TEntityDto Add<TEntityDto>(TEntityDto entityDto)
+            where TEntityDto : class;
 
-         void Delete(TEntity entity);
+        void Delete<TEntityDto>(TEntityDto entityDto)
+            where TEntityDto : class;
 
-         void Update(TEntity entity);
+        void Update<TEntityDto>(TEntityDto entityDto)
+            where TEntityDto : class;
 
-	}
+    }
 }
