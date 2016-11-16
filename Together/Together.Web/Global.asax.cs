@@ -18,8 +18,7 @@ namespace Together.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            AutoMapperConfig.Configure();
+            BundleConfig.RegisterBundles(BundleTable.Bundles);          
         }
     }
 }

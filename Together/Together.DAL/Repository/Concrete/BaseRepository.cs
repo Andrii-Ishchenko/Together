@@ -38,7 +38,7 @@ namespace Together.DAL.Repository.Concrete
 
 		public IEnumerable<TEntity> Get()
 		{
-			return dbSet;
+			return dbSet.ToList<TEntity>();
 		}
 
 		public TEntity GetById(int id)

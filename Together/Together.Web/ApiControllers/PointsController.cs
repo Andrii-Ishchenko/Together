@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using Together.BL.DTOEntities;
 using Together.BL.Services.Abstract;
+using Together.Domain.Entities;
 
 namespace Together.Web.ApiControllers
 {
@@ -18,9 +18,9 @@ namespace Together.Web.ApiControllers
         }
 
         [HttpGet]
-        public IEnumerable<PointDto> Get()
+        public IEnumerable<Point> Get()
         {
-            return _pointService.GetAll<PointDto>();
+            return _pointService.GetAll();
         }
     }
 }

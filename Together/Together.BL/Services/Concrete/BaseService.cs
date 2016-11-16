@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.BL.Services.Abstract;
 using Together.DAL.Infrastructure.Abstract;
-using AutoMapper;
 namespace Together.BL.Services.Concrete
 {
     public class BaseService<TEntity> : IBaseService<TEntity>
@@ -18,60 +17,64 @@ namespace Together.BL.Services.Concrete
             _factory = factory;
         }
 
-        public TEntityDto Add<TEntityDto>(TEntityDto entityDto) where TEntityDto : class
+        public TEntity Add(TEntity entity)
         {
             using (var uow = _factory.Create())
             {
-                var entity = Mapper.Map<TEntityDto, TEntity>(entityDto);
+                var repo = uow.Repository<TEntity>();
 
-                var newEntity = uow.Repository<TEntity>().Add(entity);
-
-                return Mapper.Map<TEntity, TEntityDto>(newEntity);
+                return repo.Add(entity);
             }
         }
 
-        public void Delete<TEntityDto>(TEntityDto entityDto) where TEntityDto : class
-        {
-            using(var uow = _factory.Create())
-            {
-                var entity = Mapper.Map<TEntityDto, TEntity>(entityDto);
 
-                uow.Repository<TEntity>().Delete(entity);
-            }
-        }
 
-        public IEnumerable<TEntityDto> GetAll<TEntityDto>() where TEntityDto : class
-        {
-            IEnumerable<TEntityDto> output;
-
-            using (var uow = _factory.Create())
-            {
-                var list = uow.Repository<TEntity>().Get();
-
-                output = list.Select(e => Mapper.Map<TEntity, TEntityDto>(e));               
-            }
-
-            return output;
-        }
-
-        public TEntityDto GetById<TEntityDto>(int id) where TEntityDto : class
+        public void Delete(int id)
         {
             using (var uow = _factory.Create())
             {
-                var entity = uow.Repository<TEntity>().GetById(id);
+                var repo = uow.Repository<TEntity>();
+                var entity = repo.GetById(id);
 
-                return Mapper.Map<TEntity, TEntityDto>(entity);
+                if (entity!=null)
+                {
+                    repo.Delete(entity);
+                }
             }
+
         }
 
-        public void Update<TEntityDto>(TEntityDto entityDto) where TEntityDto : class
+        public IEnumerable<TEntity> GetAll()
         {
             using (var uow = _factory.Create())
             {
-                var entity = Mapper.Map<TEntityDto, TEntity>(entityDto);
+                var repo = uow.Repository<TEntity>();
 
-                uow.Repository<TEntity>().Update(entity);
+                return repo.Get();
             }
         }
+
+
+
+        public TEntity GetById(int id)
+        {
+            using (var uow = _factory.Create())
+            {
+                var repo = uow.Repository<TEntity>();
+
+                return repo.GetById(id);
+            }
+        }
+
+        public void Update(TEntity entity)
+        {
+            using (var uow = _factory.Create())
+            {
+                var repo = uow.Repository<TEntity>();
+
+                repo.Update(entity);
+            }
+        }
+
     }
 }

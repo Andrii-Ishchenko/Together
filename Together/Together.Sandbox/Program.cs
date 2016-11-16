@@ -11,7 +11,7 @@ namespace Together.Sandbox
 	{
 		static Program()
 		{			
-			AutoMapperConfig.Configure();
+			
 		}
 
 		static void Main(string[] args)

@@ -9,20 +9,16 @@ namespace Together.BL.Services.Abstract
     public interface IBaseService<TEntity>
         where TEntity : class
     {
-        TEntityDto GetById<TEntityDto>(int id)
-            where TEntityDto : class;
+        TEntity GetById(int id);
 
-        IEnumerable<TEntityDto> GetAll<TEntityDto>()
-            where TEntityDto : class;
+        IEnumerable<TEntity> GetAll();
 
-        TEntityDto Add<TEntityDto>(TEntityDto entityDto)
-            where TEntityDto : class;
+        TEntity Add(TEntity entityDto);
 
-        void Delete<TEntityDto>(TEntityDto entityDto)
-            where TEntityDto : class;
+        void Delete(int id);
 
-        void Update<TEntityDto>(TEntityDto entityDto)
-            where TEntityDto : class;
+        void Update(TEntity entityDto);
+
 
     }
 }
