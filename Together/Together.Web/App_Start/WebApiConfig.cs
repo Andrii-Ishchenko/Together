@@ -9,7 +9,6 @@ using Together.DAL.Infrastructure.Abstract;
 using Together.DAL.Infrastructure.Concrete;
 using Together.DAL.Repository.Abstract;
 using Together.DAL.Repository.Concrete;
-using Together.Web.Infrastructure;
 
 namespace Together.Web
 {
@@ -31,17 +30,7 @@ namespace Together.Web
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
-            var container = new UnityContainer();
-
-            container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
-
-            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
-
-            container.RegisterType<IPointService, PointService>();
-
-            config.DependencyResolver = new UnityResolver(container);
+           
         }
     }
 }

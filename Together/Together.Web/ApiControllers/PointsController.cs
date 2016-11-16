@@ -22,5 +22,11 @@ namespace Together.Web.ApiControllers
         {
             return _pointService.GetAll();
         }
+
+        [HttpPost]
+        public void Add(Point p)
+        {
+            _pointService.Add(p);
+        }
     }
 }
