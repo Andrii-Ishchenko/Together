@@ -33,7 +33,7 @@ namespace Together.DAL.Infrastructure.Concrete
             GC.SuppressFinalize(this);
         }
 
-        public IBaseRepository<T> Repository<T>() where T : class
+        public IBaseRepository<T> GetRepository<T>() where T : class
         {
             return new BaseRepository<T>(_context);
         }

@@ -21,7 +21,7 @@ namespace Together.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var repo = uow.Repository<TEntity>();
+                var repo = uow.GetRepository<TEntity>();
 
                 return repo.Add(entity);
             }
@@ -33,7 +33,7 @@ namespace Together.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var repo = uow.Repository<TEntity>();
+                var repo = uow.GetRepository<TEntity>();
                 var entity = repo.GetById(id);
 
                 if (entity!=null)
@@ -48,7 +48,7 @@ namespace Together.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var repo = uow.Repository<TEntity>();
+                var repo = uow.GetRepository<TEntity>();
 
                 return repo.Get();
             }
@@ -60,7 +60,7 @@ namespace Together.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var repo = uow.Repository<TEntity>();
+                var repo = uow.GetRepository<TEntity>();
 
                 return repo.GetById(id);
             }
@@ -70,7 +70,7 @@ namespace Together.BL.Services.Concrete
         {
             using (var uow = _factory.Create())
             {
-                var repo = uow.Repository<TEntity>();
+                var repo = uow.GetRepository<TEntity>();
 
                 repo.Update(entity);
             }

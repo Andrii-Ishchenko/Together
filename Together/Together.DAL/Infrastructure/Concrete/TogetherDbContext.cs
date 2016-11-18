@@ -29,7 +29,7 @@ namespace Together.DAL.Infrastructure.Concrete
         public DbSet<Point> Points { get; set; }
         public DbSet<GroupUser> GroupUsers { get; set; }
         public DbSet<RouteUser> RouteUsers { get; set; }
-        public DbSet<RoutePoint> RoutePoint { get; set; }
+        public DbSet<RoutePoint> RoutePoints { get; set; }
 
     }
 }

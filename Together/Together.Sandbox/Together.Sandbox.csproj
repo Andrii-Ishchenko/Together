@@ -64,6 +64,14 @@
       <Project>{37285dbd-2533-4bc5-9bce-1397c8f2126f}</Project>
       <Name>Together.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Together.DAL\Together.DAL.csproj">
+      <Project>{ac0818dd-9042-4a14-a801-c0fb61186ca2}</Project>
+      <Name>Together.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
+      <Project>{daf59ae5-25a0-4716-84e1-cf31f123d9cf}</Project>
+      <Name>Together.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
