@@ -14,12 +14,14 @@ namespace Together.DAL.Infrastructure.Concrete
         public TogetherDbContext()
             :base("TogetherDb")
         {
-
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TogetherDbContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
         }
 

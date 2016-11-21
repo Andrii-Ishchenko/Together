@@ -54,12 +54,15 @@
     <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
+    <Compile Include="Migrations\201611211219176_first.cs" />
+    <Compile Include="Migrations\201611211219176_first.Designer.cs">
+      <DependentUpon>201611211219176_first.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
     <Compile Include="Repository\Concrete\BaseRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -69,6 +72,11 @@
       <Project>{daf59ae5-25a0-4716-84e1-cf31f123d9cf}</Project>
       <Name>Together.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611211219176_first.resx">
+      <DependentUpon>201611211219176_first.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

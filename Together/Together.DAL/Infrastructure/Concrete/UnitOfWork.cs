@@ -9,14 +9,14 @@ using Together.DAL.Repository.Concrete;
 
 namespace Together.DAL.Infrastructure.Concrete
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private TogetherDbContext _context = new TogetherDbContext();
-        private bool disposed = false;
+        private bool _disposed = false;
 
         public virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
@@ -24,7 +24,7 @@ namespace Together.DAL.Infrastructure.Concrete
                 }
             }
 
-            disposed = true;
+            _disposed = true;
         }
 
         public void Dispose()

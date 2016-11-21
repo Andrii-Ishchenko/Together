@@ -8,7 +8,7 @@ using Together.DAL.Repository.Abstract;
 using Together.DAL.Repository.Concrete;
 using Unity.WebApi;
 
-namespace Together.Web
+namespace Together.WebApi
 {
     public static class UnityConfig
     {
@@ -21,18 +21,19 @@ namespace Together.Web
 
             // e.g. container.RegisterType<ITestService, TestService>();
 
+
             container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
+          
 
             container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
 
+            container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
             container.RegisterType<IPointService, PointService>();
 
 
+            
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
-
-
         }
     }
 }

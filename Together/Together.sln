@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Together.Sandbox", "Togethe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Together.BL", "Together.BL\Together.BL.csproj", "{37285DBD-2533-4BC5-9BCE-1397C8F2126F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Together.WebApi", "Together.WebApi\Together.WebApi.csproj", "{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{37285DBD-2533-4BC5-9BCE-1397C8F2126F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37285DBD-2533-4BC5-9BCE-1397C8F2126F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37285DBD-2533-4BC5-9BCE-1397C8F2126F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
