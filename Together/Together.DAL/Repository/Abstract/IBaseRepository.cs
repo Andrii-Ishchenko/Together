@@ -11,7 +11,7 @@ namespace Together.DAL.Repository.Abstract
 	{
 		TEntity GetById(int id);
 
-		IEnumerable<TEntity> Get();
+		IEnumerable<TEntity> List();
 
 		TEntity Add(TEntity Entity);
 
@@ -20,5 +20,6 @@ namespace Together.DAL.Repository.Abstract
 		void Delete(TEntity Entity);
 
 		void SaveChanges();
+
 	}
 }

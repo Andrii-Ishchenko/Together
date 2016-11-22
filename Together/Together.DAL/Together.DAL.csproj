@@ -61,7 +61,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
+    <Compile Include="Repository\Abstract\IPointRepository.cs" />
+    <Compile Include="Repository\Abstract\IRouteRepository.cs" />
     <Compile Include="Repository\Concrete\BaseRepository.cs" />
+    <Compile Include="Repository\Concrete\PointRepository.cs" />
+    <Compile Include="Repository\Concrete\RouteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

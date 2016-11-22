@@ -15,6 +15,7 @@ namespace Together.DAL.Infrastructure.Concrete
             :base("TogetherDb")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TogetherDbContext>());
+            Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

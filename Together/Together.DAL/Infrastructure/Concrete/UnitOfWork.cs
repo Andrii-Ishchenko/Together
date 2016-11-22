@@ -14,6 +14,11 @@ namespace Together.DAL.Infrastructure.Concrete
         private TogetherDbContext _context = new TogetherDbContext();
         private bool _disposed = false;
 
+        public UnitOfWork()
+        {
+                
+        }
+
         public virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -31,11 +36,6 @@ namespace Together.DAL.Infrastructure.Concrete
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        public IBaseRepository<T> GetRepository<T>() where T : class
-        {
-            return new BaseRepository<T>(_context);
         }
 
         public void Save()

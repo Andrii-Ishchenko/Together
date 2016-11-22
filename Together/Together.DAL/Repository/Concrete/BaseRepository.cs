@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Together.DAL.Infrastructure.Concrete;
@@ -11,8 +13,8 @@ namespace Together.DAL.Repository.Concrete
 {
 	public class BaseRepository<TEntity> : IBaseRepository<TEntity>	where TEntity :class
 	{
-		private TogetherDbContext context;
-		private DbSet<TEntity> dbSet;
+		protected TogetherDbContext context;
+		protected DbSet<TEntity> dbSet;
 		public BaseRepository(TogetherDbContext context)
 		{
 			this.context = context;
@@ -36,9 +38,9 @@ namespace Together.DAL.Repository.Concrete
 			dbSet.Remove(entity);
 		}
 
-		public IEnumerable<TEntity> Get()
+		public IEnumerable<TEntity> List()
 		{
-			return dbSet.ToList<TEntity>();
+			return dbSet.ToList();
 		}
 
 		public TEntity GetById(int id)
@@ -56,5 +58,27 @@ namespace Together.DAL.Repository.Concrete
 			dbSet.Attach(entity);
 			context.Entry(entity).State = EntityState.Modified;
 		}
+
+	    protected IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params string[] includeProperties)
+	    {
+	        var set = IncludeMultipleProperties(includeProperties);
+
+	        if (predicate != null)
+	            return set.Where(predicate);
+
+            return set;
+	    }
+
+	    private DbQuery<TEntity> IncludeMultipleProperties(IEnumerable<string> includeProperties)
+	    {
+	        DbQuery<TEntity> query = dbSet;
+
+	        foreach (var property in includeProperties?? Enumerable.Empty<string>())
+	        {
+	            query = query.Include(property);
+	        }
+
+            return query;
+	    } 
 	}
 }
