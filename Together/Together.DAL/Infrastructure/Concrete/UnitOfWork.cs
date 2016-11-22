@@ -11,12 +11,17 @@ namespace Together.DAL.Infrastructure.Concrete
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private TogetherDbContext _context = new TogetherDbContext();
+        private TogetherDbContext _context;
         private bool _disposed = false;
 
-        public UnitOfWork()
+        public UnitOfWork(TogetherDbContext context)
         {
-                
+            _context = context;
+        }
+
+        public UnitOfWork() : this(new TogetherDbContext())
+        {
+            
         }
 
         public virtual void Dispose(bool disposing)
@@ -36,6 +41,11 @@ namespace Together.DAL.Infrastructure.Concrete
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public IBaseRepository<T> Repository<T>() where T : class
+        {
+            return new BaseRepository<T>(_context);
         }
 
         public void Save()
