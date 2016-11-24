@@ -13,65 +13,48 @@ namespace Together.BL.Services.Concrete
         where TEntity : class
     {
         protected readonly IBaseRepository<TEntity> _repository;
-        protected readonly IUnitOfWorkFactory _factory;
+        //protected readonly IUnitOfWorkFactory _factory;
 
-        public BaseService(IBaseRepository<TEntity> repository, IUnitOfWorkFactory factory)
+        public BaseService(IBaseRepository<TEntity> repository)
         {
             _repository = repository;
-            _factory = factory;
+        
         }
 
         public virtual TEntity Add(TEntity entity)
         {
-            using (var uow = _factory.Create())
-            {
-
-                var added = _repository.Add(entity);
-                uow.Save();
-                return added;
-            }
+         
+               return _repository.Add(entity);
+      
         }
 
-
-
         public virtual void Delete(int id)
-        {
-            using (var uow = _factory.Create())
+        {         
+            //TODO : add exist() method
+            var entity = _repository.GetById(id);
+
+            if (entity!=null)
             {
-               var entity = _repository.GetById(id);
-
-                if (entity!=null)
-                {
-                    _repository.Delete(entity);
-                    uow.Save();
-                }
+                _repository.Delete(entity);
             }
-
+            
         }
 
         public virtual IEnumerable<TEntity> GetAll()
-        {
-            using (var uow = _factory.Create())
-            {              
-                return _repository.List();
-            }
+        {                     
+            return _repository.List();           
         }
 
         public virtual TEntity GetById(int id)
         {
-            using (var uow = _factory.Create())
-            {             
-                return _repository.GetById(id);
-            }
+                      
+            return _repository.GetById(id);
         }
 
         public virtual void Update(TEntity entity)
         {
-            using (var uow = _factory.Create())
-            {
-                _repository.Update(entity);
-                uow.Save();
-            }
+           
+            _repository.Update(entity);                          
         }
 
     }

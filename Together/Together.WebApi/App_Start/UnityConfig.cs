@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Together.BL.Services.Abstract;
@@ -22,17 +23,21 @@ namespace Together.WebApi
             // e.g. container.RegisterType<ITestService, TestService>();
 
 
-            //container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             container.RegisterType<IPointRepository, PointRepository>();
             container.RegisterType<IRouteRepository, RouteRepository>();
-
-            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new PerThreadLifetimeManager());
+            
+            /*
+            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
+            */
 
-            //container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
+            container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
             container.RegisterType<IPointService, PointService>();
             container.RegisterType<IRouteService, RouteService>();
-            
+
+            container.RegisterType<DbContext, TogetherDbContext>(new PerThreadLifetimeManager());
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

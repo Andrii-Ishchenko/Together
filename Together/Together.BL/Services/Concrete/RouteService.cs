@@ -12,12 +12,10 @@ namespace Together.BL.Services.Concrete
 {
     public class RouteService : BaseService<Route>, IRouteService
     {
-        public RouteService(IRouteRepository repository, IUnitOfWorkFactory factory): base(repository, factory)
+        public RouteService(IRouteRepository repository): base(repository)
         {
                 
-        }
-
-        
+        }       
         
     }
 }

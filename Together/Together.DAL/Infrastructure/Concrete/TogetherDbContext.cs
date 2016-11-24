@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace Together.DAL.Infrastructure.Concrete
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TogetherDbContext>());
             Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+
+            Debug.WriteLine("TOGETHER DB CONTEXT CREATED.");
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
