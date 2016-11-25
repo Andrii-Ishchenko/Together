@@ -22,13 +22,13 @@ namespace Together.DAL.Repository.Concrete
 
 		}
 
-		public TEntity Add(TEntity entity)
+		public virtual TEntity Add(TEntity entity)
 		{
 			return dbSet.Add(entity);
 	
 		}
 
-		public void Delete(TEntity entity)
+		public virtual void Delete(TEntity entity)
 		{
 			if (context.Entry(entity).State == EntityState.Detached)
 			{
@@ -38,26 +38,27 @@ namespace Together.DAL.Repository.Concrete
 			dbSet.Remove(entity);
 		}
 
-		public IEnumerable<TEntity> List()
+		public virtual IEnumerable<TEntity> List()
 		{
 			return dbSet.ToList();
 		}
 
-		public TEntity GetById(int id)
+		public virtual TEntity GetById(int id)
 		{
 			return dbSet.Find(id);
 		}
 
-		public void SaveChanges()
+		public virtual void SaveChanges()
 		{
 			context.SaveChanges();
 		}
 
-		public void Update(TEntity entity)
+		public virtual void Update(TEntity entity)
 		{
 			dbSet.Attach(entity);
 			context.Entry(entity).State = EntityState.Modified;
 		}
+
 
 	    protected IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params string[] includeProperties)
 	    {
@@ -69,7 +70,7 @@ namespace Together.DAL.Repository.Concrete
             return set;
 	    }
 
-	    private DbQuery<TEntity> IncludeMultipleProperties(IEnumerable<string> includeProperties)
+	    protected DbQuery<TEntity> IncludeMultipleProperties(IEnumerable<string> includeProperties)
 	    {
 	        DbQuery<TEntity> query = dbSet;
 

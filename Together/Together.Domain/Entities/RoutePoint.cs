@@ -19,13 +19,19 @@ namespace Together.Domain.Entities
 
         public bool IsConfirmed { get; set; }
           
-        public int? RoutePointOrder { get; set; }
+        public int? ListOrder { get; set; }
 
         #region Navigation 
 
         public int SuggestUserId { get; set; }
 
-        public int PointId { get; set; }
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public string Adress { get; set; }
+
+        //public int PointId { get; set; }
 
         public int RouteId { get; set; }
 
@@ -35,8 +41,8 @@ namespace Together.Domain.Entities
         [ForeignKey("RouteId")]
 		public virtual Route Route { get; set; }
 
-        [ForeignKey("PointId")]
-		public virtual Point Point { get; set; }
+        //[ForeignKey("PointId")]
+		//public virtual Point Point { get; set; }
 
         #endregion
 

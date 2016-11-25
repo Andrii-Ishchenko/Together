@@ -14,5 +14,10 @@ namespace Together.DAL.Repository.Concrete
         public RouteRepository(TogetherDbContext context) : base(context)
         {
         }
+
+        public override IEnumerable<Route> List()
+        {
+            return IncludeMultipleProperties(new[] {"RoutePoints", "RouteUsers", "Owner"}).ToList();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Together.WebApi
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+            
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             config.Routes.MapHttpRoute(

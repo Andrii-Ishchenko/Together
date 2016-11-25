@@ -13,7 +13,6 @@ namespace Together.WebApi.Controllers
     {
         private readonly IRouteService _routeService;
 
-
         public RoutesController(IRouteService routeService)
         {
             _routeService = routeService;
@@ -24,6 +23,8 @@ namespace Together.WebApi.Controllers
         {
             return _routeService.GetAll();
         }
+
+
 
         [HttpPost]
         public void Add(Route r)

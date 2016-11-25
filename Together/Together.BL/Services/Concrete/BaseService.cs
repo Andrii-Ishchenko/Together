@@ -22,10 +22,10 @@ namespace Together.BL.Services.Concrete
         }
 
         public virtual TEntity Add(TEntity entity)
-        {
-         
-               return _repository.Add(entity);
-      
+        {        
+            var added = _repository.Add(entity);  
+            _repository.SaveChanges();
+            return added;
         }
 
         public virtual void Delete(int id)
@@ -54,7 +54,8 @@ namespace Together.BL.Services.Concrete
         public virtual void Update(TEntity entity)
         {
            
-            _repository.Update(entity);                          
+            _repository.Update(entity);
+            _repository.SaveChanges();                       
         }
 
     }
