@@ -13,6 +13,7 @@ namespace Together.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterComponents();
+            AutoMapperConfig.Configure();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Together.BL.Services.Abstract;
 using Together.Domain.Entities;
+using Together.WebApi.Models;
 
 namespace Together.WebApi.Controllers
 {
@@ -19,9 +20,11 @@ namespace Together.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Route> Get()
+        public IEnumerable<ListRouteModel> Get()
         {
-            return _routeService.GetAll();
+            var routes = _routeService.GetAll().ToList();
+            var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
+            return output;
         }
 
 
