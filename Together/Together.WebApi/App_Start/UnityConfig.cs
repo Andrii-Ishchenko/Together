@@ -8,7 +8,6 @@ using Together.DAL.Infrastructure.Concrete;
 using Together.DAL.Repository.Abstract;
 using Together.DAL.Repository.Concrete;
 using Unity.WebApi;
-using Together.WebApi.Models;
 
 namespace Together.WebApi
 {

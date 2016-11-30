@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Together.BL.DTOModels;
 using Together.Domain.Entities;
-using Together.WebApi.Models;
 
-namespace Together.WebApi
+namespace Together.BL
 {
     public static class AutoMapperConfig
     {
