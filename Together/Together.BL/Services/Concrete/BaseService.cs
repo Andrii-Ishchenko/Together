@@ -38,6 +38,7 @@ namespace Together.BL.Services.Concrete
             if (entity!=null)
             {
                 _repository.Delete(entity);
+                _repository.SaveChanges();
             }
             
         }

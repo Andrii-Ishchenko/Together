@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace Together.WebApi
 {
@@ -16,6 +17,8 @@ namespace Together.WebApi
             
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             config.Routes.MapHttpRoute(
                 name:"Ping",
                 routeTemplate:"",
@@ -24,8 +27,8 @@ namespace Together.WebApi
 
             config.Routes.MapHttpRoute(
                 name: "ActionApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional, action = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
             );
 
         }

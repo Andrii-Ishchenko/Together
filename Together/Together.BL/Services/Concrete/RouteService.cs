@@ -39,5 +39,44 @@ namespace Together.BL.Services.Concrete
             return route;
         }
 
+        public Route UpdateRoute(UpdateRouteModel model)
+        {
+            var route = GetById(model.Id);
+
+            if (route == null)
+                throw new Exception("Route does not exist.");
+
+            route.IsPrivate = model.IsPrivate;        
+             
+            TryDecreaseMaxPassengers(route,model);
+
+            route.RouteType = model.RouteType;
+            //TODO: if route type changed,check max route points
+
+            //TODO: if route is private then secret key should be set.
+            route.SecretKey = model.SecretKey;
+
+            if (model.StartDate <= DateTime.Now)
+            {
+                throw new Exception("You cannot set route start time preceeding current time.");
+            }
+            else
+            {
+                route.StartDate = model.StartDate;
+            }
+
+            Update(route);
+
+            return route;
+        }
+
+        private void TryDecreaseMaxPassengers(Route route, UpdateRouteModel model)
+        {
+            if (model.MaxPassengers <= route.MaxPassengers)
+                throw new NotImplementedException();
+
+            route.MaxPassengers = model.MaxPassengers;
+
+        }
     }
 }

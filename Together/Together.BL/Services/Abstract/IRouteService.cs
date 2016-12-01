@@ -13,5 +13,7 @@ namespace Together.BL.Services.Abstract
     {
 
         Route CreateRoute(CreateRouteModel model);
+
+        Route UpdateRoute(UpdateRouteModel model);
     }
 }

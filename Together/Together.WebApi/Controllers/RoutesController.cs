@@ -35,6 +35,24 @@ namespace Together.WebApi.Controllers
             return _routeService.CreateRoute(model);
         }  
 
-       
+       [HttpGet]
+       public ListRouteModel Get(int id)
+       {
+            var route =  _routeService.GetById(id);
+            var output = AutoMapper.Mapper.Map<Route, ListRouteModel>(route);
+            return output;
+        }
+
+        [HttpPut]
+        public void Update(UpdateRouteModel model)
+        {
+            _routeService.UpdateRoute(model);
+        }
+
+        [HttpDelete]
+        public void Delete(int id)
+        {
+            _routeService.Delete(id);
+        }
     }
 }

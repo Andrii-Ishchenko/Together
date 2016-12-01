@@ -18,23 +18,19 @@ namespace Together.WebApi.Controllers
         }
 
         [HttpGet]
-        [ActionName("All")]
-
         public IEnumerable<Point> Get()
         {
             return _pointService.GetAll();
         }
 
-        [HttpGet]
-        [ActionName("Zero")]
+        [NonAction]
         public Point Zero()
         {
             return _pointService.Zero();
         }
 
         [HttpGet]
-        [ActionName("Get")]
-        public Point GetById(int id)
+        public Point Get(int id)
         {
             return _pointService.GetById(id);
         }
