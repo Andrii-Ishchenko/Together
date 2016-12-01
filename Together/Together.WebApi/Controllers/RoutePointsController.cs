@@ -10,23 +10,26 @@ using Together.BL.Services.Abstract;
 
 namespace Together.WebApi.Controllers
 {
-    public class RoutesPointController : ApiController
+    public class RoutePointsController : ApiController
     {
         private readonly IRoutePointService _routePointService;
         private readonly IRouteService _routeService;
 
-        public RoutesPointController(IRoutePointService routePointService, IRouteService routeService)
+        public RoutePointsController(IRoutePointService routePointService, IRouteService routeService)
         {
             _routePointService = routePointService;
             _routeService = routeService;
         }
 
+        [HttpPost]
+        [ActionName("AddToRoute")]
         public void AddPointToRoute(AddPointToRouteModel model)
         {
             if (model == null)
                 throw new HttpRequestException("Model is null");
 
-           
+            _routePointService.AddPointToRoute(model);
+
 
         }
     }

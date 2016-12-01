@@ -13,6 +13,6 @@ namespace Together.BL.DTOModels
 
         public double Longitude { get; set; }
 
-        public string Adress { get; set; }
+        public string Address { get; set; }
     }
 }

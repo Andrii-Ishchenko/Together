@@ -29,7 +29,7 @@ namespace Together.Domain.Entities
 
         public double Longitude { get; set; }
 
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         //public int PointId { get; set; }
 

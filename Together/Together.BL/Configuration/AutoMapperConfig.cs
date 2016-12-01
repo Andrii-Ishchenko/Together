@@ -17,8 +17,8 @@ namespace Together.BL
 
             cfg.CreateMap<Route, ListRouteModel>()
                 .ForMember(dest => dest.Passengers, s => s.MapFrom(o => o.RouteUsers.Count))
-                .ForMember(dest => dest.StartPoint, s => s.MapFrom(o => o.RoutePoints.FirstOrDefault()))
-                .ForMember(dest => dest.EndPoint, s => s.MapFrom(o => o.RoutePoints.LastOrDefault()));
+                .ForMember(dest => dest.StartPoint, s => s.MapFrom(o => o.RoutePoints.OrderBy(x=>x.ListOrder).FirstOrDefault()))
+                .ForMember(dest => dest.EndPoint, s => s.MapFrom(o => o.RoutePoints.OrderBy(x => x.ListOrder).LastOrDefault()));
 
             cfg.CreateMap<User, UserListModel>();
 
