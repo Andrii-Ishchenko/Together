@@ -15,6 +15,8 @@ namespace Together.BL.Services.Concrete
         protected readonly IBaseRepository<TEntity> _repository;
         //protected readonly IUnitOfWorkFactory _factory;
 
+        //TODO : mark as internal
+
         public BaseService(IBaseRepository<TEntity> repository)
         {
             _repository = repository;

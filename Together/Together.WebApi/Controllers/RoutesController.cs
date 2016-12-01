@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Together.BL.DTOModels;
+using Together.BL.DTOModels.Route;
 using Together.BL.Services.Abstract;
 using Together.Domain.Entities;
 
@@ -29,9 +30,9 @@ namespace Together.WebApi.Controllers
 
 
         [HttpPost]
-        public void Add(Route r)
+        public Route Add(CreateRouteModel model)
         {
-            _routeService.Add(r);
+            return _routeService.CreateRoute(model);
         }  
 
        
