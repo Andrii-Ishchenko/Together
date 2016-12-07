@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Together.BL.DTOModels
 {
-    public class AddPointToRouteModel
+    public class CreateRoutePointModel
     {
         public int RouteId { get; set; }
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,8 +24,15 @@ namespace Together.WebApi.Controllers
         [HttpGet]
         public IEnumerable<ListRouteModel> Get()
         {
+            Stopwatch sw = Stopwatch.StartNew();
+           
+
             var routes = _routeService.GetAll().ToList();
+            var t1 = sw.ElapsedTicks;
             var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
+            var t2 = sw.ElapsedTicks;
+            sw.Stop();
+            Debug.WriteLine($"{t1}\t{t2-t1}");
             return output;
         }
 

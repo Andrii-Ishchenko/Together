@@ -48,6 +48,7 @@
     <Compile Include="Entities\RoutePoint.cs" />
     <Compile Include="Entities\RouteUser.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\RouteType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -23,7 +23,7 @@ namespace Together.WebApi.Controllers
 
         [HttpPost]
         [ActionName("AddToRoute")]
-        public void AddPointToRoute(AddPointToRouteModel model)
+        public void AddPointToRoute(CreateRoutePointModel model)
         {
             if (model == null)
                 throw new HttpRequestException("Model is null");
