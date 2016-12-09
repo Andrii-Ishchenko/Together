@@ -10,15 +10,15 @@ namespace Together.BL.DTOModels.Route
     {
         public int Id { get; set; }
 
-        public int MaxPassengers { get; set; }
+        public int? MaxPassengers { get; set; }
 
         public string RouteType { get; set; }
 
-        public bool IsPrivate { get; set; }
+        public bool? IsPrivate { get; set; }
 
         public string SecretKey { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
     }
 }

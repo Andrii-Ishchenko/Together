@@ -12,10 +12,10 @@ namespace Together.BL.DTOModels.Route
 
         public string RouteType { get; set; }
 
-        public bool IsPrivate { get; set; }
+        public bool? IsPrivate { get; set; }
 
         public string SecretKey { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } 
     }
 }

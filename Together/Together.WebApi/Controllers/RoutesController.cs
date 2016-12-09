@@ -28,11 +28,9 @@ namespace Together.WebApi.Controllers
            
 
             var routes = _routeService.GetAll().ToList();
-            var t1 = sw.ElapsedTicks;
+
             var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
-            var t2 = sw.ElapsedTicks;
-            sw.Stop();
-            Debug.WriteLine($"{t1}\t{t2-t1}");
+
             return output;
         }
 
@@ -52,9 +50,11 @@ namespace Together.WebApi.Controllers
         }
 
         [HttpPut]
-        public void Update(UpdateRouteModel model)
+        public RouteModel Update(UpdateRouteModel model)
         {
-            _routeService.UpdateRoute(model);
+            var route = _routeService.UpdateRoute(model);
+            var output = AutoMapper.Mapper.Map<Route, RouteModel>(route);
+            return output;
         }
 
         [HttpDelete]
