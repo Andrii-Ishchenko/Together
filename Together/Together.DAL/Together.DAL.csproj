@@ -49,11 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Abstract\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\Abstract\IUnitOfWorkFactory.cs" />
-    <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
-    <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
-    <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
+    <Compile Include="Infrastructure\TogetherDbContext.cs" />
     <Compile Include="Migrations\201611211219176_first.cs" />
     <Compile Include="Migrations\201611211219176_first.Designer.cs">
       <DependentUpon>201611211219176_first.cs</DependentUpon>
