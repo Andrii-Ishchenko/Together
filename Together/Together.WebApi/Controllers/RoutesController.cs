@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,8 +24,13 @@ namespace Together.WebApi.Controllers
         [HttpGet]
         public IEnumerable<ListRouteModel> Get()
         {
+            Stopwatch sw = Stopwatch.StartNew();
+           
+
             var routes = _routeService.GetAll().ToList();
+
             var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
+
             return output;
         }
 
@@ -44,9 +50,11 @@ namespace Together.WebApi.Controllers
         }
 
         [HttpPut]
-        public void Update(UpdateRouteModel model)
+        public RouteModel Update(UpdateRouteModel model)
         {
-            _routeService.UpdateRoute(model);
+            var route = _routeService.UpdateRoute(model);
+            var output = AutoMapper.Mapper.Map<Route, RouteModel>(route);
+            return output;
         }
 
         [HttpDelete]

@@ -11,6 +11,6 @@ namespace Together.BL.Services.Abstract
     public interface IRoutePointService : IBaseService<RoutePoint>
     {
 
-        void AddPointToRoute(AddPointToRouteModel model);
+        void AddPointToRoute(CreateRoutePointModel model);
     }
 }

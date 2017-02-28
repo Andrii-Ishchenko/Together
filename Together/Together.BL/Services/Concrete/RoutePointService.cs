@@ -21,7 +21,7 @@ namespace Together.BL.Services.Concrete
             _userService = userService;
         }
 
-        public void AddPointToRoute(AddPointToRouteModel model)
+        public void AddPointToRoute(CreateRoutePointModel model)
         {
             if (model.RouteId < 0)
                 throw new Exception($"Wrong route ID: {model.RouteId}");

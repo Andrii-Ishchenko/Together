@@ -19,11 +19,6 @@ namespace Together.WebApi
 
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
-            config.Routes.MapHttpRoute(
-                name:"Ping",
-                routeTemplate:"",
-                defaults: new {controller = "Ping", action="Ping"}
-                );
 
             config.Routes.MapHttpRoute(
                 name: "ActionApi",

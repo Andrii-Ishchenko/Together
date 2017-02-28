@@ -45,10 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AutoMapperConfig.cs" />
-    <Compile Include="DTOModels\RoutePoint\AddPointToRouteModel.cs" />
+    <Compile Include="DTOModels\RoutePoint\CreateRoutePointModel.cs" />
     <Compile Include="DTOModels\RoutePoint\RoutePointListModel.cs" />
     <Compile Include="DTOModels\Route\CreateRouteModel.cs" />
     <Compile Include="DTOModels\Route\ListRouteModel.cs" />
+    <Compile Include="DTOModels\Route\RouteModel.cs" />
     <Compile Include="DTOModels\Route\UpdateRouteModel.cs" />
     <Compile Include="DTOModels\User\UserListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
