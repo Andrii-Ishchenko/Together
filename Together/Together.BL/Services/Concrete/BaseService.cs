@@ -12,53 +12,68 @@ namespace Together.BL.Services.Concrete
     public class BaseService<TEntity> : IBaseService<TEntity>
         where TEntity : class
     {
-        protected readonly IBaseRepository<TEntity> _repository;
-        //protected readonly IUnitOfWorkFactory _factory;
+        protected readonly IUnitOfWorkFactory factory;
 
-        //TODO : mark as internal
-
-        public BaseService(IBaseRepository<TEntity> repository)
+        public BaseService(IUnitOfWorkFactory uowFactory)
         {
-            _repository = repository;
-        
+            factory = uowFactory;        
         }
 
         public virtual TEntity Add(TEntity entity)
         {        
-            var added = _repository.Add(entity);  
-            _repository.SaveChanges();
-            return added;
+            using(IUnitOfWork uow = factory.Create())
+            {
+                var repository = uow.Repository<TEntity>();
+                var added = repository.Add(entity);
+                uow.Save();
+                return added;
+            }
+
         }
 
         public virtual void Delete(int id)
-        {         
-            //TODO : add exist() method
-            var entity = _repository.GetById(id);
-
-            if (entity!=null)
+        {
+            using (IUnitOfWork uow = factory.Create())
             {
-                _repository.Delete(entity);
-                _repository.SaveChanges();
+                var repository = uow.Repository<TEntity>();
+                var entity = repository.GetById(id);
+
+                if (entity != null)
+                {
+                    repository.Delete(entity);
+                    uow.Save();
+                }
             }
-            
+          
         }
 
         public virtual IEnumerable<TEntity> GetAll()
-        {                     
-            return _repository.List();           
+        {
+            using (IUnitOfWork uow = factory.Create())
+            {
+                var repository = uow.Repository<TEntity>();
+                return repository.List();
+            }
         }
 
         public virtual TEntity GetById(int id)
         {
-                      
-            return _repository.GetById(id);
+
+            using (IUnitOfWork uow = factory.Create())
+            {
+                var repository = uow.Repository<TEntity>();
+                return repository.GetById(id);
+            }
         }
 
         public virtual void Update(TEntity entity)
         {
-           
-            _repository.Update(entity);
-            _repository.SaveChanges();                       
+            using (IUnitOfWork uow = factory.Create())
+            {
+                var repository = uow.Repository<TEntity>();
+                repository.Update(entity);
+                uow.Save();
+            }
         }
 
     }

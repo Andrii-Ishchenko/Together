@@ -48,11 +48,6 @@ namespace Together.DAL.Repository.Concrete
 			return dbSet.Find(id);
 		}
 
-		public virtual void SaveChanges()
-		{
-			context.SaveChanges();
-		}
-
 		public virtual void Update(TEntity entity)
 		{
 			dbSet.Attach(entity);

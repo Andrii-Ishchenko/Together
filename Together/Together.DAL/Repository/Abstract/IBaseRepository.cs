@@ -19,7 +19,5 @@ namespace Together.DAL.Repository.Abstract
 
 		void Delete(TEntity Entity);
 
-		void SaveChanges();
-
 	}
 }

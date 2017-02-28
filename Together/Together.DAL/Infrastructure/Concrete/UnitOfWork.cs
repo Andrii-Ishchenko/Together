@@ -9,21 +9,11 @@ using Together.DAL.Repository.Concrete;
 
 namespace Together.DAL.Infrastructure.Concrete
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private TogetherDbContext _context;
+        private readonly TogetherDbContext _context = new TogetherDbContext();
+
         private bool _disposed = false;
-
-        public UnitOfWork(TogetherDbContext context)
-        {
-            _context = context;
-        }
-
-        public UnitOfWork() 
-            : this(new TogetherDbContext())
-        {
-            
-        }
 
         public virtual void Dispose(bool disposing)
         {
@@ -42,16 +32,6 @@ namespace Together.DAL.Infrastructure.Concrete
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        public TogetherDbContext DbContext
-        {
-            get
-            {
-                if(_context==null)
-                    _context = new TogetherDbContext();
-                return _context;
-            }
         }
 
         public IBaseRepository<T> Repository<T>() where T : class

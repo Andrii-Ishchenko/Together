@@ -10,8 +10,7 @@ namespace Together.DAL.Infrastructure.Abstract
 {
     public interface IUnitOfWork : IDisposable
     {
-        TogetherDbContext DbContext { get; }
-        void Save();
-    
+        IBaseRepository<T> Repository<T>() where T : class;
+        void Save();   
     }
 }

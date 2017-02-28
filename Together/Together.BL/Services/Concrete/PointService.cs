@@ -13,15 +13,17 @@ namespace Together.BL.Services.Concrete
 {
     public class PointService : BaseService<Point>, IPointService
     {
-        public PointService(IPointRepository repository)
-            :base(repository)
+        public PointService(IUnitOfWorkFactory uowFactory) : base(uowFactory)
         {
-            
         }
 
         public Point Zero()
         {
-            return ((IPointRepository) _repository).ClosestToZero();
+            using(IUnitOfWork uow = factory.Create())
+            {
+                var repository = (IPointRepository)(uow.Repository<Point>());
+                return repository.ClosestToZero();
+            }
         }
     }
 }

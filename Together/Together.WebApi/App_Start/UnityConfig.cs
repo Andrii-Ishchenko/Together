@@ -27,18 +27,14 @@ namespace Together.WebApi
             container.RegisterType<IPointRepository, PointRepository>();
             container.RegisterType<IRouteRepository, RouteRepository>();
             container.RegisterType<IRoutePointRepository, RoutePointRepository>();
-            
-            /*
+                    
             container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
-            */
 
             container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
             container.RegisterType<IPointService, PointService>();
             container.RegisterType<IRouteService, RouteService>();
             container.RegisterType<IRoutePointService, RoutePointService>();
-
-            container.RegisterType<DbContext, TogetherDbContext>(new PerThreadLifetimeManager());
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

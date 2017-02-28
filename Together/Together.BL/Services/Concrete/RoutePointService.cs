@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTOModels;
 using Together.BL.Services.Abstract;
+using Together.DAL.Infrastructure.Abstract;
 using Together.DAL.Repository.Abstract;
 using Together.Domain.Entities;
 
@@ -13,10 +14,11 @@ namespace Together.BL.Services.Concrete
     public class RoutePointService : BaseService<RoutePoint>, IRoutePointService
     {
         private readonly IRouteService _routeService;
-
-        public RoutePointService(IRouteService routeService, IBaseRepository<RoutePoint> repository) : base(repository)
+        private readonly IUserService _userService;
+        public RoutePointService(IRouteService routeService, IUserService userService, IUnitOfWorkFactory factory) : base(factory)
         {
             _routeService = routeService;
+            _userService = userService;
         }
 
         public void AddPointToRoute(AddPointToRouteModel model)
@@ -24,33 +26,41 @@ namespace Together.BL.Services.Concrete
             if (model.RouteId < 0)
                 throw new Exception($"Wrong route ID: {model.RouteId}");
 
-            var route = _routeService.GetById(model.RouteId);
-
-            if (route == null)
-                throw new Exception("Cannot find specified route");
-
-            //CHECK SECURITY: YOU CAN ADD POINTS TO ROUTES where you are owner or passenger.
-
-            //Get USER BY ID FROM SESSION(?)
-
-            //SELECT ROUTE POINTS AND SET LIST ORDER;
-
-            RoutePoint rp = new RoutePoint()
+            using (IUnitOfWork uow = factory.Create())
             {
-                RouteId = route.Id,
-                Address = model.Address,
-                ConfirmDate = null,
-                IsConfirmed = false,
-                Latitude = model.Latitude,
-                Longitude = model.Longitude,
-                SuggestDate = DateTime.Now,
-                SuggestUserId = 1,
-                ListOrder = model.PointOrder
+                var route = _routeService.GetById(model.RouteId);
 
-            };
+                if (route == null)
+                    throw new Exception("Cannot find specified route");
 
-            _repository.Add(rp);
-            _repository.SaveChanges();
+                //TODO: USE ID FROM AUTH
+                var user = _userService.GetById(1);
+                if (user == null)
+                    throw new Exception("Cannot find specified user");
+
+                //CHECK SECURITY: YOU CAN ADD POINTS TO ROUTES only when you are owner or passenger.
+
+                //SELECT ROUTE POINTS AND SET LIST ORDER;
+
+                RoutePoint rp = new RoutePoint()
+                {
+                    RouteId = route.Id,
+                    Address = model.Address,
+                    ConfirmDate = null,
+                    IsConfirmed = false,
+                    Latitude = model.Latitude,
+                    Longitude = model.Longitude,
+                    SuggestDate = DateTime.Now,
+                    SuggestUser = user,
+                    ListOrder = model.PointOrder
+                };
+
+                var repository = uow.Repository<RoutePoint>();
+                repository.Add(rp);
+                uow.Save();
+            }
+
+         
 
 
         }
