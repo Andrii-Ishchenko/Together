@@ -15,17 +15,17 @@ namespace Together.DAL.Repository.Concrete
 	{
 		protected TogetherDbContext context;
 		protected DbSet<TEntity> dbSet;
-
 		public BaseRepository(TogetherDbContext context)
 		{
 			this.context = context;
 			dbSet = context.Set<TEntity>();
+
 		}
 
 		public virtual TEntity Add(TEntity entity)
 		{
 			return dbSet.Add(entity);
-            	
+	
 		}
 
 		public virtual void Delete(TEntity entity)

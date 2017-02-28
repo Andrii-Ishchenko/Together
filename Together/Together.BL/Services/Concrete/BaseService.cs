@@ -24,7 +24,7 @@ namespace Together.BL.Services.Concrete
         }
 
         public virtual TEntity Add(TEntity entity)
-        {       
+        {        
             var added = _repository.Add(entity);  
             _repository.SaveChanges();
             return added;
