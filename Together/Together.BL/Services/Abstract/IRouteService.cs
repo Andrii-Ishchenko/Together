@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTOModels.Route;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
 
 namespace Together.BL.Services.Abstract
 {

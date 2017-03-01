@@ -4,7 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Together.DAL.Infrastructure.Concrete;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
 
 namespace Together.DAL.Migrations
 {

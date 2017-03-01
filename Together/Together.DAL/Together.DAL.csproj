@@ -38,6 +38,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,23 +57,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Identity\Role.cs" />
+    <Compile Include="Entities\Identity\ApplicationUser.cs" />
+    <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\GroupUser.cs" />
+    <Compile Include="Entities\Identity\UserClaim.cs" />
+    <Compile Include="Entities\Identity\UserLogin.cs" />
+    <Compile Include="Entities\Identity\UserRole.cs" />
+    <Compile Include="Entities\Point.cs" />
+    <Compile Include="Entities\Route.cs" />
+    <Compile Include="Entities\RoutePoint.cs" />
+    <Compile Include="Entities\RouteUser.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\RouteType.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\RoleStore.cs" />
+    <Compile Include="Identity\UserStore.cs" />
     <Compile Include="Infrastructure\Abstract\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\Abstract\IUnitOfWorkFactory.cs" />
     <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
-    <Compile Include="Migrations\201611211219176_first.cs" />
-    <Compile Include="Migrations\201611211219176_first.Designer.cs">
-      <DependentUpon>201611211219176_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611251206543_Point decoupled from routepoint.cs" />
-    <Compile Include="Migrations\201611251206543_Point decoupled from routepoint.Designer.cs">
-      <DependentUpon>201611251206543_Point decoupled from routepoint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611302344467_Address typo.cs" />
-    <Compile Include="Migrations\201611302344467_Address typo.Designer.cs">
-      <DependentUpon>201611302344467_Address typo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
@@ -83,23 +95,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
-      <Project>{daf59ae5-25a0-4716-84e1-cf31f123d9cf}</Project>
-      <Name>Together.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611211219176_first.resx">
-      <DependentUpon>201611211219176_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611251206543_Point decoupled from routepoint.resx">
-      <DependentUpon>201611251206543_Point decoupled from routepoint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611302344467_Address typo.resx">
-      <DependentUpon>201611302344467_Address typo.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

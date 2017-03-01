@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Together.Domain.Entities
+namespace Together.DAL.Entities
 {
     public class Route
     {

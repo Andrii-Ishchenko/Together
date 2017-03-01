@@ -8,7 +8,7 @@ using System.Web.Http;
 using Together.BL.DTOModels;
 using Together.BL.DTOModels.Route;
 using Together.BL.Services.Abstract;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
 
 namespace Together.WebApi.Controllers
 {

@@ -6,22 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Together.Domain.Entities
+namespace Together.DAL.Entities
 {
-    public class RouteUser
+    public class GroupUser
     {
         [Key, Column(Order = 0)]
-        public int RouteId { get; set; }
+        public int GroupId { get; set; }
 
         [Key, Column(Order = 1)]
         public int UserId { get; set; }
+        
+        public virtual Group Group { get; set; }
 
-        public DateTime JoinDate { get; set; }
-		
-        [ForeignKey("RouteId")]
-        public virtual Route Route { get; set; }
-
-        [ForeignKey("UserId")]
-		public virtual User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using Together.BL.DTOModels.Route;
 using Together.BL.Services.Abstract;
 using Together.DAL.Infrastructure.Abstract;
 using Together.DAL.Repository.Abstract;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
 
 namespace Together.BL.Services.Concrete
 {

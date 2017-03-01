@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Together.Domain.Enums
+namespace Together.DAL.Enums
 {
     public enum RouteType
     {

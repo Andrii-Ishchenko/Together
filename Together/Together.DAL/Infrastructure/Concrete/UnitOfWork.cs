@@ -38,6 +38,8 @@ namespace Together.DAL.Infrastructure.Concrete
         {
             return new BaseRepository<T>(_context);
         }
+        
+
 
         public void Save()
         {

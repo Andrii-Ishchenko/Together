@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -6,11 +7,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
+using Together.DAL.Entities.Identity;
 
 namespace Together.DAL.Infrastructure.Concrete
 {
-    public class TogetherDbContext : DbContext
+    public class TogetherDbContext : IdentityDbContext<ApplicationUser,Role,int,UserLogin,UserRole, UserClaim>
     {
         public TogetherDbContext()
             :base("TogetherDb")
@@ -36,6 +38,7 @@ namespace Together.DAL.Infrastructure.Concrete
         public DbSet<GroupUser> GroupUsers { get; set; }
         public DbSet<RouteUser> RouteUsers { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
+       
 
     }
 }

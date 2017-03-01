@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Together.BL.DTOModels;
 using Together.BL.DTOModels.Route;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
 
 namespace Together.BL
 {

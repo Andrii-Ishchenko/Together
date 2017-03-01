@@ -152,10 +152,6 @@
       <Project>{ac0818dd-9042-4a14-a801-c0fb61186ca2}</Project>
       <Name>Together.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
-      <Project>{daf59ae5-25a0-4716-84e1-cf31f123d9cf}</Project>
-      <Name>Together.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.DAL.Infrastructure.Concrete;
 using Together.DAL.Repository.Abstract;
-using Together.Domain.Entities;
+using Together.DAL.Entities;
 
 namespace Together.DAL.Repository.Concrete
 {
