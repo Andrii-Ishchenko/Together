@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Together.BL", "Together.BL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Together.WebApi", "Together.WebApi\Together.WebApi.csproj", "{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Together.Domain", "Together.Domain\Together.Domain.csproj", "{C16F4439-4D42-4BFD-8993-730C401E846E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB82FA9F-5EE8-40C6-A87C-7702CAC9675D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16F4439-4D42-4BFD-8993-730C401E846E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16F4439-4D42-4BFD-8993-730C401E846E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16F4439-4D42-4BFD-8993-730C401E846E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16F4439-4D42-4BFD-8993-730C401E846E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Together.BL.DTOModels;
-using Together.BL.DTOModels.Route;
-using Together.DAL.Entities;
+using Together.Domain;
 
 namespace Together.BL
 {
@@ -23,7 +22,7 @@ namespace Together.BL
 
             cfg.CreateMap<Route, RouteModel>();
 
-            cfg.CreateMap<User, UserListModel>();
+            cfg.CreateMap<AppUser, UserListModel>();
 
             cfg.CreateMap<RoutePoint, RoutePointListModel>();
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using Together.BL.Services.Abstract;
-using Together.DAL.Entities;
+using Together.Domain;
 
 namespace Together.WebApi.Controllers
 {

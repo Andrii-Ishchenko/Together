@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.DAL.Infrastructure.Abstract;
 
-namespace Together.DAL.Infrastructure.Concrete
+
+namespace Together.DAL.Infrastructure
 {
     public class UnitOfWorkFactory : IUnitOfWorkFactory
     {

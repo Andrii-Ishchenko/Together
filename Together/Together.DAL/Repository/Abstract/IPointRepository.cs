@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.DAL.Entities;
+using Together.Domain;
 
 namespace Together.DAL.Repository.Abstract
 {

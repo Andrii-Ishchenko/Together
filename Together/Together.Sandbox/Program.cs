@@ -4,9 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Together.BL;
-using Together.BL.Services.Concrete;
-using Together.DAL.Infrastructure.Concrete;
+using Together.DAL.Infrastructure;
 
 namespace Together.Sandbox
 {
@@ -31,7 +29,7 @@ namespace Together.Sandbox
                     Console.WriteLine("{0}\tLAT: {1}\tLONG: {2}",point.Id, point.Latitude, point.Longitude);
                 }
 
-                var users = context.Users.ToList();
+                var users = context.AppUsers.ToList();
                 foreach (var user in users)
                 {
                     Console.WriteLine("{0}\t{1}\t{2}",user.Id, user.FirstName, user.LastName);

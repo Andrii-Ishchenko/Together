@@ -7,12 +7,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.DAL.Entities;
-using Together.DAL.Entities.Identity;
+using Together.Domain;
+using Together.Domain.Identity;
 
-namespace Together.DAL.Infrastructure.Concrete
+namespace Together.DAL.Infrastructure
 {
-    public class TogetherDbContext : IdentityDbContext<ApplicationUser,Role,int,UserLogin,UserRole, UserClaim>
+    public class TogetherDbContext : IdentityDbContext<User>
     {
         public TogetherDbContext()
             :base("TogetherDb")
@@ -28,10 +28,15 @@ namespace Together.DAL.Infrastructure.Concrete
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<AppUser>()
+                .HasRequired(u => u.User)
+                .WithRequiredDependent(x => x.AppUser);
+
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Route> Routes { get; set; }
         public DbSet<Point> Points { get; set; }

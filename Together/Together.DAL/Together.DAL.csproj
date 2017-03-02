@@ -57,45 +57,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Identity\Role.cs" />
-    <Compile Include="Entities\Identity\ApplicationUser.cs" />
-    <Compile Include="Entities\Group.cs" />
-    <Compile Include="Entities\GroupUser.cs" />
-    <Compile Include="Entities\Identity\UserClaim.cs" />
-    <Compile Include="Entities\Identity\UserLogin.cs" />
-    <Compile Include="Entities\Identity\UserRole.cs" />
-    <Compile Include="Entities\Point.cs" />
-    <Compile Include="Entities\Route.cs" />
-    <Compile Include="Entities\RoutePoint.cs" />
-    <Compile Include="Entities\RouteUser.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Enums\RouteType.cs" />
-    <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Identity\RoleStore.cs" />
     <Compile Include="Identity\UserStore.cs" />
     <Compile Include="Infrastructure\Abstract\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\Abstract\IUnitOfWorkFactory.cs" />
     <Compile Include="Infrastructure\Concrete\TogetherDbContext.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Concrete\UnitOfWorkFactory.cs" />
+    <Compile Include="Migrations\201703021612000_ReNewed architecture with identity.cs" />
+    <Compile Include="Migrations\201703021612000_ReNewed architecture with identity.Designer.cs">
+      <DependentUpon>201703021612000_ReNewed architecture with identity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
     <Compile Include="Repository\Abstract\IPointRepository.cs" />
     <Compile Include="Repository\Abstract\IRoutePointRepository.cs" />
     <Compile Include="Repository\Abstract\IRouteRepository.cs" />
-    <Compile Include="Repository\Abstract\IUserRepository.cs" />
+    <Compile Include="Repository\Abstract\IAppUserRepository.cs" />
     <Compile Include="Repository\Concrete\BaseRepository.cs" />
     <Compile Include="Repository\Concrete\PointRepository.cs" />
     <Compile Include="Repository\Concrete\RoutePointRepository.cs" />
     <Compile Include="Repository\Concrete\RouteRepository.cs" />
-    <Compile Include="Repository\Concrete\UserRepository.cs" />
+    <Compile Include="Repository\Concrete\AppUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
+      <Project>{c16f4439-4d42-4bfd-8993-730c401e846e}</Project>
+      <Name>Together.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703021612000_ReNewed architecture with identity.resx">
+      <DependentUpon>201703021612000_ReNewed architecture with identity.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

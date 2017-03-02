@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTOModels;
 using Together.BL.Services.Abstract;
-using Together.DAL.Infrastructure.Abstract;
+using Together.DAL.Infrastructure;
 using Together.DAL.Repository.Abstract;
-using Together.DAL.Entities;
+using Together.Domain;
 
 namespace Together.BL.Services.Concrete
 {
     public class RoutePointService : BaseService<RoutePoint>, IRoutePointService
     {
         private readonly IRouteService _routeService;
-        private readonly IUserService _userService;
-        public RoutePointService(IRouteService routeService, IUserService userService, IUnitOfWorkFactory factory) : base(factory)
+        private readonly IAppUserService _userService;
+        public RoutePointService(IRouteService routeService, IAppUserService userService, IUnitOfWorkFactory factory) : base(factory)
         {
             _routeService = routeService;
             _userService = userService;

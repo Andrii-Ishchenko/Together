@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTOModels;
-using Together.DAL.Entities;
+using Together.Domain;
+
 
 namespace Together.BL.Services.Abstract
 {

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTOModels.Route;
 using Together.BL.Services.Abstract;
-using Together.DAL.Infrastructure.Abstract;
-using Together.DAL.Repository.Abstract;
-using Together.DAL.Entities;
+using Together.DAL.Infrastructure;
+using Together.Domain;
+
 
 namespace Together.BL.Services.Concrete
 {

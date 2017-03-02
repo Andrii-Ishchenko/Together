@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Together.DAL.Infrastructure.Concrete;
+using Together.DAL.Infrastructure;
 using Together.DAL.Repository.Abstract;
 
 namespace Together.DAL.Repository.Concrete

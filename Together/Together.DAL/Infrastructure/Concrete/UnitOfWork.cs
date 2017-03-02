@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.DAL.Infrastructure.Abstract;
 using Together.DAL.Repository.Abstract;
 using Together.DAL.Repository.Concrete;
 
-namespace Together.DAL.Infrastructure.Concrete
+namespace Together.DAL.Infrastructure
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly TogetherDbContext _context = new TogetherDbContext();
 
@@ -38,8 +37,6 @@ namespace Together.DAL.Infrastructure.Concrete
         {
             return new BaseRepository<T>(_context);
         }
-        
-
 
         public void Save()
         {

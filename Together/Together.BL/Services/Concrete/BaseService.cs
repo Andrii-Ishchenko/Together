@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Together.BL.Services.Abstract;
-using Together.DAL.Infrastructure.Abstract;
+using Together.DAL.Infrastructure;
 using Together.DAL.Repository.Abstract;
 
 namespace Together.BL.Services.Concrete
