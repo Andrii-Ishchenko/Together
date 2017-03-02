@@ -23,12 +23,6 @@ namespace Together.Sandbox
             using (var context = new TogetherDbContext())
             {
 
-                var list = context.Points.ToList();
-                foreach (var point in list)
-                {
-                    Console.WriteLine("{0}\tLAT: {1}\tLONG: {2}",point.Id, point.Latitude, point.Longitude);
-                }
-
                 var users = context.AppUsers.ToList();
                 foreach (var user in users)
                 {

@@ -122,7 +122,6 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PingController.cs" />
-    <Compile Include="Controllers\PointsController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\RoutePointsController.cs" />
     <Compile Include="Global.asax.cs">

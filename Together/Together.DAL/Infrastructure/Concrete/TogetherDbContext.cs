@@ -39,7 +39,6 @@ namespace Together.DAL.Infrastructure
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Route> Routes { get; set; }
-        public DbSet<Point> Points { get; set; }
         public DbSet<GroupUser> GroupUsers { get; set; }
         public DbSet<RouteUser> RouteUsers { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }

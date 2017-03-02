@@ -23,7 +23,6 @@ namespace Together.WebApi
 
 
             container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            container.RegisterType<IPointRepository, PointRepository>();
             container.RegisterType<IRouteRepository, RouteRepository>();
             container.RegisterType<IRoutePointRepository, RoutePointRepository>();
                     
@@ -31,7 +30,6 @@ namespace Together.WebApi
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
 
             container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
-            container.RegisterType<IPointService, PointService>();
             container.RegisterType<IRouteService, RouteService>();
             container.RegisterType<IRoutePointService, RoutePointService>();
 

@@ -60,7 +60,6 @@
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\GroupUser.cs" />
     <Compile Include="Entities\Identity\User.cs" />
-    <Compile Include="Entities\Point.cs" />
     <Compile Include="Entities\Route.cs" />
     <Compile Include="Entities\RoutePoint.cs" />
     <Compile Include="Entities\RouteUser.cs" />

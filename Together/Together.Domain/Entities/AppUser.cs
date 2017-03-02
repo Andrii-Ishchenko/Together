@@ -11,6 +11,7 @@ namespace Together.Domain
 {
 	public class AppUser
     {
+        [Key]
 		public int Id { get; set; }
 
 		public string FirstName { get; set; }

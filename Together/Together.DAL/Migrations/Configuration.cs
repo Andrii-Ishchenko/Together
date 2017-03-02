@@ -1,10 +1,14 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Together.DAL.Infrastructure;
 using Together.Domain;
+using Together.Domain.Identity;
 
 namespace Together.DAL.Migrations
 {
@@ -18,45 +22,31 @@ namespace Together.DAL.Migrations
 
         protected override void Seed(TogetherDbContext context)
         {
-			//context.Points.AddOrUpdate(new Point { Latitude = 1, Longitude = 11 });
-   //         context.Points.AddOrUpdate(new Point { Latitude = 2, Longitude = 12 });
-   //         context.Points.AddOrUpdate(new Point { Latitude = 3, Longitude = 13 });
-   //         context.Points.AddOrUpdate(new Point { Latitude = 4, Longitude = 14 });
-   //         context.Points.AddOrUpdate(new Point { Latitude = 5, Longitude = 15 });
 
-   //         AppUser u1 = new AppUser() {FirstName = "John", LastName = "Doe"};
-   //         AppUser u2 = new AppUser() {FirstName = "Jane", LastName = "Doe"};
-   //         AppUser u3 = new AppUser() {FirstName = "Agent", LastName = "Smith"};
-   //         context.AppUsers.Add(u1);
-   //         context.AppUsers.Add(u2);
-   //         context.AppUsers.Add(u3);
 
-   //         context.SaveChanges();
+            var manager = new UserManager<User>(new UserStore<User>(context));
 
-   //         Route r = new Route()
-   //         {
-   //             CreateDate = DateTime.Now,
-   //             IsPrivate = false,
-   //             MaxPassengers = 5,
-   //             Owner = u1,
-   //             RouteType = "Standard",
-   //             StartDate = DateTime.Now.AddDays(7)
-   //         };
-   //         context.Routes.Add(r);
+            var user1 = new User()
+            {
+                UserName = "admin4",
+                Email = "admin@google.com",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false
+            };
 
-   //         context.SaveChanges();
-            //  This method will be called after migrating to the latest version.
+            var appUser1 = new AppUser()
+            {
+                FirstName = "Taksist4",
+                LastName = "Lanos"
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            user1.AppUser = appUser1;
+
+            manager.Create(user1, "qwerty");
+            context.SaveChanges();
+
         }
     }
 }

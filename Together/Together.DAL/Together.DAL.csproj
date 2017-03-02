@@ -67,15 +67,17 @@
     <Compile Include="Migrations\201703021612000_ReNewed architecture with identity.Designer.cs">
       <DependentUpon>201703021612000_ReNewed architecture with identity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703022218220_Removed Point entity.cs" />
+    <Compile Include="Migrations\201703022218220_Removed Point entity.Designer.cs">
+      <DependentUpon>201703022218220_Removed Point entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
-    <Compile Include="Repository\Abstract\IPointRepository.cs" />
     <Compile Include="Repository\Abstract\IRoutePointRepository.cs" />
     <Compile Include="Repository\Abstract\IRouteRepository.cs" />
     <Compile Include="Repository\Abstract\IAppUserRepository.cs" />
     <Compile Include="Repository\Concrete\BaseRepository.cs" />
-    <Compile Include="Repository\Concrete\PointRepository.cs" />
     <Compile Include="Repository\Concrete\RoutePointRepository.cs" />
     <Compile Include="Repository\Concrete\RouteRepository.cs" />
     <Compile Include="Repository\Concrete\AppUserRepository.cs" />
@@ -93,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703021612000_ReNewed architecture with identity.resx">
       <DependentUpon>201703021612000_ReNewed architecture with identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703022218220_Removed Point entity.resx">
+      <DependentUpon>201703022218220_Removed Point entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
