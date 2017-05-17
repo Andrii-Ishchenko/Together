@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.DAL.Infrastructure;
 using Together.DAL.Repository.Abstract;
+using Together.DAL.Utils;
 using Together.Domain;
 
 namespace Together.DAL.Repository.Concrete
@@ -15,9 +16,9 @@ namespace Together.DAL.Repository.Concrete
         {
         }
 
-        public override IEnumerable<Route> List()
+        public override IEnumerable<Route> List(Filter filter)
         {
-            return IncludeMultipleProperties(new[] {"RoutePoints", "RouteUsers", "Owner"}).ToList();
+            return Query(null, filter, new[] {"RoutePoints", "RouteUsers", "Owner"}).ToList();
         }
     }
 }

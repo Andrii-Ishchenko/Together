@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Together.BL.DTOModels;
+using Together.BL.DTO;
 using Together.Domain;
 
 namespace Together.BL

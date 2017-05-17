@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Together.BL.DTOModels;
+using Together.BL.DTO;
 using Together.BL.Services.Abstract;
 using Together.DAL.Infrastructure;
 using Together.DAL.Repository.Abstract;

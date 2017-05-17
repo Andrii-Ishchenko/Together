@@ -5,9 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Together.BL.DTOModels;
-using Together.BL.DTOModels.Route;
+using Together.BL.DTO;
+
 using Together.BL.Services.Abstract;
+using Together.DAL.Utils;
 using Together.Domain;
 
 
@@ -23,9 +24,9 @@ namespace Together.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ListRouteModel> Get()
+        public IEnumerable<ListRouteModel> Get([FromUri]Filter filter)
         {     
-            var routes = _routeService.GetAll().ToList();
+            var routes = _routeService.Get(filter).ToList();
 
             var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
 

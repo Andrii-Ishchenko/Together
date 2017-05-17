@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Together.DAL.Utils;
 
 namespace Together.BL.Services.Abstract
 {
@@ -11,7 +12,7 @@ namespace Together.BL.Services.Abstract
     {
         TEntity GetById(int id);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> Get(Filter filter);
 
         TEntity Add(TEntity entityDto);
 

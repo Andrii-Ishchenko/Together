@@ -81,6 +81,7 @@
     <Compile Include="Repository\Concrete\RoutePointRepository.cs" />
     <Compile Include="Repository\Concrete\RouteRepository.cs" />
     <Compile Include="Repository\Concrete\AppUserRepository.cs" />
+    <Compile Include="Utils\Filter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

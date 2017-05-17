@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Together.BL.Services.Abstract;
 using Together.DAL.Infrastructure;
 using Together.DAL.Repository.Abstract;
+using Together.DAL.Utils;
 
 namespace Together.BL.Services.Concrete
 {
@@ -47,12 +48,12 @@ namespace Together.BL.Services.Concrete
           
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> Get(Filter filter)
         {
             using (IUnitOfWork uow = factory.Create())
             {
                 var repository = uow.Repository<TEntity>();
-                return repository.List();
+                return repository.List(filter);
             }
         }
 

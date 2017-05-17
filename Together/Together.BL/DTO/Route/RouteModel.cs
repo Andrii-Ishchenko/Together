@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Together.BL.DTOModels
+namespace Together.BL.DTO
 {
-    public class ListRouteModel
+    public class RouteModel
     {
+
         public int Id { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -17,12 +19,11 @@ namespace Together.BL.DTOModels
 
         public string RouteType { get; set; }
 
-        public bool IsPrivate { get; set; }   
-      
-        public  UserListModel Owner { get; set; }
+        public bool IsPrivate { get; set; }
 
-        public RoutePointListModel StartPoint { get; set; }
+        public UserListModel Owner { get; set; }
 
-        public RoutePointListModel EndPoint { get; set; }
+        public List<RoutePointListModel> Points { get; set; }
+
     }
 }

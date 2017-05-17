@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Together.BL.DTOModels
+namespace Together.BL.DTO
 {
     public class UserListModel
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Together.DAL.Utils;
 
 namespace Together.DAL.Repository.Abstract
 {
@@ -11,7 +12,7 @@ namespace Together.DAL.Repository.Abstract
 	{
 		TEntity GetById(int id);
 
-		IEnumerable<TEntity> List();
+		IEnumerable<TEntity> List(Filter filter);
 
 		TEntity Add(TEntity Entity);
 
