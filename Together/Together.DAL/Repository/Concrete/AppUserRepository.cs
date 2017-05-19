@@ -9,11 +9,12 @@ using Together.Domain;
 
 namespace Together.DAL.Repository.Concrete
 {
-    public class AppUserRepository :BaseRepository<AppUser>, IAppUserRepository
-    {
-        public AppUserRepository(TogetherDbContext context) : base(context)
-        {
+    //commented temporarily, until baseRepository will be removed
+    //public class AppUserRepository :BaseRepository<AppUser>, IAppUserRepository
+    //{
+    //    public AppUserRepository(TogetherDbContext context) : base(context)
+    //    {
             
-        }
-    }
+    //    }
+    //}
 }

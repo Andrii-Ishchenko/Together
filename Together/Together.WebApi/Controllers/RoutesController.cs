@@ -26,7 +26,7 @@ namespace Together.WebApi.Controllers
         [HttpGet]
         public IEnumerable<ListRouteModel> Get([FromUri]Filter filter)
         {     
-            var routes = _routeService.Get(filter).ToList();
+            var routes = _routeService.List(filter).ToList();
 
             var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
 

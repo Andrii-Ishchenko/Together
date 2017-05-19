@@ -14,10 +14,12 @@ namespace Together.BL.Services.Concrete
         where TEntity : class
     {
         protected readonly IUnitOfWorkFactory factory;
+        private IBaseRepository<TEntity> repository; 
 
-        public BaseService(IUnitOfWorkFactory uowFactory)
+        public BaseService(IUnitOfWorkFactory uowFactory, IBaseRepository<TEntity> repository)
         {
-            factory = uowFactory;        
+            factory = uowFactory;
+            this.repository = repository;
         }
 
         public virtual TEntity Add(TEntity entity)
@@ -48,7 +50,7 @@ namespace Together.BL.Services.Concrete
           
         }
 
-        public virtual IEnumerable<TEntity> Get(Filter filter)
+        public virtual IEnumerable<TEntity> List(Filter filter)
         {
             using (IUnitOfWork uow = factory.Create())
             {

@@ -12,7 +12,7 @@ namespace Together.BL.Services.Abstract
     {
         TEntity GetById(int id);
 
-        IEnumerable<TEntity> Get(Filter filter);
+        IEnumerable<TEntity> List(Filter filter);
 
         TEntity Add(TEntity entityDto);
 

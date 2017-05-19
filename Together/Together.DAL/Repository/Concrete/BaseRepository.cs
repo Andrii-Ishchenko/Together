@@ -13,6 +13,7 @@ using Together.DAL.Utils;
 
 namespace Together.DAL.Repository.Concrete
 {
+    [Obsolete]
 	public class BaseRepository<TEntity> : IBaseRepository<TEntity>	where TEntity :class
 	{
 		protected TogetherDbContext context;
@@ -40,7 +41,17 @@ namespace Together.DAL.Repository.Concrete
 			dbSet.Remove(entity);
 		}
 
-		public virtual IEnumerable<TEntity> List(Filter filter)
+        Expression<Func<TEntity, object>> IBaseRepository<TEntity>.GetOrderExpression(Filter filter)
+        {
+            return GetOrderExpression(filter);
+        }
+
+        public Expression<Func<TEntity, bool>> GetSearchExpression(Filter filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual IEnumerable<TEntity> List(Filter filter)
 		{
 		    return Query(null,filter,null).ToList();
 		}
@@ -55,7 +66,6 @@ namespace Together.DAL.Repository.Concrete
 			dbSet.Attach(entity);
 			context.Entry(entity).State = EntityState.Modified;
 		}
-
 
 	    protected IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> searchExpression, Filter filter, params string[] includeProperties)
 	    {
@@ -88,13 +98,13 @@ namespace Together.DAL.Repository.Concrete
             return query.AsQueryable();
 	    }
 
-	    private  IOrderedQueryable<TEntity> OrderQuery(IQueryable<TEntity> query, Filter filter, out bool isOrdered)
+	    private IOrderedQueryable<TEntity> OrderQuery(IQueryable<TEntity> query, Filter filter, out bool isOrdered)
 	    {       
 	        IOrderedQueryable<TEntity> orderedQuery;
 
-            var predicate = GetOrderExpression(filter) ?? GetDefaultOrderExpression();
+            var orderBy = GetOrderExpression(filter);
 
-	        if (predicate == null)
+	        if (orderBy == null)
 	        {
 	            isOrdered = false;
 	            return null;
@@ -102,11 +112,11 @@ namespace Together.DAL.Repository.Concrete
 
             if (filter.OrderDir == OrderDir.Asc)
 	        {
-                orderedQuery = query.OrderBy(predicate);
+                orderedQuery = query.OrderBy(orderBy);
 	        }
 	        else
 	        {
-                orderedQuery = query.OrderByDescending(predicate);
+                orderedQuery = query.OrderByDescending(orderBy);
 	        }
 
 	        isOrdered = true;
@@ -126,15 +136,10 @@ namespace Together.DAL.Repository.Concrete
             return query.Skip(skip).Take(take);
         }
 
-        protected virtual Expression<Func<TEntity, bool>> GetOrderExpression(Filter filter)
+        protected virtual Expression<Func<TEntity, object>> GetOrderExpression(Filter filter)
         {
             return null;
         }
-
-	    protected virtual Expression<Func<TEntity, bool>> GetDefaultOrderExpression()
-	    {
-	        return null;
-	    }
 
 
 	}

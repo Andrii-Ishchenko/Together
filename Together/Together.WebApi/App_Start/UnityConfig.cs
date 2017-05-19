@@ -22,14 +22,12 @@ namespace Together.WebApi
             // e.g. container.RegisterType<ITestService, TestService>();
 
 
-            container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             container.RegisterType<IRouteRepository, RouteRepository>();
             container.RegisterType<IRoutePointRepository, RoutePointRepository>();
                     
             container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
 
-            container.RegisterType(typeof(IBaseService<>), typeof(BaseService<>));
             container.RegisterType<IRouteService, RouteService>();
             container.RegisterType<IRoutePointService, RoutePointService>();
 
