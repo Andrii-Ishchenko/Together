@@ -14,13 +14,16 @@ namespace Together.DAL.Infrastructure
 {
     public class TogetherDbContext : IdentityDbContext<User>
     {
+        static int count = 0;
+
         public TogetherDbContext()
             :base("TogetherDb")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TogetherDbContext>());
-            Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
-            Debug.WriteLine("TOGETHER DB CONTEXT CREATED.");
+            Database.Log = s => Debug.WriteLine(s);
+
+            Debug.WriteLine("TOGETHER DB CONTEXT CREATED({0})",count++);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

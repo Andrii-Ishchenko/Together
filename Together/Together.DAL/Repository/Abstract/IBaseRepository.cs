@@ -11,19 +11,15 @@ namespace Together.DAL.Repository.Abstract
 	public interface IBaseRepository<TEntity>
 		where TEntity : class
 	{
-		TEntity GetById(int id);
+		TEntity Get(int id);
 
-		IEnumerable<TEntity> List(Filter filter);
+		IEnumerable<TEntity> List(QueryParams<TEntity> queryParams);
 
 		TEntity Add(TEntity Entity);
 
 		void Update(TEntity Entity);
 
 		void Delete(TEntity Entity);
-
-	    Expression<Func<TEntity, object>> GetOrderExpression(Filter filter);
-
-	    Expression<Func<TEntity, bool>> GetSearchExpression(Filter filter);
 
 	}
 }

@@ -12,58 +12,24 @@ using Together.Domain;
 
 namespace Together.DAL.Repository.Concrete
 {
-    public class RoutePointRepository : IRoutePointRepository
+    public class RoutePointRepository : BaseRepository<RoutePoint>, IRoutePointRepository
     {
-        private TogetherDbContext context;
-        private DbSet<RoutePoint> dbSet;
-
-
         public RoutePointRepository(TogetherDbContext context)
+            :base(context)
         {
             this.context = context;
+            dbSet = context.Set<RoutePoint>();
         }
 
-        public RoutePoint GetById(int id)
+        private Expression<Func<RoutePoint, object>> GetOrderExpression(string orderBy)
         {
-            return dbSet.Find(id);
-        }
-
-        public IEnumerable<RoutePoint> List(Filter filter)
-        {
-            return dbSet.Query(GetSearchExpression(filter), GetOrderExpression(filter), filter).ToList();
-        }
-
-        public RoutePoint Add(RoutePoint routePoint)
-        {
-            return dbSet.Add(routePoint);
-        }
-
-        public void Update(RoutePoint routePoint)
-        {
-            dbSet.Attach(routePoint);
-            context.Entry(routePoint).State = EntityState.Modified;
-        }
-
-        public void Delete(RoutePoint routePoint)
-        {
-            if (context.Entry(routePoint).State == EntityState.Detached)
-            {
-                dbSet.Attach(routePoint);
-            }
-
-            dbSet.Remove(routePoint);
-        }
-
-        public Expression<Func<RoutePoint, object>> GetOrderExpression(Filter filter)
-        {
-            if (string.IsNullOrEmpty(filter?.OrderBy))
+            if (string.IsNullOrEmpty(orderBy))
                 return x => x.Id;
 
             return x => x.ListOrder;
-
         }
 
-        public Expression<Func<RoutePoint, bool>> GetSearchExpression(Filter filter)
+        private Expression<Func<RoutePoint, bool>> GetSearchExpression()
         {
             return null;
         }

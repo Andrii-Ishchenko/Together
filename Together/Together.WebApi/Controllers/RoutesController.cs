@@ -43,7 +43,7 @@ namespace Together.WebApi.Controllers
        [HttpGet]
        public ListRouteModel Get(int id)
        {
-            var route =  _routeService.GetById(id);
+            var route =  _routeService.Get(id);
             var output = AutoMapper.Mapper.Map<Route, ListRouteModel>(route);
             return output;
         }

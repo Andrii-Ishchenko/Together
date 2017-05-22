@@ -60,6 +60,7 @@
     <Compile Include="Services\Concrete\BaseService.cs" />
     <Compile Include="Services\Concrete\RoutePointService.cs" />
     <Compile Include="Services\Concrete\RouteService.cs" />
+    <Compile Include="Utils\Filter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

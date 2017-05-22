@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Together.BL.Utils;
 using Together.DAL.Utils;
 
 namespace Together.BL.Services.Abstract
@@ -10,7 +11,7 @@ namespace Together.BL.Services.Abstract
     public interface IBaseService<TEntity>
         where TEntity : class
     {
-        TEntity GetById(int id);
+        TEntity Get(int id);
 
         IEnumerable<TEntity> List(Filter filter);
 

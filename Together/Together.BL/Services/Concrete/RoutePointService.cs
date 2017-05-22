@@ -26,15 +26,15 @@ namespace Together.BL.Services.Concrete
             if (model.RouteId < 0)
                 throw new Exception($"Wrong route ID: {model.RouteId}");
 
-            using (IUnitOfWork uow = factory.Create())
+            using (IUnitOfWork uow = _factory.Create())
             {
-                var route = _routeService.GetById(model.RouteId);
+                var route = _routeService.Get(model.RouteId);
 
                 if (route == null)
                     throw new Exception("Cannot find specified route");
 
                 //TODO: USE ID FROM AUTH
-                var user = _userService.GetById(1);
+                var user = _userService.Get(1);
                 if (user == null)
                     throw new Exception("Cannot find specified user");
 

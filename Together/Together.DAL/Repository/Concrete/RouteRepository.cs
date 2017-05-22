@@ -12,54 +12,18 @@ using Together.Domain;
 
 namespace Together.DAL.Repository.Concrete
 {
-    public class RouteRepository : IRouteRepository
+    public class RouteRepository : BaseRepository<Route>, IRouteRepository
     {
-        private TogetherDbContext context;
-        private DbSet<Route> dbSet;
-
-        public RouteRepository(TogetherDbContext context)
+        public RouteRepository(DbContext context) : base(context)
         {
-            this.context = context;
-            this.dbSet = context.Routes;
         }
 
-        public Route GetById(int id)
+        private Expression<Func<Route, object>> GetOrderExpression(string orderBy)
         {
-            return dbSet.Find(id);
-        }
-
-        public IEnumerable<Route> List(Filter filter)
-        {
-            return dbSet.Query(GetSearchExpression(filter),GetOrderExpression(filter), filter, "RoutePoint", "RouteUser", "Owner").ToList();
-        }
-
-        public Route Add(Route route)
-        {
-            return dbSet.Add(route);
-        }
-
-        public void Update(Route route)
-        {
-            dbSet.Attach(route);
-            context.Entry(route).State = EntityState.Modified;
-        }
-
-        public void Delete(Route route)
-        {
-            if (context.Entry(route).State == EntityState.Detached)
-            {
-                dbSet.Attach(route);
-            }
-
-            dbSet.Remove(route);
-        }
-
-        public Expression<Func<Route, object>> GetOrderExpression(Filter filter)
-        {
-            if (string.IsNullOrEmpty(filter?.OrderBy))
+            if (string.IsNullOrEmpty(orderBy))
                 return x => x.StartDate;
 
-            switch (filter.OrderBy)
+            switch (orderBy)
             {               
                 case "CreateDate":
                     return x => x.CreateDate;
@@ -70,10 +34,5 @@ namespace Together.DAL.Repository.Concrete
                     return x => x.StartDate;              
             }
         }
-
-        public Expression<Func<Route, bool>> GetSearchExpression(Filter filter)
-        {
-            return null;
-        } 
     }
 }

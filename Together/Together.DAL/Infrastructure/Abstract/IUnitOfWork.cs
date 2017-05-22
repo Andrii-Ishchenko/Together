@@ -9,7 +9,8 @@ namespace Together.DAL.Infrastructure
 {
     public interface IUnitOfWork : IDisposable
     {
-        IBaseRepository<T> Repository<T>() where T : class;
-        void Save();   
+        IRouteRepository RouteRepository { get; }
+        IRoutePointRepository RoutePointRepository { get; }
+        void Save();
     }
 }

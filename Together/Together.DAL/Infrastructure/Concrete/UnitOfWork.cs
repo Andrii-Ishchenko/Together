@@ -10,7 +10,12 @@ namespace Together.DAL.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly TogetherDbContext _context = new TogetherDbContext();
+        private readonly TogetherDbContext _context;
+
+        public UnitOfWork(TogetherDbContext context)
+        {
+            _context = context;
+        }
 
         private bool _disposed = false;
 
@@ -33,11 +38,23 @@ namespace Together.DAL.Infrastructure
             GC.SuppressFinalize(this);
         }
 
-        public IBaseRepository<T> Repository<T>() where T : class
+       
+        public IRouteRepository RouteRepository
         {
-            return new BaseRepository<T>(_context);
+            get
+            {
+                return new RouteRepository(_context);
+            }
         }
 
+        public IRoutePointRepository RoutePointRepository
+        {
+            get
+            {
+                return new RoutePointRepository(_context);
+            }
+        }
+            
         public void Save()
         {
             _context.SaveChanges();

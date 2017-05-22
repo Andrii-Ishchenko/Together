@@ -13,122 +13,111 @@ using Together.DAL.Utils;
 
 namespace Together.DAL.Repository.Concrete
 {
-    [Obsolete]
-	public class BaseRepository<TEntity> : IBaseRepository<TEntity>	where TEntity :class
-	{
-		protected TogetherDbContext context;
-		protected DbSet<TEntity> dbSet;
-		public BaseRepository(TogetherDbContext context)
-		{
-			this.context = context;
-			dbSet = context.Set<TEntity>();
 
-		}
-
-		public virtual TEntity Add(TEntity entity)
-		{
-			return dbSet.Add(entity);
-	
-		}
-
-		public virtual void Delete(TEntity entity)
-		{
-			if (context.Entry(entity).State == EntityState.Detached)
-			{
-				dbSet.Attach(entity);
-			}
-
-			dbSet.Remove(entity);
-		}
-
-        Expression<Func<TEntity, object>> IBaseRepository<TEntity>.GetOrderExpression(Filter filter)
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    {
+        protected DbContext context;
+        protected DbSet<TEntity> dbSet;
+        public BaseRepository(DbContext context)
         {
-            return GetOrderExpression(filter);
+            this.context = context;
+            dbSet = context.Set<TEntity>();
         }
 
-        public Expression<Func<TEntity, bool>> GetSearchExpression(Filter filter)
+        public virtual TEntity Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            return dbSet.Add(entity);
         }
 
-        public virtual IEnumerable<TEntity> List(Filter filter)
-		{
-		    return Query(null,filter,null).ToList();
-		}
-
-		public virtual TEntity GetById(int id)
-		{
-			return dbSet.Find(id);
-		}
-
-		public virtual void Update(TEntity entity)
-		{
-			dbSet.Attach(entity);
-			context.Entry(entity).State = EntityState.Modified;
-		}
-
-	    protected IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> searchExpression, Filter filter, params string[] includeProperties)
-	    {
-	        var set = IncludeMultipleProperties(includeProperties);
-            
-	        if (searchExpression != null)
-	            set = set.Where(searchExpression);
-
-	        if (filter != null)
-	        {
-	            bool isOrdered;
-                IOrderedQueryable<TEntity> sortedSet = OrderQuery(set, filter, out isOrdered);
-
-                if(isOrdered)
-                    set = LimitQuery(sortedSet, filter);
+        public virtual void Delete(TEntity entity)
+        {
+            if (context.Entry(entity).State == EntityState.Detached)
+            {
+                dbSet.Attach(entity);
             }
 
-            return set;
-	    }
+            dbSet.Remove(entity);
+        }
 
-	    private IQueryable<TEntity> IncludeMultipleProperties(IEnumerable<string> includeProperties)
-	    {
-	        DbQuery<TEntity> query = dbSet;
+        public virtual IEnumerable<TEntity> List(QueryParams<TEntity> queryParams)
+        {
+            return Query(queryParams);
+        }
 
-	        foreach (var property in includeProperties?? Enumerable.Empty<string>())
-	        {
-	            query = query.Include(property);
-	        }
+        public virtual TEntity Get(int id)
+        {
+            return dbSet.Find(id);
+        }
+
+        public virtual void Update(TEntity entity)
+        {
+            dbSet.Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
+        }
+
+        protected IEnumerable<TEntity> Query(QueryParams<TEntity> queryParams)
+        {
+            if (queryParams == null)
+                return dbSet.ToList();
+
+            var set = IncludeMultipleProperties(queryParams.IncludeProperties);
+
+            if (queryParams.Predicate != null)
+                set = set.Where(queryParams.Predicate);
+
+            if (queryParams.OrderBy != null)
+            {
+                bool isOrdered;
+                IOrderedQueryable<TEntity> sortedSet = OrderQuery(set, queryParams, out isOrdered);
+
+                if (isOrdered)
+                    set = LimitQuery(sortedSet, queryParams);
+            }
+
+            return set.ToList();
+        }
+
+        private IQueryable<TEntity> IncludeMultipleProperties(IEnumerable<string> includeProperties)
+        {
+            DbQuery<TEntity> query = dbSet;
+
+            foreach (var property in includeProperties ?? Enumerable.Empty<string>())
+            {
+                query = query.Include(property);
+            }
 
             return query.AsQueryable();
-	    }
+        }
 
-	    private IOrderedQueryable<TEntity> OrderQuery(IQueryable<TEntity> query, Filter filter, out bool isOrdered)
-	    {       
-	        IOrderedQueryable<TEntity> orderedQuery;
+        private IOrderedQueryable<TEntity> OrderQuery(IQueryable<TEntity> query, QueryParams<TEntity> queryParams, out bool isOrdered)
+        {
+            IOrderedQueryable<TEntity> orderedQuery;
 
-            var orderBy = GetOrderExpression(filter);
+            if (queryParams == null || queryParams.OrderBy==null)
+            {
+                isOrdered = false;
+                return null;
+            }
 
-	        if (orderBy == null)
-	        {
-	            isOrdered = false;
-	            return null;
-	        }
+            if (queryParams.OrderDirection == OrderDir.Asc)
+            {
+                orderedQuery = query.OrderBy(queryParams.OrderBy);
+            }
+            else
+            {
+                orderedQuery = query.OrderByDescending(queryParams.OrderBy);
+            }
 
-            if (filter.OrderDir == OrderDir.Asc)
-	        {
-                orderedQuery = query.OrderBy(orderBy);
-	        }
-	        else
-	        {
-                orderedQuery = query.OrderByDescending(orderBy);
-	        }
+            isOrdered = true;
 
-	        isOrdered = true;
+            return orderedQuery;
+        }
 
-	        return orderedQuery;
-	    }
-
-        private IQueryable<TEntity> LimitQuery(IOrderedQueryable<TEntity> query, Filter filter)
+        private IQueryable<TEntity> LimitQuery(IOrderedQueryable<TEntity> query, QueryParams<TEntity> queryParams)
         {
             //TODO : ADD MAGIC NUMBERS AS CONSTANTS
-            int page = filter.Page > 0 ? filter.Page : 1;
-            int pageSize = filter.PageSize > 0 && filter.PageSize <= 1000 ? filter.PageSize : 15;
+            int page = queryParams.Page > 0 ? queryParams.Page : 1;
+            int pageSize = queryParams.PageSize > 0 && queryParams.PageSize <= 1000 ? queryParams.PageSize : 10;
 
             int skip = (page - 1) * pageSize;
             int take = pageSize;
@@ -136,11 +125,5 @@ namespace Together.DAL.Repository.Concrete
             return query.Skip(skip).Take(take);
         }
 
-        protected virtual Expression<Func<TEntity, object>> GetOrderExpression(Filter filter)
-        {
-            return null;
-        }
-
-
-	}
+    }
 }

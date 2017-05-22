@@ -24,9 +24,11 @@ namespace Together.WebApi
 
             container.RegisterType<IRouteRepository, RouteRepository>();
             container.RegisterType<IRoutePointRepository, RoutePointRepository>();
-                    
-            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
+
+            //container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new HierarchicalLifetimeManager());
+            //container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<TogetherDbContext>(new HierarchicalLifetimeManager());
 
             container.RegisterType<IRouteService, RouteService>();
             container.RegisterType<IRoutePointService, RoutePointService>();
