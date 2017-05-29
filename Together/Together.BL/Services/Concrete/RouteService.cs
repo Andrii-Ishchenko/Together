@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTO;
 using Together.BL.Services.Abstract;
+using Together.BL.Utils;
 using Together.DAL.Infrastructure;
+using Together.DAL.Utils;
 using Together.Domain;
 
 
@@ -13,7 +15,7 @@ namespace Together.BL.Services.Concrete
 {
     public class RouteService : BaseService<Route>, IRouteService
     {
-        public RouteService()
+        public RouteService(IUnitOfWorkFactory factory): base(factory)
         {
                 
         }
@@ -43,7 +45,7 @@ namespace Together.BL.Services.Concrete
 
         public Route UpdateRoute(UpdateRouteModel model)
         {
-            var route = GetById(model.Id);
+            var route = Get(model.Id);
 
             if (route == null)
                 throw new Exception("Route does not exist.");
@@ -62,5 +64,19 @@ namespace Together.BL.Services.Concrete
 
             return route;
         }
+
+        protected override QueryParams<Route> GetQueryParams(Filter filter)
+        {
+            return new QueryParams<Route>()
+            {
+                IncludeProperties = new[] {"RouteUsers", "RoutePoints", "Owner"},
+                OrderBy = route => route.Id,
+                OrderDirection = filter.OrderDir,
+                Page = filter.Page,
+                PageSize = filter.PageSize
+            };
+        }
     }
+
+    
 }

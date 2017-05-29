@@ -14,7 +14,7 @@ namespace Together.DAL.Repository.Concrete
 {
     public class RoutePointRepository : BaseRepository<RoutePoint>, IRoutePointRepository
     {
-        public RoutePointRepository(TogetherDbContext context)
+        public RoutePointRepository(DbContext context)
             :base(context)
         {
             this.context = context;

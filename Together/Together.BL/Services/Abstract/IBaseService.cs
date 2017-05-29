@@ -20,7 +20,5 @@ namespace Together.BL.Services.Abstract
         void Delete(int id);
 
         void Update(TEntity entityDto);
-
-
     }
 }

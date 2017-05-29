@@ -11,6 +11,10 @@ namespace Together.DAL.Infrastructure
     {
         IRouteRepository RouteRepository { get; }
         IRoutePointRepository RoutePointRepository { get; }
+
+        IBaseRepository<T> Repository<T>() 
+            where T : class;
+
         void Save();
     }
 }

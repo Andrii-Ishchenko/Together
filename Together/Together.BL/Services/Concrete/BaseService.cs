@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Together.BL.Services.Abstract;
@@ -15,8 +16,7 @@ namespace Together.BL.Services.Concrete
         where TEntity : class
     {
         protected readonly IUnitOfWorkFactory _factory;
-        private IBaseRepository<TEntity> repository; 
-
+       
         public BaseService(IUnitOfWorkFactory factory)
         {
             _factory = factory;
@@ -53,13 +53,13 @@ namespace Together.BL.Services.Concrete
             using (IUnitOfWork uow = _factory.Create())
             {
                 var repository = uow.Repository<TEntity>();
-                return repository.List(filter);
+                var query = GetQueryParams(filter);
+                return repository.List(query);
             }
         }
 
         public virtual TEntity Get(int id)
         {
-
             using (IUnitOfWork uow = _factory.Create())
             {
                 var repository = uow.Repository<TEntity>();
@@ -77,5 +77,9 @@ namespace Together.BL.Services.Concrete
             }
         }
 
+        protected virtual QueryParams<TEntity> GetQueryParams(Filter filter)          
+        {
+            return null;
+        }
     }
 }
