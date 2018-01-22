@@ -6,11 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.DAL.Utils;
 
-namespace Together.DAL.Repository.Abstract
+namespace Together.DAL.Repository
 {
-    public interface IRepository{}
-
-	public interface IBaseRepository<TEntity> : IRepository
+	public interface IBaseRepository<TEntity>
 		where TEntity : class
 	{
 		TEntity Get(int id);

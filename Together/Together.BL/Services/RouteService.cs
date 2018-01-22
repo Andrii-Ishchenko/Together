@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Together.BL.DTO;
-using Together.BL.Services.Abstract;
 using Together.BL.Utils;
 using Together.DAL.Infrastructure;
 using Together.DAL.Utils;
 using Together.Domain;
 
 
-namespace Together.BL.Services.Concrete
+namespace Together.BL.Services
 {
-    public class RouteService : BaseService<Route>, IRouteService
+    public class RouteService : CRUDService<Route>, IRouteService
     {
         public RouteService(IUnitOfWorkFactory factory): base(factory)
         {
@@ -70,7 +65,7 @@ namespace Together.BL.Services.Concrete
             return new QueryParams<Route>()
             {
                 IncludeProperties = new[] {"RouteUsers", "RoutePoints", "Owner"},
-                OrderBy = route => route.Id,
+                OrderBy = route => new { route.Id },
                 OrderDirection = filter.OrderDir,
                 Page = filter.Page,
                 PageSize = filter.PageSize

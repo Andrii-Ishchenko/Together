@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Newtonsoft.Json;
+using System.Web.Http.Cors;
 
 namespace Together.WebApi
 {
@@ -11,6 +12,9 @@ namespace Together.WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+            var corsConfig = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsConfig);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

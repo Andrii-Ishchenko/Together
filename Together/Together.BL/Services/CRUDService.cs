@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Together.BL.Services.Abstract;
+﻿using System.Collections.Generic;
 using Together.BL.Utils;
 using Together.DAL.Infrastructure;
-using Together.DAL.Repository.Abstract;
 using Together.DAL.Utils;
 
-namespace Together.BL.Services.Concrete
+namespace Together.BL.Services
 {
-    public class BaseService<TEntity> : IBaseService<TEntity>
+    public class CRUDService<TEntity> : ICRUDService<TEntity>
         where TEntity : class
     {
         protected readonly IUnitOfWorkFactory _factory;
        
-        public BaseService(IUnitOfWorkFactory factory)
+        public CRUDService(IUnitOfWorkFactory factory)
         {
             _factory = factory;
         }

@@ -7,9 +7,9 @@ using Together.BL.DTO;
 using Together.Domain;
 
 
-namespace Together.BL.Services.Abstract
+namespace Together.BL.Services
 {
-    public interface IRoutePointService : IBaseService<RoutePoint>
+    public interface IRoutePointService : ICRUDService<RoutePoint>
     {
         void AddPointToRoute(CreateRoutePointModel model);
     }

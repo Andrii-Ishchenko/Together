@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using System.Data.Entity;
 using Microsoft.Practices.Unity;
 using System.Web.Http;
-using Together.BL.Services.Abstract;
-using Together.BL.Services.Concrete;
+using Together.BL.Services;
 using Together.DAL.Infrastructure;
-using Together.DAL.Repository.Abstract;
-using Together.DAL.Repository.Concrete;
+using Together.DAL.Repository;
+
 using Unity.WebApi;
 
 namespace Together.WebApi

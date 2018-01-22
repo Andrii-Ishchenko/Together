@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.Domain;
 
-
-namespace Together.BL.Services.Abstract
+namespace Together.DAL.Repository
 {
-	public interface IAppUserService:IBaseService<AppUser>
-	{
-
-	}
+    public interface IRoutePointRepository : IBaseRepository<RoutePoint>
+    {
+    }
 }

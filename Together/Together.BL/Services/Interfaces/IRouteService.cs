@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Together.BL.DTO;
 using Together.Domain;
 
-namespace Together.BL.Services.Abstract
+namespace Together.BL.Services
 {
-    public interface IRouteService : IBaseService<Route>
+    public interface IRouteService : ICRUDService<Route>
     {
         Route CreateRoute(CreateRouteModel model);
 

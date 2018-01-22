@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.Domain;
 
-namespace Together.DAL.Repository.Abstract
+
+namespace Together.BL.Services
 {
-    public interface IRouteRepository : IBaseRepository<Route>
-    {
-    }
+	public interface IAppUserService:ICRUDService<AppUser>
+	{
+
+	}
 }

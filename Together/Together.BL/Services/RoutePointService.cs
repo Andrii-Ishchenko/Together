@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Together.BL.DTO;
-using Together.BL.Services.Abstract;
 using Together.DAL.Infrastructure;
-using Together.DAL.Repository.Abstract;
 using Together.Domain;
 
-namespace Together.BL.Services.Concrete
+namespace Together.BL.Services
 {
-    public class RoutePointService : BaseService<RoutePoint>, IRoutePointService
+    public class RoutePointService : CRUDService<RoutePoint>, IRoutePointService
     {
         private readonly IRouteService _routeService;
         private readonly IAppUserService _userService;
@@ -59,10 +57,6 @@ namespace Together.BL.Services.Concrete
                 repository.Add(rp);
                 uow.Save();
             }
-
-         
-
-
         }
     }
 }

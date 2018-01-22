@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Together.BL.Utils;
 using Together.DAL.Utils;
 
-namespace Together.BL.Services.Abstract
+namespace Together.BL.Services
 {
-    public interface IBaseService<TEntity>
+    public interface ICRUDService<TEntity>
         where TEntity : class
     {
         TEntity Get(int id);

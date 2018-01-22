@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Together.Domain;
 
-namespace Together.DAL.Repository.Abstract
+namespace Together.DAL.Repository
 {
-    public interface IAppUserRepository : IBaseRepository<AppUser>
+    public interface IRouteRepository : IBaseRepository<Route>
     {
     }
 }

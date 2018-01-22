@@ -26,26 +26,31 @@ namespace Together.DAL.Migrations
 
             var manager = new UserManager<User>(new UserStore<User>(context));
 
-            var user1 = new User()
+            for (int i = 1; i <= 5; i++)
             {
-                UserName = "admin4",
-                Email = "admin@google.com",
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = false,
-                TwoFactorEnabled = false,
-                LockoutEnabled = false
-            };
+                var user1 = new User()
+                {
+                    UserName = "admin"+i,
+                    Email = "admin"+i+"@google.com",
+                    EmailConfirmed = true,
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false,
+                    LockoutEnabled = false
+                };
 
-            var appUser1 = new AppUser()
-            {
-                FirstName = "Taksist4",
-                LastName = "Lanos"
-            };
+                var appUser1 = new AppUser()
+                {
+                    FirstName = "Taksist"+i,
+                    LastName = "Lanos"
+                };
 
-            user1.AppUser = appUser1;
+                user1.AppUser = appUser1;
 
-            manager.Create(user1, "qwerty");
-            context.SaveChanges();
+                manager.Create(user1, "qwerty");
+                context.SaveChanges();
+            }
+
+           
 
         }
     }
