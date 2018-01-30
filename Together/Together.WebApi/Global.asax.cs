@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
-using Together.BL;
+
 
 namespace Together.WebApi
 {
@@ -14,7 +14,7 @@ namespace Together.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterComponents();
-            AutoMapperConfig.Configure();
+           // AutoMapperConfig.Configure();
         }
     }
 }

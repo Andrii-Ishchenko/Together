@@ -12,28 +12,36 @@ namespace Together.Data.Migrations
     {
         public Configuration()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TogetherDbContext>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<TogetherDbContext>());
             AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(TogetherDbContext context)
         {
-            var rp = new RoutePoint()
+
+            for (var r = 0; r < 4; r++)
             {
-                Address = "Some Address",
-                Latitude = 123.0,
-                Longitude = 234.0
-            };
+                var route = new Route()
+                {
+                    CreateDate = DateTime.Now.AddHours(r),
+                    RouteType = "MyType"
+                };
 
-            var route = new Route()
-            {
-                CreateDate = DateTime.Now,
-                RouteType = "MyType"
-            };
+                for (int i = 0; i < 5 + r; i++)
+                {
+                    var rp = new RoutePoint()
+                    {
+                        Address = "Some Address",
+                        Latitude = 123.0 + i,
+                        Longitude = 234.0 + i
+                    };
 
-            route.RoutePoints.Add(rp);
+                    route.RoutePoints.Add(rp);
+                }
 
-            context.Routes.Add(route);
+                context.Routes.Add(route);
+            }
+
             context.SaveChanges();
         }
     }

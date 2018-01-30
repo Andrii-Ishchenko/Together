@@ -131,7 +131,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PingController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
-    <Compile Include="Controllers\RoutePointsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,17 +152,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Together.BL\Together.BL.csproj">
-      <Project>{37285dbd-2533-4bc5-9bce-1397c8f2126f}</Project>
-      <Name>Together.BL</Name>
+    <ProjectReference Include="..\Together.Data\Together.Data.csproj">
+      <Project>{026C5CCA-095B-4807-B5C9-C4E9A8FCC6AB}</Project>
+      <Name>Together.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Together.DAL\Together.DAL.csproj">
-      <Project>{ac0818dd-9042-4a14-a801-c0fb61186ca2}</Project>
-      <Name>Together.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Together.Domain\Together.Domain.csproj">
-      <Project>{C16F4439-4D42-4BFD-8993-730C401E846E}</Project>
-      <Name>Together.Domain</Name>
+    <ProjectReference Include="..\Together.Services\Together.Services.csproj">
+      <Project>{cb4c3540-dc9f-4ec1-8ab9-1a6736976373}</Project>
+      <Name>Together.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

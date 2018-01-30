@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,17 @@ namespace Together.Data.Context
         public DbSet<RoutePoint> RoutePoints { get; set; }
 
 
-        public TogetherDbContext() : base("TogetherDBConnection")
+        public TogetherDbContext() : base("TogetherDB2")
         {
+            Debug.WriteLine("CONTEXT CREATED");
+            Database.Log = s => Debug.WriteLine(s);
+           
+        }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            Debug.WriteLine("CONTEXT DISPOSED!!!!!!!!");
         }
     }
 }

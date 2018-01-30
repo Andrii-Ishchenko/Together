@@ -1,60 +1,28 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
-using Together.BL.DTO;
-using Together.BL.Services;
-using Together.BL.Utils;
-using Together.Domain;
+using Together.Services.Route;
+using Together.Services.Route.DTO;
 
 
 namespace Together.WebApi.Controllers
 {
     public class RoutesController : ApiController
     {
-        private readonly IRouteService _routeService;
+        private readonly IRouteCRUDService _routeService;
 
-        public RoutesController(IRouteService routeService)
+        public RoutesController(IRouteCRUDService routeService)
         {
             _routeService = routeService;
         }
 
         [HttpGet]
-        public IEnumerable<ListRouteModel> Get([FromUri]Filter filter)
-        {     
-            var routes = _routeService.List(filter).ToList();
-
-            var output = AutoMapper.Mapper.Map<List<Route>, List<ListRouteModel>>(routes);
-
-            return output;
-        }
-
-
-        [HttpPost]
-        public Route Add(CreateRouteModel model)
+        public List<RouteListDTO> Get()
         {
-            return _routeService.CreateRoute(model);
-        }  
-
-       [HttpGet]
-       public ListRouteModel Get(int id)
-       {
-            var route =  _routeService.Get(id);
-            var output = AutoMapper.Mapper.Map<Route, ListRouteModel>(route);
-            return output;
+            var query = _routeService.GetAll();
+            return query.ToList();
         }
 
-        [HttpPut]
-        public RouteModel Update(UpdateRouteModel model)
-        {
-            var route = _routeService.UpdateRoute(model);
-            var output = AutoMapper.Mapper.Map<Route, RouteModel>(route);
-            return output;
-        }
-
-        [HttpDelete]
-        public void Delete(int id)
-        {
-            _routeService.Delete(id);
-        }
     }
 }
