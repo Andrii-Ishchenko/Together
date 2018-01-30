@@ -7,7 +7,7 @@ namespace Together.Services.Route
     public interface IRouteCRUDService
     {
 
-        IEnumerable<RouteListDTO> GetAll();
-
+        List<RouteListDTO> GetAll();
+        RouteDTO Get(int id);
     }
 }

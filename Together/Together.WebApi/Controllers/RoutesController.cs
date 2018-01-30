@@ -20,9 +20,13 @@ namespace Together.WebApi.Controllers
         [HttpGet]
         public List<RouteListDTO> Get()
         {
-            var query = _routeService.GetAll();
-            return query.ToList();
+            return _routeService.GetAll();
         }
 
+        [HttpGet]
+        public RouteDTO Get(int id)
+        {
+            return _routeService.Get(id);
+        }
     }
 }
