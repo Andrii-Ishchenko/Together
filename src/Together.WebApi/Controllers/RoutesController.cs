@@ -7,12 +7,19 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Together.DataAccess;
+using Together.Services;
 
 namespace Together.WebApi.Controllers
 {
     public class RoutesController : ApiController
     {
-        
+        public IRouteService _routeService;
+        public RoutesController()
+        {
+            //inject Route service
+            _routeService = new RouteService(new TogetherDbContextFactory());
+        }
+
         private async Task<IHttpActionResult> GetRoutesNotWorkingAsync()
         {
             using(TogetherDbContext db = new TogetherDbContext())
@@ -24,9 +31,12 @@ namespace Together.WebApi.Controllers
 
         public IHttpActionResult GetRoutes()
         {
-            //!!!! using (TogetherDbContext db = new TogetherDbContext())
-            TogetherDbContext db = new TogetherDbContext();
-            var list = db.Routes.Include(r => r.Passengers.Select(p=>p.User)).ToList();
+            /*
+             TogetherDbContext db = new TogetherDbContext();
+             var list = db.Routes.Include(r => r.Passengers.Select(p=>p.User)).ToList();
+             */
+
+            var list = _routeService.List();
 
             return Ok(list);
             

@@ -14,8 +14,6 @@ namespace Together.Domain.Entities
 
         public int MaxPassengers { get; set; }
 
-        public int PassengersCount { get; set; }
-
         public string RouteType { get; set; }
 
         public bool IsPrivate { get; set; }

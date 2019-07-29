@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using Together.Services.Configuration;
 
 namespace Together.WebApi
 {
@@ -12,6 +13,7 @@ namespace Together.WebApi
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutoMapperConfiguration.Configure();
         }
     }
 }

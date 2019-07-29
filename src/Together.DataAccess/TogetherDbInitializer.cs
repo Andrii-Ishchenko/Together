@@ -8,10 +8,12 @@ using Together.Domain.Entities;
 
 namespace Together.DataAccess
 {
-    class TogetherDbInitializer : DropCreateDatabaseIfModelChanges<TogetherDbContext>
+    class TogetherDbInitializer : DropCreateDatabaseAlways<TogetherDbContext>
     {
         protected override void Seed(TogetherDbContext context)
         {
+            Console.WriteLine("Message from DbInitializer Seed");
+
             List<User> users = new List<User>();
             for (int i = 0; i < 3; i++)
             {

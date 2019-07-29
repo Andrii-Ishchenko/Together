@@ -21,7 +21,9 @@ namespace Together.DataAccess.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-           
+            Console.WriteLine("Message from Configuration Seed");
+
+            new TogetherDbInitializer().InitializeDatabase(context);
         }
     }
 }
