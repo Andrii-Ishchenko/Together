@@ -18,7 +18,7 @@ namespace Together.Services
 
         public bool UserExists(int userId)
         {
-            using (var db = _dbContextFactory.CreateDbContext())
+            using (var db = _dbContextFactory.Create())
             {
                 return db.Users.Any(u => u.Id == userId);
             }

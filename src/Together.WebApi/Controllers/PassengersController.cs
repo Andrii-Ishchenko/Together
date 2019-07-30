@@ -38,6 +38,22 @@ namespace Together.WebApi.Controllers
             }
             return Ok(passenger);
         }
+
+        [HttpDelete]
+        public IHttpActionResult DeletePasssenger(int id)
+        {
+            try
+            {
+                _passengerService.DeletePassenger(id);
+            }
+            catch (Exception e)
+            {
+                //TODO: refactor to suppress internal exception data
+                return InternalServerError(e);
+            }
+
+            return Ok();
+        }
       
     }
 }

@@ -7,6 +7,6 @@ namespace Together.Services
     {
         NewPassengerModel AddUserToRoute(int userId, int routeId);
 
-        void RemoveUserFromRoute(int userId, int routeId);
+        void DeletePassenger(int passengerId);
     }
 }

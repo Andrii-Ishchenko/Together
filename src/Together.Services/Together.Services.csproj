@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Configuration\AutoMapperConfiguration.cs" />
     <Compile Include="Exceptions\PassengerAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\RouteFullException.cs" />
     <Compile Include="Exceptions\RouteNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="IPassengerService.cs" />

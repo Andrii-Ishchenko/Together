@@ -8,7 +8,7 @@ using Together.Domain.Entities;
 
 namespace Together.DataAccess
 {
-    class TogetherDbInitializer : DropCreateDatabaseAlways<TogetherDbContext>
+    class TogetherDbInitializer : DropCreateDatabaseIfModelChanges<TogetherDbContext>
     {
         protected override void Seed(TogetherDbContext context)
         {

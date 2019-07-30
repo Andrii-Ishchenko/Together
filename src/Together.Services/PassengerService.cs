@@ -35,12 +35,19 @@ namespace Together.Services
                 throw new UserNotFoundException(userId);
             }
                      
-            using (var db = _dbContextFactory.CreateDbContext())
+            using (var db = _dbContextFactory.Create())
             {
                 //TODO: refactor to separate method
                 if (db.Passengers.Any(p => p.RouteId == routeId && p.UserId == userId))
                 {
                     throw new PassengerAlreadyExistsException(userId, routeId);
+                }
+
+                var route = db.Routes.Find(routeId);
+
+                if(route.MaxPassengers == route.Passengers.Count)
+                {
+                    throw new RouteFullException();
                 }
 
                 Passenger passenger = new Passenger() { UserId = userId, RouteId = routeId, JoinDate = DateTime.UtcNow };
@@ -50,10 +57,19 @@ namespace Together.Services
             }
         }
 
-        public void RemoveUserFromRoute(int userId, int routeId)
-        {
-            throw new NotImplementedException();
-        }
 
+        public void DeletePassenger(int passengerId)
+        {        
+            using (var db = _dbContextFactory.Create())
+            {
+                var passenger = db.Passengers.FirstOrDefault(p => p.Id == passengerId);
+
+                if (passenger != null)
+                {
+                    db.Passengers.Remove(passenger);
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Together.Services
 
         public List<RouteListModel> List()
         {
-            using (TogetherDbContext db = _factory.CreateDbContext())
+            using (TogetherDbContext db = _factory.Create())
             {
                 var list =  db.Routes.Include(r => r.Passengers).ToList();
                 return AutoMapper.Mapper.Map<List<RouteListModel>>(list);
@@ -29,7 +29,7 @@ namespace Together.Services
 
         public bool RouteExists(int id)
         {
-            using (TogetherDbContext db = _factory.CreateDbContext())
+            using (TogetherDbContext db = _factory.Create())
             {
                 return db.Routes.Any(r => r.Id == id);
             }

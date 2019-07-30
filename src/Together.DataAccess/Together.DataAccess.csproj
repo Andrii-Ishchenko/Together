@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDbContextFactory.cs" />
     <Compile Include="Migrations\201907291520120_Initial.cs" />
     <Compile Include="Migrations\201907291520120_Initial.Designer.cs">
       <DependentUpon>201907291520120_Initial.cs</DependentUpon>
