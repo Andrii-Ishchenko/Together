@@ -23,7 +23,9 @@ namespace Together.Services.Configuration
 
             cfg.CreateMap<Route, RouteListModel>()
                .ForMember(dest => dest.PassengersCount, opt => opt.MapFrom(r => r.Passengers.Count));
-                              
+
+            cfg.CreateMap<Passenger, NewPassengerModel>();
+
             Mapper.Initialize(cfg);
         }
     }

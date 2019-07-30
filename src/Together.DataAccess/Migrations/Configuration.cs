@@ -23,7 +23,7 @@ namespace Together.DataAccess.Migrations
 
             Console.WriteLine("Message from Configuration Seed");
 
-            new TogetherDbInitializer().InitializeDatabase(context);
+            //new TogetherDbInitializer().InitializeDatabase(context);
         }
     }
 }

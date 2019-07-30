@@ -26,8 +26,8 @@ namespace Together.DataAccess
             Route route1 = new Route()
             {
                 MaxPassengers = 3,
-                CreateDate = DateTime.Now,
-                StartDate = DateTime.Now.AddDays(100),
+                CreateDate = DateTime.UtcNow,
+                StartDate = DateTime.UtcNow.AddDays(100),
                 RouteType = "Car",
                 IsPrivate = false
             };
@@ -35,8 +35,8 @@ namespace Together.DataAccess
             Route route2 = new Route()
             {
                 MaxPassengers = 5,
-                CreateDate = DateTime.Now,
-                StartDate = DateTime.Now.AddDays(100),
+                CreateDate = DateTime.UtcNow,
+                StartDate = DateTime.UtcNow.AddDays(100),
                 RouteType = "Foot",
                 IsPrivate = false
             };
@@ -49,21 +49,21 @@ namespace Together.DataAccess
             {
                 RouteId = route1.Id,
                 UserId = users[0].Id,
-                JoinDate = DateTime.Now
+                JoinDate = DateTime.UtcNow
             };
 
             var passenger2 = new Passenger()
             {
                 RouteId = route2.Id,
                 UserId = users[0].Id,
-                JoinDate = DateTime.Now
+                JoinDate = DateTime.UtcNow
             };
 
             var passenger3 = new Passenger()
             {
                 RouteId = route1.Id,
                 UserId = users[1].Id,
-                JoinDate = DateTime.Now
+                JoinDate = DateTime.UtcNow
             };
 
 
@@ -71,7 +71,7 @@ namespace Together.DataAccess
             {
                 RouteId = route2.Id,
                 UserId = users[2].Id,
-                JoinDate = DateTime.Now
+                JoinDate = DateTime.UtcNow
             };
 
             context.Passengers.AddRange(new[] { passenger1, passenger2, passenger3, passenger4 });

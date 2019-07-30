@@ -20,15 +20,7 @@ namespace Together.WebApi.Controllers
             _routeService = new RouteService(new TogetherDbContextFactory());
         }
 
-        private async Task<IHttpActionResult> GetRoutesNotWorkingAsync()
-        {
-            using(TogetherDbContext db = new TogetherDbContext())
-            {
-                var list = await db.Routes.SelectMany(r => r.Passengers).ToListAsync();
-                return Ok(list);
-            }
-        }
-
+        [HttpGet]
         public IHttpActionResult GetRoutes()
         {
             /*
@@ -41,5 +33,6 @@ namespace Together.WebApi.Controllers
             return Ok(list);
             
         }
+
     }
 }

@@ -6,5 +6,8 @@ namespace Together.Services
     public interface IRouteService
     {
         List<RouteListModel> List();
+
+        bool RouteExists(int id);
+
     }
 }

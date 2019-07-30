@@ -52,14 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AutoMapperConfiguration.cs" />
+    <Compile Include="Exceptions\PassengerAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\RouteNotFoundException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="IPassengerService.cs" />
     <Compile Include="IRouteService.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="Models\NewPassengerModel.cs" />
     <Compile Include="Models\RouteListModel.cs" />
     <Compile Include="Models\RouteListPassengerModel.cs" />
+    <Compile Include="PassengerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\CreatePassengerRequest.cs" />
     <Compile Include="RouteService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Requests\" />
     <Folder Include="Responses\" />
   </ItemGroup>
   <ItemGroup>

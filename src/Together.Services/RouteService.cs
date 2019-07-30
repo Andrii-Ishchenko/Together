@@ -26,5 +26,13 @@ namespace Together.Services
                 return AutoMapper.Mapper.Map<List<RouteListModel>>(list);
             }
         }
+
+        public bool RouteExists(int id)
+        {
+            using (TogetherDbContext db = _factory.CreateDbContext())
+            {
+                return db.Routes.Any(r => r.Id == id);
+            }
+        }
     }
 }
