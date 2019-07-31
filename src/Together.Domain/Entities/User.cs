@@ -13,5 +13,6 @@ namespace Together.Domain.Entities
         public string LastName { get; set; }
 
         public virtual List<Passenger> Passengers { get; set; }
+        public virtual List<RoutePoint> CreatedRoutePoints { get; set; }
     }
 }

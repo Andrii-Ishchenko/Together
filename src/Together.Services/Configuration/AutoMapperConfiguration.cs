@@ -26,6 +26,10 @@ namespace Together.Services.Configuration
 
             cfg.CreateMap<Passenger, NewPassengerModel>();
 
+            cfg.CreateMap<RoutePoint, RoutePointModel>()
+                .ForMember(dest => dest.CreatorFirstName, opt => opt.MapFrom(rp => rp.Creator.FirstName))
+                .ForMember(dest => dest.CreatorLastName, opt => opt.MapFrom(rp => rp.Creator.LastName));
+
             Mapper.Initialize(cfg);
         }
     }

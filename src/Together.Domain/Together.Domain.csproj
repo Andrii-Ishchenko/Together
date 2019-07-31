@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Passenger.cs" />
+    <Compile Include="Entities\RoutePoint.cs" />
     <Compile Include="Enums\RouteType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Route.cs" />

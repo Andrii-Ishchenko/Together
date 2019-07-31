@@ -19,5 +19,6 @@ namespace Together.Domain.Entities
         public bool IsPrivate { get; set; }
 
         public virtual ICollection<Passenger> Passengers { get;set; }
+        public virtual ICollection<RoutePoint> RoutePoints { get; set; }
     }
 }

@@ -77,6 +77,42 @@ namespace Together.DataAccess
             context.Passengers.AddRange(new[] { passenger1, passenger2, passenger3, passenger4 });
             context.SaveChanges();
 
+            var routePoint1 = new RoutePoint()
+            {
+                CreatorId = users[0].Id,
+                CreatedDate = DateTime.UtcNow,
+                Latitude = 100.0f,
+                Longitude = 100.0f,
+                OrderNumber = 0,
+                Name = "Point (100,100)",
+                RouteId= route1.Id
+            };
+
+            var routePoint2 = new RoutePoint()
+            {
+                CreatorId = users[1].Id,
+                CreatedDate = DateTime.UtcNow,
+                Latitude = 101.0f,
+                Longitude = 101.0f,
+                OrderNumber = 1,
+                Name = "Point (101,101)",
+                RouteId = route1.Id
+            };
+
+            var routePoint3 = new RoutePoint()
+            {
+                CreatorId = users[1].Id,
+                CreatedDate = DateTime.UtcNow,
+                Latitude = 102.0f,
+                Longitude = 102.0f,
+                OrderNumber = 2,
+                Name = "Point (102,102)",
+                RouteId = route1.Id
+            };
+
+            context.RoutePoints.AddRange(new[] { routePoint1, routePoint2, routePoint3});
+            context.SaveChanges();
+
             base.Seed(context);
         }
     }

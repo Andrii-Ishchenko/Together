@@ -21,5 +21,6 @@ namespace Together.Services.Models
         public string RouteType { get; set; }
 
         public List<RouteListPassengerModel> Passengers { get; set; }
+        public List<RoutePointModel> RoutePoints { get; set; }
     }
 }
