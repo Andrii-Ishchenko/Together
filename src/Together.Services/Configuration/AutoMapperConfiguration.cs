@@ -30,6 +30,10 @@ namespace Together.Services.Configuration
                 .ForMember(dest => dest.CreatorFirstName, opt => opt.MapFrom(rp => rp.Creator.FirstName))
                 .ForMember(dest => dest.CreatorLastName, opt => opt.MapFrom(rp => rp.Creator.LastName));
 
+            cfg.CreateMap<RoutePoint, NewRoutePointModel>()
+                .ForMember(dest => dest.CreatorFirstName, opt => opt.MapFrom(rp => rp.Creator.FirstName))
+                .ForMember(dest => dest.CreatorLastName, opt => opt.MapFrom(rp => rp.Creator.LastName));
+
             Mapper.Initialize(cfg);
         }
     }

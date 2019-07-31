@@ -53,6 +53,7 @@ namespace Together.Services
                 Passenger passenger = new Passenger() { UserId = userId, RouteId = routeId, JoinDate = DateTime.UtcNow };
                 db.Passengers.Add(passenger);
                 db.SaveChanges();
+
                 return AutoMapper.Mapper.Map<Passenger, NewPassengerModel>(passenger);
             }
         }
