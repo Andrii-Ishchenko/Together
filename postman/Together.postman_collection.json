@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "fd018eaf-ddd4-4116-a007-cc1baa184df4",
+		"name": "Together",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Routes",
+			"item": [
+				{
+					"name": "Routes List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:59430/api/routes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59430",
+							"path": [
+								"api",
+								"routes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Passengers",
+			"item": [
+				{
+					"name": "Create Passenger",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 3,\n\t\"routeId\":1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:59430/api/passengers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59430",
+							"path": [
+								"api",
+								"passengers"
+							]
+						},
+						"description": "Creates new passenger"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Passenger",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:59430/api/passengers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59430",
+							"path": [
+								"api",
+								"passengers",
+								"1"
+							]
+						},
+						"description": "Removes passenger from route"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoutePoints",
+			"item": [
+				{
+					"name": "Create RoutePoint",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"UserId\": 1,\n\t\"RouteId\": 1,\n\t\"Name\": \"Custom Route Point 123\",\n\t\"OrderNumber\": 4,\n\t\"Longitude\": 3,\n\t\"Latitude\": 4\n}"
+						},
+						"url": {
+							"raw": "http://localhost:59430/api/routes/1/routepoints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "59430",
+							"path": [
+								"api",
+								"routes",
+								"1",
+								"routepoints"
+							]
+						},
+						"description": "Add RoutePoint to Route"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
