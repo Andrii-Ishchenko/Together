@@ -14,25 +14,16 @@ namespace Together.WebApi.Controllers
     public class RoutesController : ApiController
     {
         public IRouteService _routeService;
-        public RoutesController()
+        public RoutesController(IRouteService routeService)
         {
-            //inject Route service
-            _routeService = new RouteService(new TogetherDbContextFactory());
+            _routeService = routeService;
         }
 
         [HttpGet]
         public IHttpActionResult GetRoutes()
         {
-            /*
-             TogetherDbContext db = new TogetherDbContext();
-             var list = db.Routes.Include(r => r.Passengers.Select(p=>p.User)).ToList();
-             */
-
             var list = _routeService.List();
-
-            return Ok(list);
-            
+            return Ok(list);           
         }
-
     }
 }

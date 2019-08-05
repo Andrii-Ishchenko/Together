@@ -11,14 +11,11 @@ namespace Together.WebApi.Controllers
 {
     public class RoutePointsController : ApiController
     {
-        private readonly RoutePointService _routePointsService;
+        private readonly IRoutePointService _routePointService;
 
-        public RoutePointsController()
+        public RoutePointsController(IRoutePointService routePointService)
         {
-            var factory = new TogetherDbContextFactory();
-            var userService = new UserService(factory);
-            var routeService = new RouteService(factory);
-            _routePointsService = new RoutePointService(factory, routeService, userService);
+            _routePointService = routePointService;
         }
 
         [Route("api/routes/{routeId}/routepoints")]
@@ -28,7 +25,7 @@ namespace Together.WebApi.Controllers
             //Additional mapping just in case.
             request.RouteId = routeId;
             
-            var routePoint = _routePointsService.AddPointToRoute(request);
+            var routePoint = _routePointService.AddPointToRoute(request);
 
             return Ok(routePoint);
         }

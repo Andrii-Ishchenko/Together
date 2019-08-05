@@ -15,12 +15,9 @@ namespace Together.WebApi.Controllers
     {
         private readonly IPassengerService _passengerService;
 
-        public PassengersController()
+        public PassengersController(IPassengerService passengerService)
         {
-            var factory = new TogetherDbContextFactory();
-            var userService = new UserService(factory);
-            var routeService = new RouteService(factory);
-            _passengerService = new PassengerService(routeService, userService, factory);
+            _passengerService = passengerService;
         }
 
         [HttpPost]

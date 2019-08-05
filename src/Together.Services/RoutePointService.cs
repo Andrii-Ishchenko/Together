@@ -9,18 +9,19 @@ using Together.Services.Exceptions;
 using Together.Services.Models;
 using Together.Services.Requests;
 using Together.Domain.Entities;
+using System.Data.Entity.Infrastructure;
 
 namespace Together.Services
 {
     public class RoutePointService : IRoutePointService
     {
         private readonly TogetherDbContextFactory _dbContextFactory;
-        private readonly RouteService _routeService;
-        private readonly UserService _userService;
+        private readonly IRouteService _routeService;
+        private readonly IUserService _userService;
 
-        public RoutePointService(TogetherDbContextFactory dbContextFactory, RouteService routeService, UserService userService)
+        public RoutePointService(IDbContextFactory<TogetherDbContext> dbContextFactory, IRouteService routeService, IUserService userService)
         {
-            _dbContextFactory = dbContextFactory;
+            _dbContextFactory = dbContextFactory as TogetherDbContextFactory;
             _routeService = routeService;
             _userService = userService;
         }
@@ -53,8 +54,7 @@ namespace Together.Services
                 db.RoutePoints.Add(rp);
                 db.SaveChanges();
 
-                return AutoMapper.Mapper.Map<RoutePoint, NewRoutePointModel>(rp);
-                
+                return AutoMapper.Mapper.Map<RoutePoint, NewRoutePointModel>(rp);              
             }
         }
     }
