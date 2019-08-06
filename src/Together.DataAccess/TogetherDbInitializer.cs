@@ -25,6 +25,8 @@ namespace Together.DataAccess
 
             Route route1 = new Route()
             {
+                CreatorId = users[0].Id,
+                Name = "Route 1",
                 MaxPassengers = 3,
                 CreateDate = DateTime.UtcNow,
                 StartDate = DateTime.UtcNow.AddDays(100),
@@ -34,6 +36,8 @@ namespace Together.DataAccess
 
             Route route2 = new Route()
             {
+                CreatorId = users[1].Id,
+                Name = "Route 2",
                 MaxPassengers = 5,
                 CreateDate = DateTime.UtcNow,
                 StartDate = DateTime.UtcNow.AddDays(100),

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Together.Services.Models
 {
-    public class RouteListModel
+    public class NewRouteModel
     {
         public int Id { get; set; }
+
+        public int CreatorId { get; set; }
 
         public string Name { get; set; }
 
@@ -18,18 +20,9 @@ namespace Together.Services.Models
 
         public int MaxPassengers { get; set; }
 
-        public int PassengersCount { get; set; }
-
         public string RouteType { get; set; }
 
-        public int CreatorId { get; set; }
+        public bool IsPrivate { get; set; }
 
-        public string CreatorFirstName { get; set; }
-
-        public string CreatorLastName { get; set; }
-
-        public List<RouteListPassengerModel> Passengers { get; set; }
-
-        public List<RoutePointModel> RoutePoints { get; set; }
     }
 }

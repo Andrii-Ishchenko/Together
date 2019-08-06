@@ -22,7 +22,9 @@ namespace Together.Services.Configuration
                 .ForMember(model => model.LastName, opt => opt.MapFrom(p => p.User.LastName));
 
             cfg.CreateMap<Route, RouteListModel>()
-               .ForMember(dest => dest.PassengersCount, opt => opt.MapFrom(r => r.Passengers.Count));
+               .ForMember(dest => dest.PassengersCount, opt => opt.MapFrom(r => r.Passengers.Count))
+                .ForMember(dest => dest.CreatorFirstName, opt => opt.MapFrom(r => r.Creator.FirstName))
+                .ForMember(dest => dest.CreatorLastName, opt => opt.MapFrom(r => r.Creator.LastName));
 
             cfg.CreateMap<Passenger, NewPassengerModel>();
 

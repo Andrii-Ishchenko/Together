@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Together.DataAccess
         {
             // Database.SetInitializer(new MigrateDatabaseToLatestVersion<TogetherDbContext, Migrations.Configuration>());
             Database.SetInitializer(new TogetherDbInitializer());
+            Database.Log = sql => Debug.Write(sql);
         }
 
         public DbSet<User> Users { get; set; }
@@ -41,6 +43,10 @@ namespace Together.DataAccess
 
             modelBuilder.Entity<Route>()
                 .HasKey(r => r.Id);
+
+            modelBuilder.Entity<Route>()
+                .HasRequired(r => r.Creator).WithMany(u => u.CreatedRoutes)
+                .HasForeignKey(r => r.CreatorId);
 
             modelBuilder.Entity<RoutePoint>()
                 .HasKey(rp => rp.Id);

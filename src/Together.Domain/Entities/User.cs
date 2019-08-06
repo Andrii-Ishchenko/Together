@@ -14,5 +14,7 @@ namespace Together.Domain.Entities
 
         public virtual List<Passenger> Passengers { get; set; }
         public virtual List<RoutePoint> CreatedRoutePoints { get; set; }
+
+        public virtual List<Route> CreatedRoutes { get; set; }
     }
 }

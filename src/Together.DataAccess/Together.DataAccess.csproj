@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201907312018189_RoutePoints.Designer.cs">
       <DependentUpon>201907312018189_RoutePoints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908061030372_Added passengers and route new fields.cs" />
+    <Compile Include="Migrations\201908061030372_Added passengers and route new fields.Designer.cs">
+      <DependentUpon>201908061030372_Added passengers and route new fields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="TogetherDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907312018189_RoutePoints.resx">
       <DependentUpon>201907312018189_RoutePoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908061030372_Added passengers and route new fields.resx">
+      <DependentUpon>201908061030372_Added passengers and route new fields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

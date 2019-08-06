@@ -61,6 +61,7 @@
     <Compile Include="IRouteService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Models\NewPassengerModel.cs" />
+    <Compile Include="Models\NewRouteModel.cs" />
     <Compile Include="Models\NewRoutePointModel.cs" />
     <Compile Include="Models\RouteListModel.cs" />
     <Compile Include="Models\RouteListPassengerModel.cs" />

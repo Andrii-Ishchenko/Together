@@ -22,7 +22,9 @@ namespace Together.Services
         {
             using (TogetherDbContext db = _factory.Create())
             {
-                var list =  db.Routes.Include(r => r.Passengers).ToList();
+                var list =  db.Routes.Include(r => r.Passengers.Select(p=>p.User))
+                    .Include(r=>r.RoutePoints.Select(rp=>rp.Creator))
+                    .ToList();
                 return AutoMapper.Mapper.Map<List<RouteListModel>>(list);
             }
         }
@@ -34,5 +36,7 @@ namespace Together.Services
                 return db.Routes.Any(r => r.Id == id);
             }
         }
+
+
     }
 }

@@ -8,6 +8,10 @@ namespace Together.Domain.Entities
     {
         public int Id { get; set; }
 
+        public int CreatorId { get; set; }
+
+        public string Name { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime CreateDate { get; set; }
@@ -17,6 +21,8 @@ namespace Together.Domain.Entities
         public string RouteType { get; set; }
 
         public bool IsPrivate { get; set; }
+
+        public virtual User Creator { get; set; }
 
         public virtual ICollection<Passenger> Passengers { get;set; }
         public virtual ICollection<RoutePoint> RoutePoints { get; set; }
