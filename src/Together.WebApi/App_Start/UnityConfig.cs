@@ -2,7 +2,10 @@ using System.Data.Entity.Infrastructure;
 using System.Web.Http;
 using Together.DataAccess;
 using Together.Services;
+using Together.Services.Functions;
+using Together.Services.Interfaces;
 using Unity;
+using Unity.Lifetime;
 using Unity.WebApi;
 
 namespace Together.WebApi
@@ -22,6 +25,9 @@ namespace Together.WebApi
             container.RegisterType<IRoutePointService, RoutePointService>();
             container.RegisterType<IPassengerService, PassengerService>();
             container.RegisterType<IUserService, UserService>();
+
+            container.RegisterType<ICreateRoute, CreateRoute>();
+
             container.RegisterType<IDbContextFactory<TogetherDbContext>, TogetherDbContextFactory>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

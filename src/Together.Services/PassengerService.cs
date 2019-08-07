@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Together.DataAccess;
 using Together.Domain.Entities;
 using Together.Services.Exceptions;
+using Together.Services.Interfaces;
 using Together.Services.Models;
 
 namespace Together.Services

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using Together.DataAccess;
 using Together.Services;
+using Together.Services.Interfaces;
 using Together.Services.Requests;
 
 namespace Together.WebApi.Controllers

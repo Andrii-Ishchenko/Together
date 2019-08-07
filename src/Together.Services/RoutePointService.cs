@@ -10,6 +10,7 @@ using Together.Services.Models;
 using Together.Services.Requests;
 using Together.Domain.Entities;
 using System.Data.Entity.Infrastructure;
+using Together.Services.Interfaces;
 
 namespace Together.Services
 {

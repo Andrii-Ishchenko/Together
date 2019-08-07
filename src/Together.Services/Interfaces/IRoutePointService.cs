@@ -1,7 +1,7 @@
 ﻿using Together.Services.Models;
 using Together.Services.Requests;
 
-namespace Together.Services
+namespace Together.Services.Interfaces
 {
     public interface IRoutePointService
     {

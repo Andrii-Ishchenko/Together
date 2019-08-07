@@ -1,7 +1,7 @@
 ﻿using Together.Domain.Entities;
 using Together.Services.Models;
 
-namespace Together.Services
+namespace Together.Services.Interfaces
 {
     public interface IPassengerService
     {
