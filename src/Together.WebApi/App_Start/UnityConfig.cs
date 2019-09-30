@@ -13,8 +13,18 @@ namespace Together.WebApi
     public static class UnityConfig
     {
         public static void RegisterComponents()
+        {		
+            GlobalConfiguration.Configuration.DependencyResolver = GetDependencyResolver();
+        }
+
+        public static void RegisterComponents(HttpConfiguration config)
         {
-			var container = new UnityContainer();
+            config.DependencyResolver = GetDependencyResolver();
+        }
+
+        private static UnityDependencyResolver GetDependencyResolver()
+        {
+            var container = new UnityContainer();
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
@@ -27,10 +37,11 @@ namespace Together.WebApi
             container.RegisterType<IUserService, UserService>();
 
             container.RegisterType<ICreateRoute, CreateRoute>();
+            container.RegisterType<IRegister, Register>();
 
             container.RegisterType<IDbContextFactory<TogetherDbContext>, TogetherDbContextFactory>();
 
-            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            return new UnityDependencyResolver(container);
         }
     }
 }

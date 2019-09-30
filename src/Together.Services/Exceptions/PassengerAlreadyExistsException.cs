@@ -8,10 +8,10 @@ namespace Together.Services.Exceptions
 {
     public class PassengerAlreadyExistsException : Exception
     {
-        private readonly int _userId;
+        private readonly string _userId;
         private readonly int _routeId;
 
-        public PassengerAlreadyExistsException(int userId, int routeId)
+        public PassengerAlreadyExistsException(string userId, int routeId)
         {
             _userId = userId;
             _routeId = routeId;

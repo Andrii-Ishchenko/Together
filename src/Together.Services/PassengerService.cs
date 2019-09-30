@@ -24,7 +24,7 @@ namespace Together.Services
             _dbContextFactory = dbContextFactory;
         }
 
-        public NewPassengerModel AddUserToRoute(int userId, int routeId)
+        public NewPassengerModel AddUserToRoute(string userId, int routeId)
         {
             if (!_routeService.RouteExists(routeId))
             {

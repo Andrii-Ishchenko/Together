@@ -12,7 +12,7 @@ namespace Together.Domain.Entities
 
         public int RouteId { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public string Name { get; set; }
 
@@ -26,6 +26,6 @@ namespace Together.Domain.Entities
 
         public virtual Route Route { get; set; }
 
-        public virtual User Creator { get; set; }
+        public virtual UserProfile Creator { get; set; }
     }
 }

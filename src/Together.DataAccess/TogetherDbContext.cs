@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ using Together.Domain.Entities;
 
 namespace Together.DataAccess
 {
-    public class TogetherDbContext : DbContext
+    public class TogetherDbContext : IdentityDbContext<UserAccount>
     {
 
         public TogetherDbContext()
@@ -20,7 +21,7 @@ namespace Together.DataAccess
             Database.Log = sql => Debug.Write(sql);
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Route> Routes { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
@@ -32,32 +33,44 @@ namespace Together.DataAccess
 
             modelBuilder.Entity<Passenger>()
                 .HasRequired(p => p.Route).WithMany(r => r.Passengers)
-                .HasForeignKey(p => p.RouteId);
+                .HasForeignKey(p => p.RouteId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Passenger>()
                 .HasRequired(p => p.User).WithMany(u => u.Passengers)
-                .HasForeignKey(p => p.UserId);
+                .HasForeignKey(p => p.UserId)
+                .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<UserProfile>()
                 .HasKey(u => u.Id);
+
+            modelBuilder.Entity<UserProfile>()
+                 .HasRequired(u => u.UserAccount)
+                 .WithRequiredDependent(u => u.UserProfile)
+                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Route>()
                 .HasKey(r => r.Id);
 
             modelBuilder.Entity<Route>()
                 .HasRequired(r => r.Creator).WithMany(u => u.CreatedRoutes)
-                .HasForeignKey(r => r.CreatorId);
+                .HasForeignKey(r => r.CreatorId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RoutePoint>()
                 .HasKey(rp => rp.Id);
 
             modelBuilder.Entity<RoutePoint>()
                 .HasRequired(rp => rp.Route).WithMany(r => r.RoutePoints)
-                .HasForeignKey(rp => rp.RouteId);
+                .HasForeignKey(rp => rp.RouteId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RoutePoint>()
                 .HasRequired(rp => rp.Creator).WithMany(u => u.CreatedRoutePoints)
-                .HasForeignKey(rp => rp.CreatorId);
+                .HasForeignKey(rp => rp.CreatorId)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
         }
 
     }

@@ -37,6 +37,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -48,21 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201907291520120_Initial.cs" />
-    <Compile Include="Migrations\201907291520120_Initial.Designer.cs">
-      <DependentUpon>201907291520120_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907292206591_RouteChanges.cs" />
-    <Compile Include="Migrations\201907292206591_RouteChanges.Designer.cs">
-      <DependentUpon>201907292206591_RouteChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907312018189_RoutePoints.cs" />
-    <Compile Include="Migrations\201907312018189_RoutePoints.Designer.cs">
-      <DependentUpon>201907312018189_RoutePoints.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908061030372_Added passengers and route new fields.cs" />
-    <Compile Include="Migrations\201908061030372_Added passengers and route new fields.Designer.cs">
-      <DependentUpon>201908061030372_Added passengers and route new fields.cs</DependentUpon>
+    <Compile Include="Identity\UserAccountManager.cs" />
+    <Compile Include="Identity\UserRoleManager.cs" />
+    <Compile Include="Migrations\201909302136213_NewMigrationAfterIdentity.cs" />
+    <Compile Include="Migrations\201909302136213_NewMigrationAfterIdentity.Designer.cs">
+      <DependentUpon>201909302136213_NewMigrationAfterIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="TogetherDbContext.cs" />
@@ -81,17 +77,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907291520120_Initial.resx">
-      <DependentUpon>201907291520120_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907292206591_RouteChanges.resx">
-      <DependentUpon>201907292206591_RouteChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907312018189_RoutePoints.resx">
-      <DependentUpon>201907312018189_RoutePoints.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908061030372_Added passengers and route new fields.resx">
-      <DependentUpon>201908061030372_Added passengers and route new fields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909302136213_NewMigrationAfterIdentity.resx">
+      <DependentUpon>201909302136213_NewMigrationAfterIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

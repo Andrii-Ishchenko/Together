@@ -25,6 +25,7 @@ namespace Together.WebApi.Controllers
             _createRoute = createRoute;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IHttpActionResult GetRoutes()
         {

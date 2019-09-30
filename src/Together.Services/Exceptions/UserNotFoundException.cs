@@ -8,9 +8,9 @@ namespace Together.Services.Exceptions
 {
     public class UserNotFoundException : Exception
     {
-        int _userId;
+        string _userId;
 
-        public UserNotFoundException(int userId)
+        public UserNotFoundException(string userId)
         {
             _userId = userId;
         }

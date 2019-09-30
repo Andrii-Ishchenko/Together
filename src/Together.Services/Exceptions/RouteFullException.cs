@@ -8,11 +8,9 @@ namespace Together.Services.Exceptions
 {
     public class RouteFullException : Exception
     {
-
         public override string ToString()
         {
             return "Route is full";
         }
-
     }
 }

@@ -22,7 +22,7 @@ namespace Together.Services.Models
 
         public string RouteType { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public string CreatorFirstName { get; set; }
 

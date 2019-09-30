@@ -10,12 +10,12 @@ namespace Together.Domain.Entities
 
         public int RouteId { get; set; }      
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
    
         public DateTime JoinDate { get; set; }
 
         public virtual Route Route { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual UserProfile User { get; set; }
     }
 }

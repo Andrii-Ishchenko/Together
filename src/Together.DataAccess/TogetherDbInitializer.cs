@@ -1,26 +1,41 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Together.DataAccess.Identity;
 using Together.Domain.Entities;
 
 namespace Together.DataAccess
 {
-    class TogetherDbInitializer : DropCreateDatabaseAlways<TogetherDbContext>
+    class TogetherDbInitializer : DropCreateDatabaseIfModelChanges<TogetherDbContext>
     {
         protected override void Seed(TogetherDbContext context)
         {
             Console.WriteLine("Message from DbInitializer Seed");
+            // TODO: add user account creation before user profile creation
 
-            List<User> users = new List<User>();
-            for (int i = 0; i < 3; i++)
+            UserAccountManager uam = new UserAccountManager(new UserStore<UserAccount>(context));
+
+            List<UserAccount> userAccounts = new List<UserAccount>();
+            for(int i = 0; i < 3; i++)
             {
-                users.Add(new User() { FirstName = "User" + i, LastName = "LastName" + i });
+                string email = $"user{i}@google.com";
+                string password = $"password{i}";
+                var userAccount = new UserAccount() { Email = email, UserName = email };
+                userAccounts.Add(userAccount);
+                var result = uam.CreateAsync(userAccount, password).Result;
             }
 
-            context.Users.AddRange(users);
+            List<UserProfile> users = new List<UserProfile>();
+            for (int i = 0; i < 3; i++)
+            {
+                users.Add(new UserProfile() { Id = userAccounts[i].Id , FirstName = "User" + i, LastName = "LastName" + i });
+            }
+
+            context.UserProfiles.AddRange(users);
             context.SaveChanges();
 
             Route route1 = new Route()
@@ -116,7 +131,7 @@ namespace Together.DataAccess
 
             context.RoutePoints.AddRange(new[] { routePoint1, routePoint2, routePoint3});
             context.SaveChanges();
-
+        
             base.Seed(context);
         }
     }

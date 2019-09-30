@@ -10,7 +10,7 @@ namespace Together.Services.Models
     {
         public int Id { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public string Name { get; set; }
 

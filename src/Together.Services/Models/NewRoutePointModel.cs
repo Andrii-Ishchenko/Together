@@ -12,7 +12,7 @@ namespace Together.Services.Models
 
         public int RouteId { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public string Name { get; set; }
 

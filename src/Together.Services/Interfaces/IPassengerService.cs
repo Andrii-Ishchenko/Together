@@ -5,7 +5,7 @@ namespace Together.Services.Interfaces
 {
     public interface IPassengerService
     {
-        NewPassengerModel AddUserToRoute(int userId, int routeId);
+        NewPassengerModel AddUserToRoute(string userId, int routeId);
 
         void DeletePassenger(int passengerId);
     }

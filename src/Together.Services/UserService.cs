@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Together.DataAccess;
+using Together.Domain.Entities;
 using Together.Services.Interfaces;
 
 namespace Together.Services
@@ -17,11 +18,11 @@ namespace Together.Services
             _dbContextFactory = dbContextFactory;
         }
 
-        public bool UserExists(int userId)
+        public bool UserExists(string userId)
         {
             using (var db = _dbContextFactory.Create())
             {
-                return db.Users.Any(u => u.Id == userId);
+                return db.UserProfiles.Any(u => u.Id == userId);
             }
         }
     }

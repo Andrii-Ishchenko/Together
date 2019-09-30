@@ -2,6 +2,6 @@
 {
     public interface IUserService
     {
-        bool UserExists(int userId);
+        bool UserExists(string userId);
     }
 }
