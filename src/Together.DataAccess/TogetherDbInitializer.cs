@@ -10,7 +10,7 @@ using Together.Domain.Entities;
 
 namespace Together.DataAccess
 {
-    class TogetherDbInitializer : DropCreateDatabaseIfModelChanges<TogetherDbContext>
+    class TogetherDbInitializer : DropCreateDatabaseAlways<TogetherDbContext>
     {
         protected override void Seed(TogetherDbContext context)
         {
@@ -18,7 +18,12 @@ namespace Together.DataAccess
             // TODO: add user account creation before user profile creation
 
             UserAccountManager uam = new UserAccountManager(new UserStore<UserAccount>(context));
+            UserRoleManager urm = new UserRoleManager(new RoleStore<UserRole>(context));
 
+            var role1 = urm.CreateAsync(new UserRole() { Name = "User" }).Result;
+            var role2 = urm.CreateAsync(new UserRole() { Name = "Admin" }).Result;
+            var role3 = urm.CreateAsync(new UserRole() { Name = "TestRole" }).Result;
+            
             List<UserAccount> userAccounts = new List<UserAccount>();
             for(int i = 0; i < 3; i++)
             {
@@ -27,6 +32,8 @@ namespace Together.DataAccess
                 var userAccount = new UserAccount() { Email = email, UserName = email };
                 userAccounts.Add(userAccount);
                 var result = uam.CreateAsync(userAccount, password).Result;
+
+                var result2 = uam.AddToRoleAsync(userAccount.Id, "User").Result;
             }
 
             List<UserProfile> users = new List<UserProfile>();
