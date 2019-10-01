@@ -14,7 +14,7 @@ using Together.Services.Requests;
 
 namespace Together.WebApi.Controllers
 {
-    public class RoutesController : ApiController
+    public class RoutesController : BaseApiController
     {
         public IRouteService _routeService;
         private readonly ICreateRoute _createRoute;
@@ -38,7 +38,7 @@ namespace Together.WebApi.Controllers
         {
             try
             {
-               return Ok(_createRoute.Create(request));
+               return Ok(_createRoute.Create(UserId, request));
             }
             catch(Exception e)
             {

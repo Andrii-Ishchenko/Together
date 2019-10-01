@@ -59,18 +59,24 @@ namespace Together.Services
             }
         }
 
-
-        public void DeletePassenger(int passengerId)
+        public void DeletePassenger(string userId, int passengerId)
         {        
             using (var db = _dbContextFactory.Create())
             {
                 var passenger = db.Passengers.FirstOrDefault(p => p.Id == passengerId);
-
-                if (passenger != null)
+                if(passenger == null)
                 {
-                    db.Passengers.Remove(passenger);
-                    db.SaveChanges();
+                    throw new PassengerNotFoundException(passengerId);
                 }
+                
+                if(passenger.UserId != userId)
+                {
+                    throw new Exception("You cannot remove other passengers(yet)");
+                }
+
+                db.Passengers.Remove(passenger);
+                db.SaveChanges();
+                
             }
         }
     }

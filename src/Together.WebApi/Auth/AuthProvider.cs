@@ -15,7 +15,7 @@ namespace Together.WebApi.Auth
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            context.Validated();
+            context.Validated();       
         }
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
@@ -23,6 +23,7 @@ namespace Together.WebApi.Auth
 
             //TODO: inject
             var auth = new Authentication(new DataAccess.TogetherDbContextFactory());
+            
             /*
             var userExist = await auth.UserExist(context.UserName, context.Password);
 
@@ -45,13 +46,6 @@ namespace Together.WebApi.Auth
             {
                 throw new Exception();
             }
-
-            //var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            // identity.AddClaim(new Claim("sub", context.UserName));
-            // identity.AddClaim(new Claim("role", "User"));
-
-            //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userAccount.Id));
-            //identity.AddClaim(new Claim(ClaimTypes.Name, userAccount.UserName));
 
             var identity = await auth.CreateIdentityAsync(userAccount, DefaultAuthenticationTypes.ExternalBearer);
             context.Validated(identity);

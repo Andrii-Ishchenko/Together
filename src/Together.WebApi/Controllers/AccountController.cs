@@ -10,7 +10,7 @@ using Together.Services.Requests;
 
 namespace Together.WebApi.Controllers
 {
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
         private readonly IRegister _register;
 

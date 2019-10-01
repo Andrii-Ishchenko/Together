@@ -10,7 +10,7 @@ using Together.Services.Requests;
 
 namespace Together.WebApi.Controllers
 {
-    public class RoutePointsController : ApiController
+    public class RoutePointsController : BaseApiController
     {
         private readonly IRoutePointService _routePointService;
 
@@ -26,7 +26,7 @@ namespace Together.WebApi.Controllers
             //Additional mapping just in case.
             request.RouteId = routeId;
             
-            var routePoint = _routePointService.AddPointToRoute(request);
+            var routePoint = _routePointService.AddPointToRoute(UserId, request);
 
             return Ok(routePoint);
         }

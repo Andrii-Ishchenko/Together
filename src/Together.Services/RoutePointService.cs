@@ -27,11 +27,11 @@ namespace Together.Services
             _userService = userService;
         }
 
-        public NewRoutePointModel AddPointToRoute(CreateRoutePointRequest request)
+        public NewRoutePointModel AddPointToRoute(string userId, CreateRoutePointRequest request)
         {
-            if (!_userService.UserExists(request.UserId))
+            if (!_userService.UserExists(userId))
             {
-                throw new UserNotFoundException(request.UserId);
+                throw new UserNotFoundException(userId);
             }
 
             if(!_routeService.RouteExists(request.RouteId))
@@ -44,7 +44,7 @@ namespace Together.Services
                 RoutePoint rp = new RoutePoint()
                 {
                     RouteId = request.RouteId,
-                    CreatorId = request.UserId,
+                    CreatorId = userId,
                     CreatedDate = DateTime.UtcNow,
                     Latitude = request.Latitude,
                     Longitude = request.Longitude,

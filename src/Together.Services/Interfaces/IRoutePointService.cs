@@ -5,6 +5,6 @@ namespace Together.Services.Interfaces
 {
     public interface IRoutePointService
     {
-        NewRoutePointModel AddPointToRoute(CreateRoutePointRequest request);
+        NewRoutePointModel AddPointToRoute(string userId, CreateRoutePointRequest request);
     }
 }

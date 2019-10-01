@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace Together.Services.Exceptions
 {
-    public class RouteNotFoundException : Exception
+    public class RouteNotFoundException : BusinessException
     {
-        int _routeId;
-
-        public RouteNotFoundException(int routeId)
+        public RouteNotFoundException(int routeId) 
+            : base($"Route not found. RouteId = {routeId}")
         {
-            _routeId = routeId;
         }
 
-        public override string ToString()
-        {
-            return $"Route not found. RouteId = {_routeId}";
-        }
     }
 }

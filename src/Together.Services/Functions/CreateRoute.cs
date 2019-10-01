@@ -25,16 +25,16 @@ namespace Together.Services.Functions
             _passengerService = passengerService;
         }
 
-        public NewRouteModel Create(CreateRouteRequest request)
+        public NewRouteModel Create(string userId, CreateRouteRequest request)
         {
-            if (!_userService.UserExists(request.CreatorId))
+            if (!_userService.UserExists(userId))
             {
-                throw new UserNotFoundException(request.CreatorId);
+                throw new UserNotFoundException(userId);
             }
 
             var route = new Route()
             {
-                CreatorId = request.CreatorId,
+                CreatorId = userId,
                 CreateDate = DateTime.UtcNow,
                 IsPrivate = request.IsPrivate,
                 MaxPassengers = request.MaxPassengers,
@@ -49,7 +49,8 @@ namespace Together.Services.Functions
                 db.SaveChanges();
             }
 
-            _passengerService.AddUserToRoute(request.CreatorId, route.Id);
+            // TODO: maybe put inside using to leverage single context after setting correct context lifecycle
+            _passengerService.AddUserToRoute(userId, route.Id);
 
             return AutoMapper.Mapper.Map<NewRouteModel>(route);
         }

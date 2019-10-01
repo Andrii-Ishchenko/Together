@@ -37,12 +37,14 @@ namespace Together.WebApi.Controllers
             return Ok(passenger);
         }
 
+        [Authorize]
         [HttpDelete]
-        public IHttpActionResult DeletePasssenger(int id)
+        public IHttpActionResult DeletePasssenger(int passengerId)
         {
             try
             {
-                _passengerService.DeletePassenger(id);
+               // int userId = User.Identity.Get
+                _passengerService.DeletePassenger(UserId, passengerId);
             }
             catch (Exception e)
             {

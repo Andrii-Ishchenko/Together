@@ -25,7 +25,7 @@ namespace Together.Services.Functions
 
         public async Task<bool> UserExist(string email, string password)
         {
-            return FindUser(email, password) != null;     
+            return await FindUser(email, password) != null;     
         }
 
         public async Task<IdentityUser> FindUser(string userName, string password)

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Together.Services.Exceptions
 {
-    public class RouteFullException : Exception
+    public class RouteFullException : BusinessException
     {
-        public override string ToString()
+        public RouteFullException() 
+            : base("Route is full.")
         {
-            return "Route is full";
         }
     }
 }

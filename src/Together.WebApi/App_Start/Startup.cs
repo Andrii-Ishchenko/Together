@@ -20,6 +20,8 @@ namespace Together.WebApi.App_Start
 
             ConfigureOAuth(app);
 
+            //TODO: create and attach businessException filter to return correct status code
+
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);

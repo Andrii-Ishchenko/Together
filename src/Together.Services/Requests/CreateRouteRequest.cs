@@ -8,7 +8,6 @@ namespace Together.Services.Requests
 {
     public class CreateRouteRequest
     {
-        public string CreatorId { get; set; }
 
         public string Name { get; set; }
 

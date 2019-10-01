@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Together.Services.Exceptions
 {
-    public class UserAlreadyExistException : Exception
+    public class UserAlreadyExistException : BusinessException
     {
-        public override string ToString()
+        public UserAlreadyExistException()
+            :base ("User already exists")
         {
-            return "User with this email already exist.";
         }
+
     }
 }

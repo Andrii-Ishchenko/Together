@@ -6,20 +6,11 @@ using System.Threading.Tasks;
 
 namespace Together.Services.Exceptions
 {
-    public class PassengerAlreadyExistsException : Exception
+    public class PassengerAlreadyExistsException : BusinessException
     {
-        private readonly string _userId;
-        private readonly int _routeId;
-
-        public PassengerAlreadyExistsException(string userId, int routeId)
+        public PassengerAlreadyExistsException(string userId, int routeId) 
+            : base ($"User({userId}) is already a passenger of Route({routeId})")
         {
-            _userId = userId;
-            _routeId = routeId;
-        }
-
-        public override string ToString()
-        {
-            return $"User({_userId}) is already a passenger of Route({_routeId})";
         }
     }
 }

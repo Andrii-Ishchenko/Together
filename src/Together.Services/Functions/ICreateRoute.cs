@@ -5,6 +5,6 @@ namespace Together.Services.Functions
 {
     public interface ICreateRoute
     {
-       NewRouteModel Create(CreateRouteRequest request);
+       NewRouteModel Create(string userId, CreateRouteRequest request);
     }
 }

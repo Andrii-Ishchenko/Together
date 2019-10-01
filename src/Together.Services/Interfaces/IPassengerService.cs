@@ -7,6 +7,6 @@ namespace Together.Services.Interfaces
     {
         NewPassengerModel AddUserToRoute(string userId, int routeId);
 
-        void DeletePassenger(int passengerId);
+        void DeletePassenger(string userId, int passengerId);
     }
 }

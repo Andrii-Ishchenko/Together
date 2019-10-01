@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace Together.Services.Exceptions
 {
-    public class UserNotFoundException : Exception
+    public class UserNotFoundException : BusinessException
     {
-        string _userId;
-
         public UserNotFoundException(string userId)
+            :base($"User not found. UserId = {userId}", System.Net.HttpStatusCode.NotFound)
         {
-            _userId = userId;
-        }
-
-        public override string ToString()
-        {
-            return $"User not found. UserId = {_userId}";
         }
     }
 }

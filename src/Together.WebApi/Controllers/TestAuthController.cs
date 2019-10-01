@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Together.WebApi.Controllers
 {
-    public class TestAuthController : ApiController
+    public class TestAuthController : BaseApiController
     {
         [Authorize]
         [HttpGet]
@@ -37,7 +37,7 @@ namespace Together.WebApi.Controllers
         [Route("api/testauth/testrole")]
         public string OnlyTestRole()
         {
-            return "Test Role auth OK!!!";
+            return "Test Role auth OK for "+ UserName;
         }
     }
     public class Order
