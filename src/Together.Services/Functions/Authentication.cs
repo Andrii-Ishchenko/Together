@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Together.DataAccess;
@@ -22,13 +24,20 @@ namespace Together.Services.Functions
         }
 
         public async Task<bool> UserExist(string email, string password)
-        {        
-            using (_context)
-            {
-                // username == email
-                var userAccount = await _userAccountManager.FindAsync(email, password);
-                return userAccount != null;
-            }         
+        {
+            return FindUser(email, password) != null;     
+        }
+
+        public async Task<IdentityUser> FindUser(string userName, string password)
+        {
+            IdentityUser user = await _userAccountManager.FindAsync(userName, password);
+
+            return user;
+        }
+
+        public async Task<ClaimsIdentity> CreateIdentityAsync(UserAccount user, string defaultAuthenticationType)
+        {
+            return await _userAccountManager.CreateIdentityAsync(user, defaultAuthenticationType);
         }
     }
 }

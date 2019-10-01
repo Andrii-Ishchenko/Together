@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace Together.WebApi.Controllers
 {
@@ -13,6 +16,28 @@ namespace Together.WebApi.Controllers
         public IHttpActionResult Get()
         {
             return Ok(Order.CreateOrders());
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/testauth/userInfo")]
+        public IEnumerable<object> GetUserInfo()
+        {
+
+            var identity = User.Identity as ClaimsIdentity;
+         
+            return identity.Claims.Select(c => new
+            {
+                Type = c.Type,
+                Value = c.Value
+            });
+        }
+        [HttpGet]
+        [Authorize(Roles ="TestRole")]
+        [Route("api/testauth/testrole")]
+        public string OnlyTestRole()
+        {
+            return "Test Role auth OK!!!";
         }
     }
     public class Order
