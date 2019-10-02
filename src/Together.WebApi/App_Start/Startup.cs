@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Together.Services.Configuration;
 using Together.WebApi.Auth;
+using Together.WebApi.Filter;
 
 [assembly: OwinStartup(typeof(Together.WebApi.App_Start.Startup))]
 namespace Together.WebApi.App_Start
@@ -16,13 +18,14 @@ namespace Together.WebApi.App_Start
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+
             UnityConfig.RegisterComponents(config);
+            AutoMapperConfiguration.Configure();
+            WebApiConfig.Register(config);
 
             ConfigureOAuth(app);
 
-            //TODO: create and attach businessException filter to return correct status code
 
-            WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }

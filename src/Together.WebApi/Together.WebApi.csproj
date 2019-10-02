@@ -132,7 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,9 +145,7 @@
     <Compile Include="Controllers\RoutePointsController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\TestAuthController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+    <Compile Include="Filter\BusinessExceptionFilterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

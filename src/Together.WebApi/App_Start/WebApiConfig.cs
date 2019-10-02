@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.ExceptionHandling;
+using Together.WebApi.Filter;
 
 namespace Together.WebApi
 {
@@ -16,8 +18,8 @@ namespace Together.WebApi
             config.EnableCors(cors);
 
             config.SuppressDefaultHostAuthentication();
+            config.Filters.Add(new BusinessExceptionFilterAttribute());
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -26,6 +28,8 @@ namespace Together.WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
 
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 

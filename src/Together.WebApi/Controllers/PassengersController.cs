@@ -12,7 +12,7 @@ using Together.Services.Requests;
 
 namespace Together.WebApi.Controllers
 {
-    public class PassengersController : ApiController
+    public class PassengersController : BaseApiController
     {
         private readonly IPassengerService _passengerService;
 
@@ -24,16 +24,7 @@ namespace Together.WebApi.Controllers
         [HttpPost]
         public IHttpActionResult CreatePassenger([FromBody]CreatePassengerRequest createPassengerRequest)
         {
-            NewPassengerModel passenger;
-            try
-            {
-                passenger = _passengerService.AddUserToRoute(createPassengerRequest.UserId, createPassengerRequest.RouteId);
-            }
-            catch(Exception e)
-            {
-                //TODO: refactor to suppress internal exception data
-                return InternalServerError(e);
-            }
+            NewPassengerModel passenger = _passengerService.AddUserToRoute(createPassengerRequest.UserId, createPassengerRequest.RouteId);
             return Ok(passenger);
         }
 
