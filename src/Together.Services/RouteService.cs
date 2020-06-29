@@ -42,5 +42,19 @@ namespace Together.Services
                 return db.Routes.Any(r => r.Id == id);
             }
         }
+
+        public void DeleteRoute(int routeId)
+        {
+            using(TogetherDbContext db = _factory.Create())
+            {
+                var route = db.Routes.FirstOrDefault(r => r.Id == routeId);
+
+                if (route != null)
+                {
+                    db.Routes.Remove(route);
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }
