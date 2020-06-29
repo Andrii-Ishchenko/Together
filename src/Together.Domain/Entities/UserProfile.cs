@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Together.Domain.Entities
 {
     public class UserProfile
-    {      
+    {
         [ForeignKey("UserAccount")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }

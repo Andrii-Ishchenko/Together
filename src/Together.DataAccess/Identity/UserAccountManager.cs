@@ -1,17 +1,26 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Together.Domain.Entities;
 
 namespace Together.DataAccess.Identity
 {
+
     public class UserAccountManager : UserManager<UserAccount>
     {
-        public UserAccountManager(IUserStore<UserAccount> store) : base(store)
+        public UserAccountManager(IUserStore<UserAccount> store,
+            IOptions<IdentityOptions> optionsAccessor,
+            IPasswordHasher<UserAccount> passwordHasher,
+            IEnumerable<IUserValidator<UserAccount>> userValidators,
+            IEnumerable<IPasswordValidator<UserAccount>> passwordValidators,
+            ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors,
+            IServiceProvider services, ILogger<UserManager<UserAccount>> logger)
+            : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
         }
     }
+
 }

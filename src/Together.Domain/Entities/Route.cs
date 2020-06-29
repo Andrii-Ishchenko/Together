@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Together.Domain.Entities
 {
@@ -24,7 +23,7 @@ namespace Together.Domain.Entities
 
         public virtual UserProfile Creator { get; set; }
 
-        public virtual ICollection<Passenger> Passengers { get;set; }
+        public virtual ICollection<Passenger> Passengers { get; set; }
         public virtual ICollection<RoutePoint> RoutePoints { get; set; }
     }
 }

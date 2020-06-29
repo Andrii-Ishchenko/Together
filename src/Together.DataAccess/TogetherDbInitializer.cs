@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,136 +8,60 @@ using Together.Domain.Entities;
 
 namespace Together.DataAccess
 {
-    class TogetherDbInitializer : DropCreateDatabaseIfModelChanges<TogetherDbContext>
+    public class TogetherDBInitializer
     {
-        protected override void Seed(TogetherDbContext context)
+        private readonly TogetherDbContext _context;
+        private readonly UserAccountManager _userAccountManager;
+        private readonly UserRoleManager _userRoleManager;
+
+        public TogetherDBInitializer(TogetherDbContext context, UserAccountManager userAccountManager, UserRoleManager userRoleManager)
         {
-            Console.WriteLine("Message from DbInitializer Seed");
-            // TODO: add user account creation before user profile creation
+            _context = context;
+            _userAccountManager = userAccountManager;
+            _userRoleManager = userRoleManager;
+        }
 
-            UserAccountManager uam = new UserAccountManager(new UserStore<UserAccount>(context));
-            UserRoleManager urm = new UserRoleManager(new RoleStore<UserRole>(context));
+        public async Task Seed()
+        {
+            _context.Database.EnsureCreated();
 
-            var role1 = urm.CreateAsync(new UserRole() { Name = "User" }).Result;
-            var role2 = urm.CreateAsync(new UserRole() { Name = "Admin" }).Result;
-            var role3 = urm.CreateAsync(new UserRole() { Name = "TestRole" }).Result;
-            
-            List<UserAccount> userAccounts = new List<UserAccount>();
-            for(int i = 0; i < 3; i++)
+            List<UserRole> userRoles = new List<UserRole>();
+            userRoles.Add(new UserRole() { Name = "User" });
+            userRoles.Add(new UserRole() { Name = "Admin" });
+            userRoles.Add(new UserRole() { Name = "TestRole" });
+
+            if (!_context.Roles.Any())
             {
-                string email = $"user{i}@google.com";
-                string password = $"password{i}";
-                var userAccount = new UserAccount() { Email = email, UserName = email };
-                userAccounts.Add(userAccount);
-                var result = uam.CreateAsync(userAccount, password).Result;
-
-                var result2 = uam.AddToRoleAsync(userAccount.Id, "User").Result;
+                for (int i = 0; i < 3; i++)
+                {
+                    _ = _userRoleManager.CreateAsync(userRoles[i]).Result;
+                }
             }
 
-            List<UserProfile> users = new List<UserProfile>();
-            for (int i = 0; i < 3; i++)
+            if (!_context.Users.Any())
             {
-                users.Add(new UserProfile() { Id = userAccounts[i].Id , FirstName = "User" + i, LastName = "LastName" + i });
+                List<UserAccount> userAccounts = new List<UserAccount>();
+
+                for (int i = 0; i < 3; i++)
+                {
+                    string email = $"user{i}_{userRoles[i].Name}@google.com";
+                    string password = $"Password{i}";
+                    var userAccount = new UserAccount() { Email = email, UserName = email };
+                    userAccounts.Add(userAccount);
+
+                    var identityResult1 = await _userAccountManager.CreateAsync(userAccount, password);
+                    var identityResult2 = await _userAccountManager.AddToRoleAsync(userAccount,userRoles[i].Name);
+                }
+
+                List<UserProfile> users = new List<UserProfile>();
+                for (int i = 0; i < 3; i++)
+                {
+                    users.Add(new UserProfile() { Id = userAccounts[i].Id, FirstName = "User" + i, LastName = "LastName" + i });
+                }
+
+                _context.UserProfiles.AddRange(users);
+                _context.SaveChanges();
             }
-
-            context.UserProfiles.AddRange(users);
-            context.SaveChanges();
-
-            Route route1 = new Route()
-            {
-                CreatorId = users[0].Id,
-                Name = "Route 1",
-                MaxPassengers = 3,
-                CreateDate = DateTime.UtcNow,
-                StartDate = DateTime.UtcNow.AddDays(100),
-                RouteType = "Car",
-                IsPrivate = false
-            };
-
-            Route route2 = new Route()
-            {
-                CreatorId = users[1].Id,
-                Name = "Route 2",
-                MaxPassengers = 5,
-                CreateDate = DateTime.UtcNow,
-                StartDate = DateTime.UtcNow.AddDays(100),
-                RouteType = "Foot",
-                IsPrivate = false
-            };
-
-            context.Routes.Add(route1);
-            context.Routes.Add(route2);
-            context.SaveChanges();
-
-            var passenger1 = new Passenger()
-            {
-                RouteId = route1.Id,
-                UserId = users[0].Id,
-                JoinDate = DateTime.UtcNow
-            };
-
-            var passenger2 = new Passenger()
-            {
-                RouteId = route2.Id,
-                UserId = users[0].Id,
-                JoinDate = DateTime.UtcNow
-            };
-
-            var passenger3 = new Passenger()
-            {
-                RouteId = route1.Id,
-                UserId = users[1].Id,
-                JoinDate = DateTime.UtcNow
-            };
-
-
-            var passenger4 = new Passenger()
-            {
-                RouteId = route2.Id,
-                UserId = users[2].Id,
-                JoinDate = DateTime.UtcNow
-            };
-
-            context.Passengers.AddRange(new[] { passenger1, passenger2, passenger3, passenger4 });
-            context.SaveChanges();
-
-            var routePoint1 = new RoutePoint()
-            {
-                CreatorId = users[0].Id,
-                CreatedDate = DateTime.UtcNow,
-                Latitude = 100.0f,
-                Longitude = 100.0f,
-                OrderNumber = 0,
-                Name = "Point (100,100)",
-                RouteId= route1.Id
-            };
-
-            var routePoint2 = new RoutePoint()
-            {
-                CreatorId = users[1].Id,
-                CreatedDate = DateTime.UtcNow,
-                Latitude = 101.0f,
-                Longitude = 101.0f,
-                OrderNumber = 1,
-                Name = "Point (101,101)",
-                RouteId = route1.Id
-            };
-
-            var routePoint3 = new RoutePoint()
-            {
-                CreatorId = users[1].Id,
-                CreatedDate = DateTime.UtcNow,
-                Latitude = 102.0f,
-                Longitude = 102.0f,
-                OrderNumber = 2,
-                Name = "Point (102,102)",
-                RouteId = route1.Id
-            };
-
-            context.RoutePoints.AddRange(new[] { routePoint1, routePoint2, routePoint3});
-            context.SaveChanges();
-        
-            base.Seed(context);
         }
     }
 }
