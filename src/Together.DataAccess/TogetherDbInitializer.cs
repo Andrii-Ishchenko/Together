@@ -45,7 +45,7 @@ namespace Together.DataAccess
                 for (int i = 0; i < 3; i++)
                 {
                     string email = $"user{i}_{userRoles[i].Name}@google.com";
-                    string password = $"Password{i}";
+                    string password = $"Password123$";
                     var userAccount = new UserAccount() { Email = email, UserName = email };
                     userAccounts.Add(userAccount);
 

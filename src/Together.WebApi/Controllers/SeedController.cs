@@ -36,6 +36,7 @@ namespace Together.WebApi.Controllers
                     .Select(s => new { Id = s.Id, Email = s.Email, FirstName = s.UserProfile.FirstName, LastName = s.UserProfile.LastName })
                     .ToListAsync();
             }
+            
         }
     }
 }
