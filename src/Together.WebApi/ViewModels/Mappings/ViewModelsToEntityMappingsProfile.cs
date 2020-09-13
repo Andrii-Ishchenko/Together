@@ -12,6 +12,23 @@ namespace Together.WebApi.ViewModels.Mappings
         public ViewModelsToEntityMappingsProfile()
         {
             CreateMap<RegistrationViewModel, UserAccount>().ForMember(ua => ua.UserName, map => map.MapFrom(vm => vm.Email));
+            CreateMap<CreateRouteViewModel, Route>()
+                .ForMember(r => r.CreatorId,
+                    o => o.MapFrom(
+                        (src, dest, _, context) => context.Options.Items["userId"]
+                    )
+                )
+                .ForMember(r => r.CreateDate,
+                    o => o.MapFrom(s => DateTime.UtcNow)
+                );
+
+            CreateMap<Route, RouteViewModel>()
+                .ForMember(r => r.CreatorFirstName,
+                    o => o.MapFrom(s => s.Creator.FirstName)
+                )
+                .ForMember(r => r.CreatorLastName,
+                    o => o.MapFrom(s => s.Creator.LastName)
+                );
         }
     }
 }
