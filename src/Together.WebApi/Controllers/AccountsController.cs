@@ -28,6 +28,28 @@ namespace Together.WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("profile")]
+        public async Task<IActionResult> GetProfile()
+        {
+            var user = HttpContext.User;
+
+            if(user == null || user.Identity == null)
+            {
+                throw new Exception("Invalid user");
+            }
+
+            var userId = user.Claims.Single(c => c.Type == "id").Value;
+
+            using (_context)
+            {
+                var profile = await _context.UserProfiles.FindAsync(userId);
+                var vm = _mapper.Map<UserProfileViewModel>(profile);
+
+                return Ok(vm);
+            }
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegistrationViewModel model)
         {
             if (!ModelState.IsValid)
