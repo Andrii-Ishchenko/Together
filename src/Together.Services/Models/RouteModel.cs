@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Together.WebApi.ViewModels
+namespace Together.Services.Models
 {
-    public class RouteViewModel
+    public class RouteModel
     {
         public int Id { get; set; }
 
@@ -27,8 +25,8 @@ namespace Together.WebApi.ViewModels
 
         public bool IsPrivate { get; set; }
 
-        public List<RoutePointViewModel> RoutePoints { get; set; }
+        public List<RoutePointModel> RoutePoints { get; set; }
 
-        public List<PassengerViewModel> Passengers { get; set; }
+        public List<PassengerModel> Passengers { get; set; }
     }
 }

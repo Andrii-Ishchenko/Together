@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Together.WebApi.ViewModels
+namespace Together.Services.Models
 {
-    public class RoutePointViewModel
+    public class RoutePointModel
     {
         public int Id { get; set; }
 

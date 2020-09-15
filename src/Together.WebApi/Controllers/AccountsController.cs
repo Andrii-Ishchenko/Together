@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Together.DataAccess;
 using Together.DataAccess.Identity;
 using Together.Domain.Entities;
-using Together.WebApi.ViewModels;
+using Together.Services.Models;
+using Together.Services.Requests;
 
 namespace Together.WebApi.Controllers
 {
@@ -43,14 +44,14 @@ namespace Together.WebApi.Controllers
             using (_context)
             {
                 var profile = await _context.UserProfiles.FindAsync(userId);
-                var vm = _mapper.Map<UserProfileViewModel>(profile);
+                var vm = _mapper.Map<UserProfileModel>(profile);
 
                 return Ok(vm);
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] RegistrationViewModel model)
+        public async Task<IActionResult> Post([FromBody] RegistrationRequest model)
         {
             if (!ModelState.IsValid)
             {

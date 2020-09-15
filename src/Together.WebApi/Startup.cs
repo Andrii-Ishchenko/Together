@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Together.WebApi.Helpers;
 using Together.WebApi.Auth;
 using Microsoft.AspNetCore.Http;
+using Together.Services;
 
 namespace Together.WebApi
 {
@@ -107,7 +108,8 @@ namespace Together.WebApi
 
             services.AddSingleton<IJwtFactory, JwtFactory>();
             services.AddTransient<TogetherDBInitializer>();
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>(); 
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IRouteService, RouteService>();
             
         }      
 

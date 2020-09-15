@@ -9,21 +9,73 @@
 			"name": "Routes",
 			"item": [
 				{
-					"name": "Routes List",
+					"name": "Create Route",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"Add route with creator as passanger\",\n\t\"StartDate\": \"2021-12-15T22:00:00.000Z\",\n\t\"MaxPassengers\": 5,\n\t\"RouteType\": \"Car\",\n\t\"IsPrivate\": false\n}"
+						},
+						"url": {
+							"raw": "{{api}}/routes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"routes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Route",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:59430/api/routes/",
-							"protocol": "http",
+							"raw": "{{api}}/routes/2",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "59430",
 							"path": [
-								"api",
 								"routes",
-								""
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/routes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"routes"
 							]
 						}
 					},
@@ -33,62 +85,7 @@
 		},
 		{
 			"name": "Passengers",
-			"item": [
-				{
-					"name": "Create Passenger",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"userId\": 3,\n\t\"routeId\":1\n}"
-						},
-						"url": {
-							"raw": "http://localhost:59430/api/passengers",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "59430",
-							"path": [
-								"api",
-								"passengers"
-							]
-						},
-						"description": "Creates new passenger"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Passenger",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:59430/api/passengers/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "59430",
-							"path": [
-								"api",
-								"passengers",
-								"1"
-							]
-						},
-						"description": "Removes passenger from route"
-					},
-					"response": []
-				}
-			]
+			"item": []
 		},
 		{
 			"name": "RoutePoints",
@@ -96,7 +93,17 @@
 				{
 					"name": "Create RoutePoint",
 					"request": {
-						"method": "POST",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -107,20 +114,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"UserId\": 1,\n\t\"RouteId\": 1,\n\t\"Name\": \"Custom Route Point 123\",\n\t\"OrderNumber\": 4,\n\t\"Longitude\": 3,\n\t\"Latitude\": 4\n}"
+							"raw": "{\n\t\"UserId\": \"94866b5c-b4e5-443e-a07b-dfe5fb849118\",\n\t\"RouteId\": 2,\n\t\"Name\": \"Custom Route Point 123\",\n\t\"OrderNumber\": 2,\n\t\"Longitude\": 5,\n\t\"Latitude\": 66\n}"
 						},
 						"url": {
-							"raw": "http://localhost:59430/api/routes/1/routepoints",
-							"protocol": "http",
+							"raw": "{{api}}/routes/2/routepoint",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "59430",
 							"path": [
-								"api",
 								"routes",
-								"1",
-								"routepoints"
+								"2",
+								"routepoint"
 							]
 						},
 						"description": "Add RoutePoint to Route"
@@ -128,6 +132,119 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\":\"user3@mail.com\",\r\n    \"Password\": \"Password123$\",\r\n    \"Firstname\": \"FN3\",\r\n    \"Lastname\": \"LN3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUri}}/accounts",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Username\": \"postman1@mail.com\",\r\n    \"Password\": \"Password123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/accounts/profile",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"accounts",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Temp",
+			"item": [
+				{
+					"name": "users list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUri}}/seed/userslist",
+							"host": [
+								"{{baseUri}}"
+							],
+							"path": [
+								"seed",
+								"userslist"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	]
 }

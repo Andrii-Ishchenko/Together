@@ -26,9 +26,10 @@ namespace Together.WebApi.Controllers
         //TODO: DTO MODELS
         //TODO: Remove link to dataaccess from here
         [HttpGet]
+        [Route("userslist")]
         public async Task<IEnumerable<object>> Get()
         {
-            await _initializer.Seed();
+            //await _initializer.Seed();
 
             using (_context)
             {

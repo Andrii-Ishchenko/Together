@@ -9,12 +9,13 @@ namespace Together.DataAccess
         public TogetherDbContext(DbContextOptions<TogetherDbContext> options)
             :base(options)
         {
-
+            
         }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Route> Routes { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

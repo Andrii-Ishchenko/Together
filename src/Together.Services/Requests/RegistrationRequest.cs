@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Together.WebApi.ViewModels
+namespace Together.Services.Requests
 {
-    public class RegistrationViewModel
+    public class RegistrationRequest
     {
         public string Email { get; set; }
 
