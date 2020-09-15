@@ -56,7 +56,11 @@ namespace Together.WebApi.Controllers.Api
         {
             using (_dbContext)
             {
-                var routes = await _dbContext.Routes.Include(r => r.Creator).ToListAsync();
+                var routes = await _dbContext.Routes
+                    .Include(r => r.Creator)
+                    .Include(r => r.Passengers)
+                    .Include(r => r.RoutePoints)
+                    .ToListAsync();
 
                 if (routes != null)
                 {

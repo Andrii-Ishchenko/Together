@@ -26,5 +26,9 @@ namespace Together.WebApi.ViewModels
         public string RouteType { get; set; }
 
         public bool IsPrivate { get; set; }
+
+        public List<RoutePointViewModel> RoutePoints { get; set; }
+
+        public List<PassengerViewModel> Passengers { get; set; }
     }
 }

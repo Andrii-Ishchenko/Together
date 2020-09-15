@@ -11,7 +11,6 @@ namespace Together.WebApi.ViewModels.Mappings
     {
         public ViewModelsToEntityMappingsProfile()
         {
-
             CreateMap<UserProfile, UserProfileViewModel>();
             CreateMap<RegistrationViewModel, UserAccount>().ForMember(ua => ua.UserName, map => map.MapFrom(vm => vm.Email));
             CreateMap<CreateRouteViewModel, Route>()
@@ -25,12 +24,14 @@ namespace Together.WebApi.ViewModels.Mappings
                 );
 
             CreateMap<Route, RouteViewModel>()
-                .ForMember(r => r.CreatorFirstName,
-                    o => o.MapFrom(s => s.Creator.FirstName)
-                )
-                .ForMember(r => r.CreatorLastName,
-                    o => o.MapFrom(s => s.Creator.LastName)
-                );
+                .ForMember(r => r.CreatorFirstName, o => o.MapFrom(s => s.Creator.FirstName))
+                .ForMember(r => r.CreatorLastName, o => o.MapFrom(s => s.Creator.LastName));
+
+            CreateMap<Passenger, PassengerViewModel>()
+                .ForMember(pvm => pvm.PassengerFirstName, o => o.MapFrom(p => p.User.FirstName))
+                .ForMember(pvm => pvm.PassengerLastName, o => o.MapFrom(p => p.User.LastName));
+
+            CreateMap<RoutePoint, RoutePointViewModel>();
         }
     }
 }

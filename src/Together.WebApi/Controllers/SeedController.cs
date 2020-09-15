@@ -10,7 +10,7 @@ using Together.Domain.Entities;
 
 namespace Together.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SeedController : ControllerBase
     {
