@@ -40,7 +40,7 @@ namespace Together.WebApi.Controllers.Api
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRoute(int id)
-        {
+        {       
             if (!ModelState.IsValid) return BadRequest();
             using (_dbContext)
             {
@@ -52,6 +52,8 @@ namespace Together.WebApi.Controllers.Api
 
                 if (route != null)
                 {
+                    route.RoutePoints = route.RoutePoints.OrderBy(rp => rp.OrderNumber).ToList();
+
                     var vm = _mapper.Map<RouteModel>(route);
                     return Ok(vm);
                 }
@@ -143,7 +145,7 @@ namespace Together.WebApi.Controllers.Api
                     throw new Exception("Route not found");
                 }
 
-                var routePoint = _mapper.Map<RoutePoint>(model, o => { o.Items["userId"] = userId; });
+                var routePoint = _mapper.Map<RoutePoint>(model);
 
                 if(route.RoutePoints.FirstOrDefault(rp => rp.Latitude == model.Latitude && rp.Longitude == model.Longitude) != null)
                 {
@@ -164,7 +166,10 @@ namespace Together.WebApi.Controllers.Api
         public async Task<IActionResult> Test()
         {
             var userId = _caller.Claims.Single(c => c.Type == "id");
-            var profile = await _dbContext.UserProfiles.Include(c => c.UserAccount).SingleAsync(c => c.UserAccount.Id == userId.Value);
+            var profile = await _dbContext.UserProfiles
+                .AsNoTracking()
+                .Include(c => c.UserAccount)
+                .SingleAsync(c => c.UserAccount.Id == userId.Value);
 
             return new OkObjectResult(new
             {

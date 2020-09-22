@@ -33,17 +33,13 @@ namespace Together.WebApi.ViewModels.Mappings
                 .ForMember(r => r.CreatorLastName, o => o.MapFrom(s => s.Creator.LastName));
 
             CreateMap<Passenger, PassengerModel>()
-                .ForMember(pvm => pvm.PassengerFirstName, o => o.MapFrom(p => p.User.FirstName))
-                .ForMember(pvm => pvm.PassengerLastName, o => o.MapFrom(p => p.User.LastName));
+                .ForMember(pvm => pvm.FirstName, o => o.MapFrom(p => p.User.FirstName))
+                .ForMember(pvm => pvm.LastName, o => o.MapFrom(p => p.User.LastName));
 
             CreateMap<RoutePoint, RoutePointModel>();
 
             CreateMap<CreateRoutePointRequest, RoutePoint>()
-                .ForMember(rp => rp.CreatorId,
-                    o => o.MapFrom(
-                        (src, dest, _, context) => context.Options.Items["userId"]
-                    )
-                )
+                .ForMember(rp => rp.CreatorId, o => o.MapFrom(x => x.UserId))
                 .ForMember(rp => rp.CreatedDate, o => o.MapFrom(_ => DateTime.UtcNow));
 
 

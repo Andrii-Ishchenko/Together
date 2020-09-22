@@ -78,7 +78,7 @@ namespace Together.WebApi.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return Ok("Account Created");
+            return Ok();
         }
     }
 }

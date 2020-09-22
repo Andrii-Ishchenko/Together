@@ -10,9 +10,9 @@ namespace Together.Services.Models
 
         public string UserId { get; set; }
 
-        public string PassengerFirstName { get; set; }
+        public string FirstName { get; set; }
 
-        public string PassengerLastName { get; set; }
+        public string LastName { get; set; }
 
         public DateTime JoinDate { get; set; }
     }

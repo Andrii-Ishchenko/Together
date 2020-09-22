@@ -13,7 +13,7 @@ namespace Together.Services.Requests
 
         public string Name { get; set; }
 
-        public int RouteNumber { get; set; }
+        public int OrderNumber { get; set; }
 
         public float Latitude { get; set; }
 
