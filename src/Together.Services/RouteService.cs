@@ -73,5 +73,44 @@ namespace Together.Services
                 return passenger;
             }
         }
+
+        public async Task<Route> GetRoute(int routeId)
+        {
+            if(routeId < 0)
+            {
+                return null;
+            }
+
+            using (_dbContext)
+            {
+                var route = await _dbContext.Routes
+                    .Include(r => r.Creator)
+                    .Include(r => r.RoutePoints)
+                    .Include(r => r.Passengers)
+                    .FirstOrDefaultAsync(r => r.Id == routeId);
+
+                if(route == null)
+                {
+                    return null;
+                }
+
+                route.RoutePoints = route.RoutePoints.OrderBy(rp => rp.OrderNumber).ToList();
+
+                return route;
+            }
+        }
+
+        public async Task<List<Route>> List()
+        {
+            using (_dbContext)
+            {
+                return  await _dbContext.Routes
+                    .Include(r => r.Creator)
+                    .Include(r => r.Passengers)
+                    .Include(r => r.RoutePoints)
+                    .ToListAsync();
+
+            }
+        }
     }
 }

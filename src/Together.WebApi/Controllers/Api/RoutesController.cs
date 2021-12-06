@@ -38,48 +38,34 @@ namespace Together.WebApi.Controllers.Api
         }
 
         [AllowAnonymous]
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetRoute(int id)
-        {       
+        [HttpGet("{routeId}")]
+        public async Task<IActionResult> GetRoute(int routeId)
+        {
             if (!ModelState.IsValid) return BadRequest();
-            using (_dbContext)
+
+            var route = await _routeService.GetRoute(routeId);
+
+            if (route == null)
             {
-                var route = await _dbContext.Routes
-                    .Include(r=>r.Creator)
-                    .Include(r=>r.RoutePoints)
-                    .Include(r=>r.Passengers)
-                    .FirstOrDefaultAsync(r=> r.Id == id);
-
-                if (route != null)
-                {
-                    route.RoutePoints = route.RoutePoints.OrderBy(rp => rp.OrderNumber).ToList();
-
-                    var vm = _mapper.Map<RouteModel>(route);
-                    return Ok(vm);
-                }
+                return NotFound();
             }
-            return NotFound();
+
+            return Ok(_mapper.Map<RouteModel>(route));
         }
         
         [AllowAnonymous]
         [HttpGet("")]
         public async Task<IActionResult> List()
         {
-            using (_dbContext)
-            {
-                var routes = await _dbContext.Routes
-                    .Include(r => r.Creator)
-                    .Include(r => r.Passengers)
-                    .Include(r => r.RoutePoints)
-                    .ToListAsync();
 
-                if (routes != null)
-                {
-                    var vm = _mapper.Map<IEnumerable<RouteModel>>(routes);
-                    return Ok(vm);
-                }
+            var list = await _routeService.List();
+
+            if(list == null)
+            {
+                return NotFound();
             }
-            return NotFound();
+
+            return Ok(_mapper.Map<IEnumerable<RouteModel>>(list));        
         }
 
         [HttpPost]
@@ -107,59 +93,6 @@ namespace Together.WebApi.Controllers.Api
 
                 return Ok(vm);
             }
-        }
-
-        [HttpPut]
-        [Route("{routeId}/routepoint")]
-        public async Task<IActionResult> AddRoutePoint([FromRoute]int routeId, [FromBody]CreateRoutePointRequest model)
-        {
-            if (!ModelState.IsValid) return BadRequest();
-            
-            var userId = _caller.Claims.Single(c => c.Type == "id")?.Value;
-
-            if(userId == null)
-            {
-                throw new Exception("Invalid user");
-            }
-            
-            if(model.RouteId != routeId)
-            {
-                throw new Exception("RouteId is invalid");
-            }
-
-            if(model.UserId != userId)
-            {
-                throw new Exception("UserId is invalid");
-            }
-
-            using (_dbContext)
-            {
-                var route = await _dbContext.Routes
-                    .Include(r => r.RoutePoints)
-                        .ThenInclude(rp => rp.Route)
-                    .Include(r => r.Creator)
-                    .FirstOrDefaultAsync(r => r.Id == model.RouteId);
-
-                if(route == null)
-                {
-                    throw new Exception("Route not found");
-                }
-
-                var routePoint = _mapper.Map<RoutePoint>(model);
-
-                if(route.RoutePoints.FirstOrDefault(rp => rp.Latitude == model.Latitude && rp.Longitude == model.Longitude) != null)
-                {
-                    throw new Exception("RoutePoint with the same coordinates already exists!");
-                }
-
-                route.RoutePoints.Add(routePoint);
-
-                await _dbContext.SaveChangesAsync();
-                var responseModel = _mapper.Map<RoutePointModel>(routePoint);
-                return Ok(responseModel);
-            }
-
-
         }
 
         [HttpPost("test")]

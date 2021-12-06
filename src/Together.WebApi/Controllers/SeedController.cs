@@ -34,7 +34,13 @@ namespace Together.WebApi.Controllers
             using (_context)
             {
                 return await _context.Users.Include(c => c.UserProfile)
-                    .Select(s => new { Id = s.Id, Email = s.Email, FirstName = s.UserProfile.FirstName, LastName = s.UserProfile.LastName })
+                    .Select(s => new
+                    {
+                        Id = s.Id,
+                        Email = s.Email,
+                        FirstName = s.UserProfile.FirstName,
+                        LastName = s.UserProfile.LastName
+                    })
                     .ToListAsync();
             }
             
