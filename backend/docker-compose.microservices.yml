@@ -1,0 +1,38 @@
+version: '3.8'
+
+
+services:
+
+    # togetherdb:
+        # image: postgres:16-bullseye
+        # env_file: .env
+        # environment:
+            # POSTGRES_DB: 'togetherdb'
+            # POSTGRES_USER: 'tgadmin'
+            # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        # networks: 
+          # - dev-network
+    
+    # adminer:
+        # image: adminer
+        # restart: always
+        # ports:
+          # - 8080:8080
+          
+    togetherdb:
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        container_name: 'togetherdb'
+        env_file: .env
+        ports:
+            - "1433:1433"
+        environment:
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: ${DB_SA_PASSWORD}
+        volumes:
+            - ../database/:/var/opt/mssql
+        
+            
+        
+networks:
+    dev-network:
+        name: dev-network

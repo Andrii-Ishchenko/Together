@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Together.Domain.Entities;
+namespace Together.Domain.Models;
 
-public class Route
+public class RoutePoint
 {
 }

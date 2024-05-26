@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Together.Persistence;
 
 namespace Together.WebAPI.Endpoints;
 
@@ -12,8 +13,10 @@ public static class RouteEndpoint
         return endpoints;
     }
 
-    private static async Task<IResult> GetRoute(int id)
+    private static async Task<IResult> GetRoute(int id, TogetherDbContext togetherDbContext)
     {
-        return await Task.FromResult(Results.Ok($"{id}"));
+        var can = togetherDbContext.Database.CanConnect();
+
+        return await Task.FromResult(Results.Ok($"{can}"));
     }
 }
