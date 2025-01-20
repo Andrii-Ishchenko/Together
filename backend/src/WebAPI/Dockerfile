@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Together.WebAPI/Together.WebAPI.csproj", "Together.WebAPI/"]
-RUN dotnet restore "./Together.WebAPI/Together.WebAPI.csproj"
+COPY ["WebAPI/WebAPI.csproj", "Together.WebApi/"]
+RUN dotnet restore "./WebAPI/WebAPI.csproj"
 COPY . .
-WORKDIR "/src/Together.WebAPI"
-RUN dotnet build "./Together.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/WebAPI"
+RUN dotnet build "./WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Together.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Together.WebAPI.dll"]
+ENTRYPOINT ["dotnet", "WebAPI.dll"]

@@ -1,12 +1,14 @@
-﻿using Together.WebAPI.Endpoints;
+﻿using Domain.Models;
+using WebApi.Endpoints;
 
-namespace Together.WebAPI.Extensions;
+namespace WebApi.Extensions;
 
-public static class EndpointRouteBuilderExtensions
+internal static class EndpointRouteBuilderExtensions
 {
     public static IEndpointRouteBuilder MapApplicationEndpoints(this WebApplication endpoints)
     {
         endpoints.MapRouteEndpoints();
+        endpoints.MapIdentityApi<User>();
 
         return endpoints;
     }
